@@ -1,4 +1,4 @@
-salad
+Dill.js
 =====
 
-Like Dill, but more.
+Like Dill, but more js.
