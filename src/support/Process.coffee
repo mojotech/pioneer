@@ -8,7 +8,7 @@ module.exports = ->
     constructor: (file, message, options = {}) ->
       @file = file
       @message = message
-      _.extend(@options, options)
+      @options = options
 
     start: (args...) ->
       unless @_started
