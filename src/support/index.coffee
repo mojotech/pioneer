@@ -10,7 +10,8 @@ module.exports = ->
   @_inFlow = (code, callback) ->
     $.createFlow (flow) =>
       flow.execute => code.call(@)
-    .then _.partial(callback, null), callback
+    .then _.partial(callback, null),
+      (err) -> throw err
 
   @Before = (code) ->
     _Before (callback) =>
