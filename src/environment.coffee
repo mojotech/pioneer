@@ -56,18 +56,21 @@ module.exports = ->
       value: (object, property, getter) ->
         unless getter
           [object, property, getter] = [@::, object, property]
-        Object.defineProperty object, property, configurable: true, get: getter
+        Object.defineProperty object, property,
+          configurable: true, enumerable: true, get: getter
     setter:
       value: (object, property, setter) ->
         unless setter
           [object, property, getter] = [@::, object, property]
-        Object.defineProperty object, property, configurable: true, set: getter
+        Object.defineProperty object, property,
+          configurable: true, enumerable: true, set: getter
     accessor:
       value: (object, property) ->
         unless property
           [object, property] = [@::, object]
         Object.defineProperty object, property,
           configurable: true,
+          enumerable: true,
           get: ->
             @["_#{property}"]
           set: (v) ->
