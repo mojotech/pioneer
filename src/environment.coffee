@@ -22,7 +22,10 @@ module.exports = ->
   #     (new B()).onAnInstance()
   #     #  => "hello world, I'm on an instance"
   #
-  # *********************************************************************************
+  #     Note: unlike underscore's "extend" or coffeescript's class extension,
+  #       include will successfully copy true getters and setters.
+  #
+  # ****************************************************************************
   #
   #   getter - define a getter function (evaluated whenever a property is accessed)
   #
@@ -46,11 +49,25 @@ module.exports = ->
   #
   # *********************************************************************************
 
+  # return the descriptor for an object's property, regardless of
+  # how far back in the prototype chain it was defined
+  origDescriptor = (source, prop) ->
+    return nil unless source
+    Object.getOwnPropertyDescriptor(source, prop) ||
+      origDescriptor(Object.getPrototypeOf(source), prop)
+
+  # like _.extend but handles true getters and setters:
+  copyProperties = (obj, source) ->
+    for prop of source
+      Object.defineProperty obj, prop, origDescriptor(source, prop)
+    obj
+
+
   Object.defineProperties Object::,
     includes:
       value: (mixin) ->
-        _.extend(@, mixin)
-        _.extend(@::, mixin::)
+        copyProperties(@, mixin)
+        copyProperties(@::, mixin::)
         @
     getter:
       value: (object, property, getter) ->
