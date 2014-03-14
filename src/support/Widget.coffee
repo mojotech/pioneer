@@ -40,7 +40,9 @@ module.exports = ->
       @find(selector).click()
 
     fill: (selector, value) ->
-      @find(selector).sendKeys(value)
+      el = @find(selector)
+      el.clear().then ->
+        el.sendKeys(value)
 
     read: (selector) ->
       selected = @find(selector)
