@@ -56,18 +56,19 @@ module.exports = ->
     Object.getOwnPropertyDescriptor(source, prop) ||
       origDescriptor(Object.getPrototypeOf(source), prop)
 
-  # like _.extend but handles true getters and setters:
-  copyProperties = (obj, source) ->
-    for prop of source
-      Object.defineProperty obj, prop, origDescriptor(source, prop)
-    obj
-
-
   Object.defineProperties Object::,
+
+    # like _.extend but handles true getters and setters:
+    copyProperties:
+      value: (source) ->
+        for prop of source
+          Object.defineProperty @, prop, origDescriptor(source, prop)
+        @
+
     includes:
       value: (mixin) ->
-        copyProperties(@, mixin)
-        copyProperties(@::, mixin::)
+        @copyProperties(@, mixin)
+        @copyProperties(@::, mixin::)
         @
     getter:
       value: (object, property, getter) ->
