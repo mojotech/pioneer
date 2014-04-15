@@ -26,6 +26,7 @@
     "url": "git://github.com/mojotech/dill.js.git"
   },
   "devDependencies": {
+    "coffee-script": "1.7.1"
   },
   "dependencies": {
     "cucumber": "~0.3.1",
