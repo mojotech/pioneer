@@ -14,6 +14,8 @@ MarketFilters = Widget.extend({
 });
 ```
 
+All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_WebElement.html)
+
 ## Table of contents
 
 * [Api](#api)
