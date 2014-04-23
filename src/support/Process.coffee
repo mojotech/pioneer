@@ -8,12 +8,12 @@ module.exports = ->
     constructor: (file, message, options = {}) ->
       @file = file
       @message = message
-      _.extend(@options, options)
+      @options = options
 
     start: (args...) ->
       unless @_started
         @_started = $.defer()
-        @_process = spawn('node', [@file].concat(args))
+        @_process = spawn(@file, args, @options)
         @_process.stdout.on 'data', @_stdout
         @_process.stderr.on 'data', @_stderr
 

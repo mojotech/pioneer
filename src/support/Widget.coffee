@@ -4,6 +4,29 @@ module.exports = ->
 
   class @Widget
 
+    @extend: (protoProps, staticProps) ->
+      if Object.hasOwnProperty(protoProps, 'constructor')
+        child = protoProps.constructor
+      else
+        child = => @apply(@, arguments)
+
+      child.copyProperties @
+      child.copyProperties staticProps
+
+      Surrogate = ->
+        @constructor = child
+        return undefined
+
+      Surrogate.prototype = @::
+      child.prototype = new Surrogate()
+
+      child::.copyProperties(protoProps) if protoProps
+
+      child.__super__ = @::
+
+      child
+
+
     constructor: (attributes = {}) ->
       _.extend @, attributes
 
@@ -17,7 +40,9 @@ module.exports = ->
       @find(selector).click()
 
     fill: (selector, value) ->
-      @find(selector).sendKeys(value)
+      el = @find(selector)
+      el.clear().then ->
+        el.sendKeys(value)
 
     read: (selector) ->
       selected = @find(selector)

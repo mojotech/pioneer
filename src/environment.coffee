@@ -22,7 +22,10 @@ module.exports = ->
   #     (new B()).onAnInstance()
   #     #  => "hello world, I'm on an instance"
   #
-  # *********************************************************************************
+  #     Note: unlike underscore's "extend" or coffeescript's class extension,
+  #       include will successfully copy true getters and setters.
+  #
+  # ****************************************************************************
   #
   #   getter - define a getter function (evaluated whenever a property is accessed)
   #
@@ -46,28 +49,46 @@ module.exports = ->
   #
   # *********************************************************************************
 
+  # return the descriptor for an object's property, regardless of
+  # how far back in the prototype chain it was defined
+  origDescriptor = (source, prop) ->
+    return nil unless source
+    Object.getOwnPropertyDescriptor(source, prop) ||
+      origDescriptor(Object.getPrototypeOf(source), prop)
+
   Object.defineProperties Object::,
+
+    # like _.extend but handles true getters and setters:
+    copyProperties:
+      value: (source) ->
+        for prop of source
+          Object.defineProperty @, prop, origDescriptor(source, prop)
+        @
+
     includes:
       value: (mixin) ->
-        _.extend(@, mixin)
-        _.extend(@::, mixin::)
+        @copyProperties(@, mixin)
+        @copyProperties(@::, mixin::)
         @
     getter:
       value: (object, property, getter) ->
         unless getter
           [object, property, getter] = [@::, object, property]
-        Object.defineProperty object, property, configurable: true, get: getter
+        Object.defineProperty object, property,
+          configurable: true, enumerable: true, get: getter
     setter:
       value: (object, property, setter) ->
         unless setter
           [object, property, getter] = [@::, object, property]
-        Object.defineProperty object, property, configurable: true, set: getter
+        Object.defineProperty object, property,
+          configurable: true, enumerable: true, set: getter
     accessor:
       value: (object, property) ->
         unless property
           [object, property] = [@::, object]
         Object.defineProperty object, property,
           configurable: true,
+          enumerable: true,
           get: ->
             @["_#{property}"]
           set: (v) ->
