@@ -20,12 +20,18 @@
   "bin": {
     "dill": "./bin/dill"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "coffee -o lib/ -c src/",
+    "clean": "rm -rf lib",
+    "watch": "coffee -o lib/ -cw src/",
+    "publish": "npm run-script build build && npm publish . && npm run-script clean"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/mojotech/dill.js.git"
   },
   "devDependencies": {
+    "coffee-script": "1.7.1"
   },
   "dependencies": {
     "cucumber": "~0.3.1",
