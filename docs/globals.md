@@ -10,6 +10,7 @@ Dill.js provides several helpful objects in the global scope to aid you in your 
   * [$](#$)
   * [_](#_)
   * [Driver](#driver)
+  * [Argv](#argv)
 
 # Helpers
 
@@ -24,3 +25,8 @@ Dill.js provides several helpful objects in the global scope to aid you in your 
 ## Driver
 
 `Driver` is a reference to [selenium driver namespace](http://selenium.googlecode.com/git/docs/api/javascript/namespace_webdriver.html).
+
+## Argv
+
+`argv` is a reference to all the process arguments that you pass.
+Argument parsing is provided by [node-optimist](https://github.com/substack/node-optimist).

@@ -1,4 +1,5 @@
 module.exports = ->
+  global.argv   = require('optimist').argv
   global.Driver = require 'selenium-webdriver'
 
   global._      = require 'lodash'

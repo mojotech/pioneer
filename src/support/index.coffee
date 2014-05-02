@@ -64,7 +64,7 @@ module.exports = ->
 
   @Before ->
     @lastStepType = 'Given'
-    @driver = new Driver.Builder().withCapabilities(Driver.Capabilities.chrome()).build()
+    @driver = new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
 
   @After ->
     @driver.close()
