@@ -2,6 +2,7 @@
 ### Declarative integration tests in javascript (w/ [cucumber](https://github.com/cucumber/cucumber-js) and [chai-as-promised](https://github.com/domenic/chai-as-promised/))
 Dill.js provides an abstraction layer between your integration tests and your DOM markup, DRYing up your step definitions and consolidating how people interact with the DOM in tests.
 
+![see it live](http://i.imgur.com/kTjwloS.gif)
 
 # Docs
 * [Widget](docs/widget.md)
