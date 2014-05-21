@@ -3,12 +3,12 @@ module.exports = ->
   @Widgets = {}
 
   class @Widget
-
     @extend: (protoProps, staticProps) ->
+      parent = @
       if Object.hasOwnProperty(protoProps, 'constructor')
         child = protoProps.constructor
       else
-        child = => @apply(@, arguments)
+        child = -> parent.apply(@, arguments)
 
       child.copyProperties @
       child.copyProperties staticProps
