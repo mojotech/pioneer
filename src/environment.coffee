@@ -114,28 +114,6 @@ module.exports = ->
   Object.defineProperty(
     $.Promise::, 'should', get: Object::__lookupGetter__('should'))
 
-  # *********************************************************************************
-  # Extend Object with promise-building helpers:
-  # *********************************************************************************
-  #
-  #   $ - call a node style callback function and return a promise
-  #
-  #   An example for an object 'server' with callback taking method 'load'
-  #     server.$('load').then => console.log 'loaded!'
-  #
-  # *********************************************************************************
-
-  Object.defineProperties Object::,
-    $:
-      value: (fn, args...) ->
-        deferred = $.defer()
-        (if _.isFunction(fn) then fn else @[fn]).call @, args..., (error, results...) ->
-          if error
-            deferred.reject(error)
-          else
-            deferred.fulfill(results...)
-        deferred.promise
-
   # ********************************************************************************#
   #  Circle CI doesn't seem to like ephemeral ports, and selenium-webdriver doesn't
   #   seem to have an easy way to modify the chromedriver port, so we monkey-patch
