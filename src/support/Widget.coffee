@@ -30,6 +30,12 @@ module.exports = ->
     constructor: (attributes = {}) ->
       _.extend @, attributes
 
+      @initialize.apply @, arguments
+
+    # Defines a noop initialize method intended to be
+    # overridden by the user when extending a Widget base class
+    initialize: ->
+
     world: World
 
     # use a getter to lazily initialize driver
