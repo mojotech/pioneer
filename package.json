@@ -24,7 +24,8 @@
     "build": "coffee -o lib/ -c src/",
     "clean": "rm -rf lib",
     "watch": "coffee -o lib/ -cw src/",
-    "publish": "npm run-script build && npm publish . && npm run-script clean"
+    "publish": "npm run-script build && npm publish . && npm run-script clean",
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -35,9 +36,6 @@
     "mocha": "^1.19.0",
     "sinon": "^1.10.0",
     "should": "^3.3.1"
-  },
-  "scripts": {
-    "test": "mocha test"
   },
   "dependencies": {
     "chai": "~1.8.1",
