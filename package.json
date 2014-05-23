@@ -25,7 +25,8 @@
     "clean": "rm -rf lib",
     "watch": "coffee -o lib/ -cw src/",
     "publish": "npm run-script build && npm publish . && npm run-script clean",
-    "test": "mocha test"
+    "test": "mocha test",
+    "integration": "./bin/dill test/features --require test/steps --require test/widgets --format=pretty --driver=phantomjs"
   },
   "repository": {
     "type": "git",
