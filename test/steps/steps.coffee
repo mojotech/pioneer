@@ -1,10 +1,4 @@
-Path          = require "path"
-fixturesBase  = Path.resolve(__dirname, "../", "fixtures")
-
 module.exports = ->
-  @When /^I view "([^"]*)"$/, (name) ->
-    @driver.get("file:///"+ Path.join(fixturesBase, name))
-
   @When /^I read the "([^"]*)" I should see "([^"]*)"$/, (selector, content) ->
     new @Widget({
       root: selector
