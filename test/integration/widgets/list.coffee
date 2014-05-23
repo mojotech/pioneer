@@ -6,6 +6,12 @@ module.exports = ->
     childSelector: "li"
 
     toArray: ->
-      @items().then (items) ->
-        $.map items, (item) ->
-          item.find().then (elm) -> elm.getText()
+      @map (item) ->
+        item.find().then (elm) -> elm.getText()
+
+    filterBy: (string) ->
+      @filter (item) ->
+        item
+          .find()
+          .then (elm) -> elm.getText()
+          .then (text) -> text.match(string) != null

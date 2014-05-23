@@ -63,6 +63,9 @@ module.exports = ->
       @driver.wait(_isPresent, 10000, "#{_selector} not found")
       @driver.findElement(_selector)
 
+    getHtml: (selector) ->
+       @find(selector).getOuterHtml()
+
     isPresent: ->
       @driver.isElementPresent(Driver.By.css(@root))
 
@@ -107,7 +110,14 @@ module.exports = ->
 
   class @Widget.List extends @Widget
     itemSelector: 'li'
+
     itemClass: World.Widget
+
+    map: (iter) ->
+      @items().then (items) -> $.map(items, iter)
+
+    filter: (iter) ->
+      @items().then (items) -> $.filter(items, iter)
 
     items: ->
       @findAll(@itemSelector).then (items) =>
