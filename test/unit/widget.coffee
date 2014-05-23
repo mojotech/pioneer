@@ -2,8 +2,8 @@ ROOT    = {}
 sinon   = require("sinon")
 assert  = require("assert")
 
-require("../src/environment").call(ROOT)
-require("../src/support/Widget").call(ROOT)
+require("../../src/environment").call(ROOT)
+require("../../src/support/Widget").call(ROOT)
 
 describe "widgets", ->
   describe "el should be overideable", ->
