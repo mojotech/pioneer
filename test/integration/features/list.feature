@@ -8,6 +8,7 @@ Feature: Manipulating Lists
 
   Scenario: Getting an item in a list
     Then I should see "geordi laforge" in position "4" of the list
+    Then I should see html "<li>geordi laforge</li>" in position "4" of the list
 
   Scenario: Serializing items in a list
     Then I should see the following list:
@@ -17,3 +18,5 @@ Feature: Manipulating Lists
       | geordi laforge  |
       | John Crichton   |
 
+  Scenario: Filtering items in a list
+    When I filter by "John" I should see "1" element
