@@ -33,6 +33,7 @@ This list of words can abstracted and interacted with via a `List` with ease. He
     * [Items](#items)
     * [Filter](#filter)
     * [Map](#map)
+    * [At](#at)
 
 # API
 
@@ -94,4 +95,14 @@ new ListItems().map(function(item) {
 .then(function(text) {
   return text.should.eql(["one", "sunny", "day"]);
 })
+```
+
+## At
+
+`function at(0-based-index)...`
+
+Returns a promise that resolves with a child `Widget` instance at a given index.
+
+```js
+new ListItems().at(2).then(function(item) {});
 ```

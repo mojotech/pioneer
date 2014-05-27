@@ -4,14 +4,14 @@ module.exports = ->
     .should.eventually.have.length(count)
 
   @Given /^I should see "([^"]*)" in position "([^"]*)" of the list$/, (content, position) ->
-    new @Widgets.List().items()
-    .then (items) -> items[+position-1].find()
+    new @Widgets.List().at(+position-1)
+    .then (item) -> item.find()
     .then (elm) -> elm.getText()
     .should.eventually.equal(content)
 
   @Given /^I should see html "([^"]*)" in position "([^"]*)" of the list$/, (content, position) ->
-    new @Widgets.List().items()
-    .then (items) -> items[+position-1].getHtml()
+    new @Widgets.List().at(+position-1)
+    .then (item) -> item.getHtml()
     .should.eventually.equal(content)
 
   @When /^I filter by "([^"]*)" I should see "([^"]*)" element$/, (string, count) ->
