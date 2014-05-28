@@ -19,6 +19,10 @@ All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.c
 ## Table of contents
 
 * [Api](#api)
+  * [Constructing](#constructing)
+    * [Finding](#finding)
+    * [Extending](#extending)
+    * [Overriding](#overriding)
   * [Root](#root)
   * [Interacting with the DOM](#interacting-with-the-dom)
     * [Click](#click)
@@ -30,6 +34,62 @@ All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.c
     * [isPresent](#ispresent)
 
 # API
+
+## Constructing
+
+There are several ways to create a new `Widget` depending on your needs.
+
+### Finding
+
+In most cases the find based factory is going to suite your needs.
+
+`Find` returns a promise based interface that eventually resolves to a widget with the `el` property already set to a [WebElement](http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_WebElement.html) instance, it takes a hash of attributes as its argument that will be extending onto your object.
+
+```js
+Widget.find({
+  root: "#big-papa"
+}).then(function(widget) {
+  // widget.el
+  // is the raw WebElement node already found
+  // for your convinence.
+});
+```
+
+### Extending
+
+Extending is simple way to create a new `Class` based on the base `Widget` class via the `.extend` syntax. Extend will override any method or value set on the base `Widget` object.
+
+Using the extend functionality is a handy way to abstract widget configuration across multiple files and multiple methods into multiple reusable widgets.
+
+```js
+MyWidget = Widget.extend({
+  root: ".biggie-biggie"
+});
+
+// Creating a new instance via new
+myWidget = new MyWidget({optional: args});
+
+// Creating a new instance via the find factory
+MyWidget.find({optional: args}).then(function(widget) {
+  myWidget = widget;
+});
+```
+
+### Overriding
+
+In any `Widgets` contructor you can override the default attributes set on said widget.
+
+This is a handy paradigm to embrance when you have small one off widgets that do not need custom logic but rather just a few small helper methods and or properties.
+
+```js
+// Creating a new instance with overrides
+myWidget = new Widget({optional: args});
+
+// Creating a new instance via the find factory with overrides
+Widget.find({optional: args}).then(function(widget) {
+  myWidget = widget;
+});
+```
 
 ## Root
 

@@ -26,6 +26,12 @@ module.exports = ->
 
       child
 
+    @find = (attributes) ->
+      _this = _.extend(new this, attributes)
+
+      _this.find().then (el) ->
+        _this.el = el
+        _this
 
     constructor: (attributes = {}) ->
       _.extend @, attributes
