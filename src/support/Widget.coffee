@@ -113,6 +113,10 @@ module.exports = ->
 
     itemClass: World.Widget
 
+    at: (index) ->
+      @items().then (items) ->
+        items[index]
+
     map: (iter) ->
       @items().then (items) -> $.map(items, iter)
 
