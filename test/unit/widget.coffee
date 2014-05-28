@@ -7,8 +7,8 @@ ROOT    =
     wait: -> promise.resolve()
     findElement: -> promise.resolve("fake element")
 
-require("../../src/environment").call(ROOT)
-require("../../src/support/Widget").call(ROOT)
+require("../../lib/environment").call(ROOT)
+require("../../lib/support/widgets").call(ROOT)
 
 describe "widgets", ->
   describe "root should be overideable", ->

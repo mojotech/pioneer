@@ -21,9 +21,8 @@
     "dill": "./bin/dill"
   },
   "scripts": {
-    "build": "coffee -o lib/ -c src/",
+    "build": "npm run-script clean && gulp",
     "clean": "rm -rf lib",
-    "watch": "coffee -o lib/ -cw src/",
     "publish": "npm run-script build && npm publish . && npm run-script clean",
     "test": "mocha test/unit/**.coffee",
     "integration": "./bin/dill test/integration/features --require test/integration/steps --require test/integration/widgets --format=pretty --driver=phantomjs"
@@ -37,7 +36,10 @@
     "mocha": "^1.19.0",
     "sinon": "^1.10.0",
     "should": "^3.3.1",
-    "bluebird": "^1.2.4"
+    "bluebird": "^1.2.4",
+    "gulp-include": "samccone/gulp-include",
+    "gulp": "^3.6.2",
+    "gulp-coffee": "^1.4.3"
   },
   "dependencies": {
     "chai": "~1.8.1",
