@@ -6,21 +6,21 @@ require("../../src/environment").call(ROOT)
 require("../../src/support/Widget").call(ROOT)
 
 describe "widgets", ->
-  describe "el should be overideable", ->
+  describe "root should be overideable", ->
     before ->
       this.OptionWidget = new ROOT.Widget(
-        el: "div"
+        root: "div"
       )
 
       this.ExtendWidget = new (ROOT.Widget.extend({
-        el: "wow"
+        root: "wow"
       }))
 
     it "should persit when passed via the constructor", ->
-      assert.equal(this.OptionWidget.el, "div")
+      assert.equal(this.OptionWidget.root, "div")
 
     it "should persit when passed via an extend", ->
-      assert.equal(this.ExtendWidget.el, "wow")
+      assert.equal(this.ExtendWidget.root, "wow")
 
   describe "initialize should be overideable", ->
     beforeEach ->
