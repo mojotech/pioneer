@@ -1,6 +1,11 @@
-ROOT    = {}
+promise = require("bluebird")
 sinon   = require("sinon")
 assert  = require("assert")
+
+ROOT    =
+  driver:
+    wait: -> promise.resolve()
+    findElement: -> promise.resolve("fake element")
 
 require("../../src/environment").call(ROOT)
 require("../../src/support/Widget").call(ROOT)
@@ -38,3 +43,20 @@ describe "widgets", ->
       )
 
       assert(this.spy.called, true)
+
+  describe "find based constructor", ->
+
+    it "should return a thenable interface", (done) ->
+      assert.notEqual(ROOT.Widget.find(root: "body").then, undefined)
+      done()
+
+    it "should set the el property", (done) ->
+      ROOT.Widget.find(root: "body").then (widget) ->
+        assert.notEqual(widget.el, undefined)
+        done()
+
+    it "should set attributes based on find args", (done) ->
+      ROOT.Widget.find(root: "body").then (widget) ->
+        widget.root.should.eql("body")
+        done()
+
