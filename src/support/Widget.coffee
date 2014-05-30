@@ -100,6 +100,14 @@ module.exports = ->
     _type: (type) ->
       "[type='#{type}']"
 
+  class @Widget.View extends @Widget
+    ui: (ui)->
+      regions = @regionPath.split(".")
+      viewPath = ("#{region}.currentView" for region in regions).join(".")
+      stmt = "return window.#{@appName}.#{viewPath}.ui.#{ui}.get(0)"
+      @driver.executeScript(stmt)
+
+
   class @Widget.Form extends @Widget.Fields
     submitSelector: ->
       @_type('submit')
