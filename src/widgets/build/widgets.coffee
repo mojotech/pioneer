@@ -6,3 +6,4 @@ module.exports = ->
   #= include ../Widget.List.coffee
   #= include ../Widget.Fields.coffee
   #= include ../Widget.Form.coffee
+  #= include ../Widget.View.coffee

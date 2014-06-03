@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+    <script type="text/javascript" src="http://marionettejs.com/downloads/backbone.marionette.js"></script>
+  </head>
+  <body></body>
+  <script>
+    window.MyRegion = new Backbone.Marionette.Region({el: "body"});
+
+    window.MyRegion.show(new (Backbone.Marionette.ItemView.extend({
+      template: _.template("<borg>the borg</borg><assimilate>like to eat cheerios</assimilate>"),
+      ui: {
+        "assimilate": "assimilate",
+        "borg": "borg"
+      }
+    }))());
+  </script>
+</html>
