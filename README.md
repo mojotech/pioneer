@@ -1,7 +1,11 @@
 # Dill.js
-[![Build Status](https://travis-ci.org/mojotech/dill.js.svg?branch=master)](https://travis-ci.org/mojotech/dill.js)
+[![Build Status](http://img.shields.io/travis/mojotech/dill.js.svg?style=flat
+)](https://travis-ci.org/mojotech/dill.js)
+[![Gitter chat](http://img.shields.io/badge/gitter-chat-blue.svg?style=flat
+)](https://gitter.im/mojotech/dill.js)
 
-### Declarative integration tests in javascript (w/ [cucumber](https://github.com/cucumber/cucumber-js) and [chai-as-promised](https://github.com/domenic/chai-as-promised/))
+### Integration tests made easy.
+
 Dill.js provides an abstraction layer between your integration tests and your DOM markup, DRYing up your step definitions and consolidating how people interact with the DOM in tests.
 
 ![see it live](http://i.imgur.com/kTjwloS.gif)
