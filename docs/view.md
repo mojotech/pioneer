@@ -36,7 +36,7 @@ Region path is the location of the region within you application.
 `regionPath` is required when making a new `Widget.View`. It supports deeply nested views using a dot deliminated syntax. `FooRegion.BarRegion.ZapRegion` which is expanded internally to be `FooRegion.currentView.BarRegion.currentView.ZapRegion`.
 
 ```js
-MarionetteView = @Widget.View.extend({
+MarionetteView = this.Widget.View.extend({
   regionPath: 'MyRegion.NestedRegion.AmazingRegion'
 })
 ```
