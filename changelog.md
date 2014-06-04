@@ -1,3 +1,23 @@
+### v0.4.0 [view commit logs](https://github.com/mojotech/dill.js/compare/v0.3.0...v0.4.0)
+
+  * Widget
+    * Add `getHtml` method.
+    * Add a `find` based constructor to widgets that return a promise and resolves as a new widget with a pre found `webElement` instance under the `el` property. Thus preventing you from having to do a `find` to interact with the widgets DOM.
+
+  * Widget.List
+    * Add `map` method to list to interact with each item.
+    * Add `filter` method to reduce items by a filter method.
+    * Add `at` method to get an item at a given index.
+
+  * Widget.View
+    * Add a new widget type that integrates in with `Marionette` Views.
+
+  * Tests
+    * Add integration test coverage for dill.js.
+
+  * General
+    * Split widget files into seperate files.
+
 ### v0.3.0 [view commit logs](https://github.com/mojotech/dill.js/compare/v0.2.0...v0.3.0)
 
 * Fixes
