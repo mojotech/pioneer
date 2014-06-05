@@ -185,7 +185,7 @@ var PuppyDetails = Widget.extend({
 
 ## isPresent
 
-`function isPresent()...`
+`function isPresent(<selector>)...`
 
-`isPresent` is a utility method to check to see if a given widgets `root` is present on the page.
-If the root is found then the promise is successfully resolved with true, otherwise it is resolved with false.
+`isPresent` is a utility method to check to see if a given widgets `root` or `root` scoped selector is present on the page.
+If the element is found then the promise is successfully resolved with true, otherwise it is resolved with false.

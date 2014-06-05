@@ -68,8 +68,8 @@ class @Widget
   getHtml: (selector) ->
      @find(selector).getOuterHtml()
 
-  isPresent: ->
-    @driver.isElementPresent(Driver.By.css(@root))
+  isPresent: (selector) ->
+    @driver.isElementPresent(Driver.By.css(@_selector(selector)))
 
   findAll: (selector) ->
     @driver.findElements(Driver.By.css(@_selector(selector)))
