@@ -49,4 +49,11 @@ module.exports = ->
 
     expect(-> widget.ui()).to.throw("A UI selector is required")
 
-
+  @When /^I see if "([^"]*)" is present within "([^"]*)" I should get "([^"]*)"$/, (child, root, isPresent) ->
+    @Widget.find({
+      root: root
+    }).then((widget) ->
+      widget.isPresent(child)
+    )
+    .then (present) ->
+      expect(""+present).to.eql(isPresent)
