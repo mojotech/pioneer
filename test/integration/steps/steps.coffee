@@ -57,3 +57,11 @@ module.exports = ->
     )
     .then (present) ->
       expect(""+present).to.eql(isPresent)
+
+  @When /^I read the "([^"]*)" with an all caps tranformer I should see "([^"]*)"$/, (selector, content) ->
+    allCaps = (str) -> str.toUpperCase()
+    new @Widget({
+      root: selector
+    })
+    .read(null, allCaps)
+    .should.eventually.eql(content)

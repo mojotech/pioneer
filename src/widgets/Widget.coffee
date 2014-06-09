@@ -52,10 +52,14 @@ class @Widget
     el.clear().then ->
       el.sendKeys(value)
 
-  read: (selector) ->
+  read: (selector, transformer) ->
+    transformer ||= (value) -> value
     selected = @find(selector)
     selected.getAttribute('value').then (value) ->
-      value or selected.getText()
+      if value
+        return transformer(value)
+      else
+        return selected.getText().then transformer
 
   find: (selector) ->
     _selector  = Driver.By.css(@_selector(selector))

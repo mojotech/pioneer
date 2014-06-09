@@ -6,6 +6,9 @@ Feature: Reading from the DOM
   Scenario: Reading a flat element
     When I read the "h1" I should see "hello world"
 
+  Scenario: Reading a flat element with a transformer
+    When I read the "h1" with an all caps tranformer I should see "HELLO WORLD"
+
   Scenario: Reading a nested element
     When I find the "doge" element within ".wow" I should see "many money"
 
