@@ -140,9 +140,9 @@ var PuppyNamer = Widget.extend({
 
 ## Read
 
-`function read(<cssSelector>)...`
+`function read(<cssSelector> [,transfomerFunction])...`
 
-`read` allows you to get the "value" attribute or text of a given DOM node. It returns a promise with the result of the read or rejection.
+`read` allows you to get the "value" attribute or text of a given DOM node. An optional second parameter performs a transformation on the value/text. It returns a promise with the result of the read or rejection.
 
 ```js
 var PuppyDetails = Widget.extend({
