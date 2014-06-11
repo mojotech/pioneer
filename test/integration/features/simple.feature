@@ -20,3 +20,6 @@ Feature: Reading from the DOM
 
   Scenario: Is Not Present
     When I see if "dogey" is present within ".wow" I should get "false"
+
+  Scenario: When I search by text
+    Given I search for "many money" I should get "many money"
