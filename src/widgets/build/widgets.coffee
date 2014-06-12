@@ -7,3 +7,4 @@ module.exports = ->
   #= include ../Widget.Fields.coffee
   #= include ../Widget.Form.coffee
   #= include ../Widget.View.coffee
+  #= include ../Widget.Iframe.coffee
