@@ -23,7 +23,7 @@
   "scripts": {
     "build": "npm run-script clean && gulp",
     "clean": "rm -rf lib",
-    "publish": "npm run-script build && npm publish && npm run-script clean",
+    "pub": "npm run-script build && npm publish && npm run-script clean",
     "test": "mocha test/unit/**.coffee",
     "integration": "./bin/dill test/integration/features --require test/integration/steps --require test/integration/widgets --format=pretty --driver=phantomjs"
   },
