@@ -24,3 +24,8 @@ module.exports = ->
 
   @Then /^I should see stuff$/, (table) ->
     new @Widgets.List().toHtml()
+
+  @When /^I find with "([^"]*)" I should see "([^"]*)"$/, (string, content) ->
+    new @Widgets.List().findBy(string)
+    .then (item) -> item.getHtml()
+    .should.eventually.eql(content)

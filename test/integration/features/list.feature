@@ -20,3 +20,6 @@ Feature: Manipulating Lists
 
   Scenario: Filtering items in a list
     When I filter by "John" I should see "1" element
+
+  Scenario: Finding the first matching element in a list
+    When I find with "a" I should see "<li>data</li>"
