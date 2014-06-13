@@ -1,3 +1,14 @@
+### v0.4.1[view commit logs](https://github.com/mojotech/dill.js/compare/v0.4.0...v0.4.1)
+
+  * Features
+    * `isPresent` takes an optional CSS selector to further scope the lookup.
+    * `Read` takes an additional transformer method to mutate the read result.
+
+  * Selenium WebDriver
+    * Bump version to fix two bugs introduced in ChromeDriver
+      * FIXED: 7300: Connect to ChromeDriver using the loopback address since
+      * FIXED: 7465: Fixed `net.getLoopbackAddress` on Windows
+
 ### v0.4.0 [view commit logs](https://github.com/mojotech/dill.js/compare/v0.3.0...v0.4.0)
 
   * Widget
