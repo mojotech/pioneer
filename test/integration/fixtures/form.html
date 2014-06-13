@@ -1,0 +1,22 @@
+<html>
+  <head></head>
+  <body>
+    <h1> Formtastic </h1>
+    <div>
+      <form id="form">
+        Field1: <input id="field1" type='text' name="field1"><br>
+        Field2: <input id="field2" type='text' name="field2" value="default"><br>
+        <input id="submit" type='submit' name="submit" onClick="return showText()">
+      </form>
+    </div>
+    <div id="onSubmit"></div>
+    <script type="text/javascript">
+      function showText(){
+        var field1 = document.getElementById("field1").value
+        var field2 = document.getElementById("field2").value
+        document.getElementById('onSubmit').innerHTML = "field1 is " + field1 +" and "+"field2 is " + field2
+        return false;
+      }
+    </script>
+  </body>
+</html>

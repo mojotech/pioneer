@@ -1,6 +1,6 @@
 class @Widget.Fields extends @Widget
   fillAll: (values) ->
-    @_map @fields, (f) => @fill(@_name(f), values[f])
+    @_map Object.keys(values), (f) => @fill(@_name(f), values[f])
 
   readAll: ->
     _readAll = (f) =>
