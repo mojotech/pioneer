@@ -5,7 +5,6 @@ var gulp    = require("gulp"),
 gulp.task("default", function() {
     gulp.src([
       'src/widgets/build/widgets.coffee',
-      'src/support/factory.coffee',
       'src/support/index.coffee',
       'src/support/Process.coffee',
       'src/support/logger.coffee'
