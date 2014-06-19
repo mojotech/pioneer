@@ -62,12 +62,13 @@ class @Widget
         return selected.getText().then transformer
 
   find: (selector) ->
-    _selector  = Driver.By.css(@_selector(selector))
-    _isPresent = =>
-      @driver.isElementPresent(_selector)
+    @driver.wait(
+      _.bind(@isPresent, this, selector), 
+      10000, 
+      "#{@_selector(selector)} not found"
+    )
 
-    @driver.wait(_isPresent, 10000, "#{_selector} not found")
-    @driver.findElement(_selector)
+    @driver.findElement(Driver.By.css(@_selector(selector)))
 
   getHtml: (selector) ->
      @find(selector).getOuterHtml()
