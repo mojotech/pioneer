@@ -72,3 +72,10 @@ module.exports = ->
     })
     .findByText(search).getText()
     .should.eventually.eql(found)
+
+  @When /^I see if "([^"]*)" is visible I should get "([^"]*)"$/, (selector,found) ->
+    new @Widget({
+      root: selector
+    })
+    .isVisible()
+    .then (isFound) -> (isFound+"").should.eql(found)

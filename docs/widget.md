@@ -32,6 +32,8 @@ All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.c
     * [Find](#find)
     * [FindAll](#findall)
     * [isPresent](#ispresent)
+    * [isVisible](#isvisible)
+
 
 # API
 
@@ -189,3 +191,10 @@ var PuppyDetails = Widget.extend({
 
 `isPresent` is a utility method to check to see if a given widgets `root` or `root` scoped selector is present on the page.
 If the element is found then the promise is successfully resolved with true, otherwise it is resolved with false.
+
+## isVisible
+
+`function isVisible(<selector>)...`
+
+`isVisible` is a utility method to check to see if a given selector is currently visible on the page.
+If the element is visible then the promise is successfully resolved with true, otherwise it is resolved with false.
