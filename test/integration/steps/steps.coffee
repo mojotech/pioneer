@@ -65,3 +65,10 @@ module.exports = ->
     })
     .read(null, allCaps)
     .should.eventually.eql(content)
+
+  @Given /^I search for "([^"]*)" I should get "([^"]*)"$/, (search, found) ->
+    new @Widget({
+      root: "wow"
+    })
+    .findByText(search).getText()
+    .should.eventually.eql(found)
