@@ -23,3 +23,9 @@ Feature: Reading from the DOM
 
   Scenario: When I search by text
     Given I search for "many money" I should get "many money"
+
+  Scenario: Is Visible
+    When I see if ".wow" is visible I should get "true"
+
+  Scenario: Is Not Visible
+    When I see if ".hidden" is visible I should get "false"

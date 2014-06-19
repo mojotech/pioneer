@@ -75,6 +75,10 @@ class @Widget
   isPresent: (selector) ->
     @driver.isElementPresent(Driver.By.css(@_selector(selector)))
 
+  isVisible: (selector) ->
+    @find(selector).then (elm) ->
+      elm.isDisplayed()
+
   findAll: (selector) ->
     @driver.findElements(Driver.By.css(@_selector(selector)))
 
