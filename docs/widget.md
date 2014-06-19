@@ -31,6 +31,7 @@ All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.c
     * [Read](#read)
     * [Find](#find)
     * [FindAll](#findall)
+    * [FindByText](#findbytext)
     * [isPresent](#ispresent)
     * [isVisible](#isvisible)
 
@@ -184,6 +185,12 @@ var PuppyDetails = Widget.extend({
   }
 });
 ```
+
+## FindByText
+
+`function findByText(<text>)...`
+
+`findByText` allows you to find the first element on a page that matches the text using Xpath. If the element is found then a raw webElement will be returned, otherwise an undefined value is returned.
 
 ## isPresent
 
