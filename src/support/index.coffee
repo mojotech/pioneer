@@ -1,6 +1,4 @@
 module.exports = ->
-  @logger = require './logger'
-
   @timeout = 5000
 
   @visit = (path) =>
