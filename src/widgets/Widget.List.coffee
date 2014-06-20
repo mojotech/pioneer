@@ -14,10 +14,13 @@ class @Widget.List extends @Widget
     @items().then (items) -> $.filter(items, iter)
 
   items: ->
-    @findAll(@itemSelector).then (items) =>
-      _.map items, (item, i) =>
-        sel = "#{@root} #{@itemSelector}:nth-child(#{i + 1})"
-        new @itemClass(root: sel)
+    @find().then (el) =>
+      el.findElements(Driver.By.css(@itemSelector))
+    .then (elms) =>
+      _.map elms, (el) =>
+        new @itemClass({
+          el: el
+        })
 
   findWhere: (iter) ->
     @filter(iter).then (items) -> items[0] if items

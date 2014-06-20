@@ -62,11 +62,21 @@ class @Widget
         return selected.getText().then transformer
 
   find: (selector) ->
+    deferred = new $.Deferred
+
+    if (@el)
+      if !selector
+        deferred.fulfill(@el)
+      else
+        return @el.findElement(Driver.By.css(selector))
+
+      return deferred
+
     @_ensureElement(selector)
     @driver.findElement(Driver.By.css(@_selector(selector)))
 
   getHtml: (selector) ->
-     @find(selector).getOuterHtml()
+     @find(selector).then (el) -> el.getOuterHtml()
 
   getAttribute: (attribute) ->
     @find().then (el) ->

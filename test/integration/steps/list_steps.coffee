@@ -29,3 +29,18 @@ module.exports = ->
     new @Widgets.List().findBy(string)
     .then (item) -> item.getHtml()
     .should.eventually.eql(content)
+
+  @When /^I find the "([^"]*)" within "([^"]*)" I should see (\d+) items$/, (itemSelector, root, count) ->
+    new @Widgets.List({
+      root: root
+      itemSelector: itemSelector
+    }).items().should.eventually.have.length(+count)
+
+  @When /^I find the "([^"]*)" child "([^"]*)" within "([^"]*)" and then I read the "([^"]*)" I should see "([^"]*)"$/, (index, itemSelector, root, childSelector, value) ->
+    new @Widgets.List({
+      root: root
+      itemSelector: itemSelector
+    })
+    .at(+index-1)
+    .then (child) ->
+      child.read(childSelector).should.eventually.eql(value)

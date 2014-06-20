@@ -23,3 +23,9 @@ Feature: Manipulating Lists
 
   Scenario: Finding the first matching element in a list
     When I find with "a" I should see "<li>data</li>"
+
+  Scenario: Nested list lookup
+    When I find the "span" within ".nested" I should see 3 items
+
+  Scenario: Nested list lookup with additonal child lookup
+    When I find the "3" child "span" within ".nested" and then I read the "p" I should see "protoss"
