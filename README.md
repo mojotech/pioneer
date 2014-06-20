@@ -18,6 +18,7 @@ Dill.js provides an abstraction layer between your integration tests and your DO
 * [Widget](docs/widget.md)
 * [Widget.List](docs/list.md)
 * [Widget.View](docs/view.md)
+* [WIdget.Iframe](docs/iframe.md)
 
 * [Globals](docs/globals.md)
 * [Driver Configuration](#driver-configuration)
