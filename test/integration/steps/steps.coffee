@@ -81,3 +81,10 @@ module.exports = ->
     })
     .isVisible()
     .then (isFound) -> (isFound+"").should.eql(found)
+
+  @When /^I read the "([^"]*)" attribute I should get "([^"]*)"$/, (attribute, expected) ->
+    new @Widget({
+      root: ".wow"
+    })
+    .getAttribute(attribute)
+    .then (attr) -> attr.should.eql(expected)

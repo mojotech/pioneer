@@ -29,3 +29,6 @@ Feature: Reading from the DOM
 
   Scenario: Is Not Visible
     When I see if ".hidden" is visible I should get "false"
+
+  Scenario: Reading attribute of element
+    When I read the "width" attribute I should get "400px"
