@@ -68,9 +68,11 @@ module.exports = ->
 
   @Given /^I search for "([^"]*)" I should get "([^"]*)"$/, (search, found) ->
     new @Widget({
-      root: "wow"
+      root: "doge"
     })
-    .findByText(search).getText()
+    .findByText(search).then( (el) ->
+      el.getText()
+    )
     .should.eventually.eql(found)
 
   @When /^I see if "([^"]*)" is visible I should get "([^"]*)"$/, (selector,found) ->
