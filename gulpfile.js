@@ -19,3 +19,7 @@ gulp.task("default", function() {
     .pipe(gulp.dest("lib/"))
 
 });
+
+gulp.task("watch", function() {
+  gulp.watch('src/**/*.coffee', ['default'])
+});
