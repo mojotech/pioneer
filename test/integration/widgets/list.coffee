@@ -15,3 +15,10 @@ module.exports = ->
           .find()
           .then (elm) -> elm.getText()
           .then (text) -> text.match(string) != null
+
+    findBy: (string) ->
+      @findWhere (item) ->
+        item
+          .find()
+          .then (elm) -> elm.getText()
+          .then (text) -> text.match(string) != null

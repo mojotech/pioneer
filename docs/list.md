@@ -106,3 +106,23 @@ Returns a promise that resolves with a child `Widget` instance at a given index.
 ```js
 new ListItems().at(2).then(function(item) {});
 ```
+
+## FindWhere
+
+`function findWhere(<predicateMethod>(itemInstance))...`
+
+Returns a `Promise` that resolves to a raw `WebElement` which represents the first element in the collection's items array which passes the filter method.
+
+The `predicateMethod` can either return a flat value or a `Promise` that resolves to a truthy or falsy value.
+
+Here is an example of finding the first item in a list of items that ends in "y".
+
+```js
+new ListItems().findWhere(function(item) {
+  return item.find().then(function(elm) {
+    return elm.getText().then(function(text) {
+      return text.match(/y$/);
+    });
+  })
+});
+```

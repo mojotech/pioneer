@@ -18,3 +18,7 @@ class @Widget.List extends @Widget
       _.map items, (item, i) =>
         sel = "#{@root} #{@itemSelector}:nth-child(#{i + 1})"
         new @itemClass(root: sel)
+
+  findWhere: (iter) ->
+    @filter(iter).then (items) -> items[0] if items
+
