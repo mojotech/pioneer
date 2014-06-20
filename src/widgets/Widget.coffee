@@ -87,7 +87,10 @@ class @Widget
     @root + (if selector then " #{selector}" else '')
 
   findByText: (text) ->
-    @driver.findElement(Driver.By.xpath('//*[normalize-space(text())=normalize-space("' + text + '")]'))
+    @find().then (el) ->
+      el.findElement(
+        Driver.By.xpath('//*[normalize-space(text())=normalize-space("' + text + '")]')
+      )
 
   _map: (collection, callback) ->
     results = []

@@ -190,7 +190,7 @@ var PuppyDetails = Widget.extend({
 
 `function findByText(<text>)...`
 
-`findByText` allows you to find the first element on a page that matches the text using Xpath. If the element is found then a raw webElement will be returned, otherwise an undefined value is returned.
+`findByText` allows you to find the first matching child of the widget. If the element is found then a raw webElement will be returned, otherwise an undefined value is returned.
 
 ## isPresent
 
