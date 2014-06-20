@@ -8,6 +8,7 @@ Development on dill.js is quite simple and only requires a few steps to get up a
 * Building
   * `$ npm install`.
   * `$ npm run-script build` to build the coffee-script.
+  * `$ gulp watch` will automatically rebuild the files when source code changes
 
 * Testing
   * `$ npm run-script integration` to run the integration test suite
