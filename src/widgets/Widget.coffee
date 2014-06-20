@@ -62,12 +62,7 @@ class @Widget
         return selected.getText().then transformer
 
   find: (selector) ->
-    @driver.wait(
-      _.bind(@isPresent, this, selector), 
-      10000, 
-      "#{@_selector(selector)} not found"
-    )
-
+    @_ensureElement(selector)
     @driver.findElement(Driver.By.css(@_selector(selector)))
 
   getHtml: (selector) ->
@@ -95,6 +90,13 @@ class @Widget
       el.findElement(
         Driver.By.xpath('//*[normalize-space(text())=normalize-space("' + text + '")]')
       )
+
+  _ensureElement: (selector) ->
+    @driver.wait(
+      _.bind(@isPresent, this, selector),
+      10000,
+      "#{@_selector(selector)} not found"
+    )
 
   _map: (collection, callback) ->
     results = []
