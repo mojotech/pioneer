@@ -48,6 +48,7 @@
     "lodash": "~2.2.1",
     "moment": "^2.6.0",
     "optimist": "^0.6.1",
-    "selenium-webdriver": "^2.42.1"
+    "selenium-webdriver": "^2.42.1",
+    "update-notifier": "0.1.10"
   }
 }
