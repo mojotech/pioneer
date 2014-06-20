@@ -34,6 +34,7 @@ All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.c
     * [FindByText](#findbytext)
     * [isPresent](#ispresent)
     * [isVisible](#isvisible)
+    * [getAttribute](#getattribute)
 
 
 # API
@@ -190,7 +191,7 @@ var PuppyDetails = Widget.extend({
 
 `function findByText(<text>)...`
 
-`findByText` allows you to find the first matching child of the widget. If the element is found then a raw webElement will be returned, otherwise an undefined value is returned.
+`findByText` allows you to find the first matching child of the widget. If the element is found then the promise will be resolved with a raw webElement otherwise the promise is resolved with null.
 
 ## isPresent
 
@@ -204,4 +205,11 @@ If the element is found then the promise is successfully resolved with true, oth
 `function isVisible(<selector>)...`
 
 `isVisible` is a utility method to check to see if a given selector is currently visible on the page.
-If the element is visible then the promise is successfully resolved with true, otherwise it is resolved with false.
+If the element is visible then the promise is resolved with true, otherwise it is resolved with false.
+
+## getAttribute
+
+`function getAttribute(<attribute>)...`
+
+The `getAttribute` method allows you to search an element for a particular attribute. It returns a promise that will resolve with the attribute value if found, otherwise it will resolve with null.
+For further reference visit http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l1851

@@ -73,6 +73,10 @@ class @Widget
   getHtml: (selector) ->
      @find(selector).getOuterHtml()
 
+  getAttribute: (attribute) ->
+    @find().then (el) ->
+      el.getAttribute(attribute)
+
   isPresent: (selector) ->
     @driver.isElementPresent(Driver.By.css(@_selector(selector)))
 
