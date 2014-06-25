@@ -62,8 +62,19 @@ module.exports = ->
 
   @Before ->
     @lastStepType = 'Given'
-    @driver = new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
+    if !shouldPreventBrowserReload()
+      @driver = new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
 
   @After ->
+    terminateDriver() unless shouldPreventBrowserReload()
+
+  @registerHandler "AfterFeatures", (event, callback) =>
+    terminateDriver() if shouldPreventBrowserReload()
+
+  shouldPreventBrowserReload = ->
+    ~process.argv.indexOf("--prevent-browser-reload")
+
+  terminateDriver = =>
     @driver.close()
     @driver.quit()
+    
