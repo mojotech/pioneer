@@ -47,7 +47,7 @@ The feature file is read by [cucumber.js](https://github.com/cucumber/cucumber-j
 
 It is from within the step definitions that widgets are created. Widgets are an abstraction layer between the raw [webElement](http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_WebElement.html) and your `click` or interations.
 This abstraction makes refactoring your application code and test code painless, since instead of having to redefine multiple selectors you only have to change one.
-If you are familer with a `backbone.view` a Widget should feel quite similar.
+If you are familiar with a `backbone.view` a Widget should feel quite similar.
 
 ```js
   var MyWidget = Widget.extend({
