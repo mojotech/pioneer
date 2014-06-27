@@ -13,7 +13,9 @@ gulp.task("default", function() {
 
     gulp.src([
       'src/dill.coffee',
-      'src/environment.coffee'
+      'src/environment.coffee',
+      'src/error_formatter.coffee',
+      'src/custom_formatter.coffee'
     ])
     .pipe(coffee())
     .pipe(gulp.dest("lib/"))

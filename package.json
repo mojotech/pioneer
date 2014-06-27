@@ -44,7 +44,8 @@
   "dependencies": {
     "chai": "~1.8.1",
     "chai-as-promised": "~4.1.0",
-    "cucumber": "~0.3.1",
+    "colors": "^0.6.2",
+    "cucumber": "joshtombs/cucumber-js#add-error-formatter",
     "lodash": "~2.2.1",
     "moment": "^2.6.0",
     "optimist": "^0.6.1",

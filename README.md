@@ -22,9 +22,8 @@ Dill.js provides an abstraction layer between your integration tests and your DO
 
 * [Globals](docs/globals.md)
 * [Driver Configuration](#driver-configuration)
+* [Step Helpers](docs/step_helpers.md)
+* [Command Line Options](docs/command_line)
 
-
-## Driver Configuration
-You can customize which driver your tests use via the `--driver` command line flag. The default driver is chrome.
 
 See http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_Capabilities.html for available options.
