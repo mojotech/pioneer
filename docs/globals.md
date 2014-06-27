@@ -7,14 +7,14 @@ Dill.js provides several helpful objects in the global scope to aid you in your 
 ## Table of contents
 
 * [Helpers](#helpers)
-  * [$](#$)
+  * [$](#promise)
   * [_](#_)
   * [Driver](#driver)
   * [Argv](#argv)
 
 # Helpers
 
-## $
+## <a name='promise'></a>$
 
 `$` is a reference to the webdriver [promise library](http://selenium.googlecode.com/git/docs/api/javascript/namespace_webdriver_promise.html).
 
