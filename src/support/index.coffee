@@ -60,6 +60,22 @@ module.exports = ->
   @And = (pattern, code) =>
     @[@lastStepType](pattern, code)
 
+  @Freeze = () ->
+    debugger
+    keyPress = false
+    stdin = process.stdin
+    stdin.setRawMode(true)
+    stdin.resume()
+    stdin.setEncoding( 'utf8' )
+    console.log('Press any key to continue...')
+    process.stdin.on('data', ((key) ->
+      keyPress = true
+    ))
+    @driver.wait((()->
+      return keyPress
+    ),Infinity).then =>
+      process.stdin.pause()
+
   @Before ->
     @lastStepType = 'Given'
     @driver = new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
@@ -67,3 +83,6 @@ module.exports = ->
   @After ->
     @driver.close()
     @driver.quit()
+
+  @When /^I Freeze$/, ->
+    @Freeze()

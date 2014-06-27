@@ -3,6 +3,7 @@
 var path = require('path');
 var fs   = require('fs');
 var lib  = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+var eformatter = path.join(lib, 'error_formatter.js');
 
 var updateNotifier = require('update-notifier');
 var notifier = updateNotifier({packagePath: '../package.json'});
@@ -11,4 +12,4 @@ if (notifier.update) {
     notifier.notify();
 }
 
-require(lib + '/dill')(lib);
+require(lib + '/dill')(lib, eformatter);
