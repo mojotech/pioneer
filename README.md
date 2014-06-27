@@ -22,6 +22,7 @@ Dill.js provides an abstraction layer between your integration tests and your DO
 
 * [Globals](docs/globals.md)
 * [Driver Configuration](#driver-configuration)
+* [Step Helpers](docs/step_helpers.md)
 
 
 ## Driver Configuration
