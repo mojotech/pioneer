@@ -23,20 +23,7 @@ Dill.js provides an abstraction layer between your integration tests and your DO
 * [Globals](docs/globals.md)
 * [Driver Configuration](#driver-configuration)
 * [Step Helpers](docs/step_helpers.md)
+* [Command Line Options](docs/command_line)
 
 
-## Driver Configuration
-You can customize which driver your tests use via the `--driver` command line flag. The default driver is chrome.
-
-## Error Formatting
-You can customize the format in which your errors are formatted via the `--error_formatter` command line flag. The default format is five lines of the stack trace with a blue first line. If you want to use a custom formatter you can do
-
-
-my_formatter.js should export a method like the following
-
-```js
-module.exports = function(err) {
-  console.log("my custom error formatter", err.stack);
-}
-```
 See http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_Capabilities.html for available options.
