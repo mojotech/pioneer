@@ -39,7 +39,8 @@
     "bluebird": "^1.2.4",
     "gulp-include": "samccone/gulp-include",
     "gulp": "^3.6.2",
-    "gulp-coffee": "^1.4.3"
+    "gulp-coffee": "^1.4.3",
+    "exec": "^0.1.1"
   },
   "dependencies": {
     "chai": "~1.8.1",
