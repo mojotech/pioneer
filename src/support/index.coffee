@@ -78,7 +78,7 @@ module.exports = ->
 
   @Before ->
     @lastStepType = 'Given'
-    if !shouldPreventBrowserReload()
+    if !@driver || !shouldPreventBrowserReload()
       @driver = new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
 
   @After ->
