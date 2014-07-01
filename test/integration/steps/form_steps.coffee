@@ -1,7 +1,7 @@
 module.exports = ->
 
   @Given /^I enter information and submit$/, ->
-    form = new this.Widgets.Form()
+    form = new this.Widgets.SimpleForm()
     form.enter()
 
   @Then /^I should see "([^"]*)"$/, (text) ->
