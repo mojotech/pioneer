@@ -11,5 +11,5 @@ shorten = (message, numlines) ->
 
 colorFirstLine = (message) ->
   split = message.split('\n')
-  split[0] = split[0].blue
+  split[0] = split[0].red.inverse
   split.join('\n')
