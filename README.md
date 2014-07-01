@@ -13,17 +13,15 @@ Dill.js provides an abstraction layer between your integration tests and your DO
 [See an example repo.](https://github.com/samccone/dill.js-getting-started)
 
 # Docs
-* [Getting Started](docs/getting_started.md)
 
+* [Getting Started](docs/getting_started.md)
 * [Widget](docs/widget.md)
 * [Widget.List](docs/list.md)
 * [Widget.View](docs/view.md)
 * [Widget.Iframe](docs/iframe.md)
-
 * [Globals](docs/globals.md)
-* [Driver Configuration](#driver-configuration)
 * [Step Helpers](docs/step_helpers.md)
-* [Command Line Options](docs/command_line)
+* [Command Line Options](docs/command_line.md)
 
 
 See http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_Capabilities.html for available options.
