@@ -1,3 +1,18 @@
+### v0.5.0[view commit logs](https://github.com/mojotech/dill.js/compare/v0.4.1...v0.5.0)
+
+  * Features
+    * `isVisible` is now available on a widget.
+    * `findByText` is now available on a widget to enable you to lookup children of a widget based on arbitrary text content.
+    * `getAttribute` is now available on a widget, for reading a single attribute of a node.
+    * `findWhere` is now available on a `Dill.List` widget for finding a single `webElement` based on a filter method.
+    * `Iframe` Widget was added for interacting with iframes and switching focus in and out of them.
+    * You can now disable the reloading of the browser instance between tests via the `--prevent-browser-reload` CLI flag.
+    * Error stacktraces are now limited to 5 lines.
+    * A `freeze` utility method and step definition were added for aiding debugging. The freeze method prevents the steps from continuing until the user presses a key in the terminal.
+
+  * Fixes
+    * Widget.list children lookup no longer uses the broken `nth` child based selector.
+
 ### v0.4.1[view commit logs](https://github.com/mojotech/dill.js/compare/v0.4.0...v0.4.1)
 
   * Features
