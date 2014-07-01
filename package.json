@@ -45,7 +45,7 @@
     "chai": "~1.8.1",
     "chai-as-promised": "~4.1.0",
     "colors": "^0.6.2",
-    "cucumber": "joshtombs/cucumber-js#add-error-formatter",
+    "cucumber": "joshtombs/cucumber-js#0.3.3ErrorFormatting",
     "lodash": "~2.2.1",
     "moment": "^2.6.0",
     "optimist": "^0.6.1",
