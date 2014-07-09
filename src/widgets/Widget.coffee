@@ -78,6 +78,9 @@ class @Widget
   getHtml: (selector) ->
      @find(selector).then (el) -> el.getOuterHtml()
 
+  getText: (selector) ->
+    @find(selector).then (el) -> el.getText()
+
   getAttribute: (attribute) ->
     @find().then (el) ->
       el.getAttribute(attribute)
