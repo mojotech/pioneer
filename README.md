@@ -12,6 +12,18 @@ Dill.js provides an abstraction layer between your integration tests and your DO
 [View our Getting Started Guide](docs/getting_started.md) |
 [See an example repo.](https://github.com/samccone/dill.js-getting-started)
 
+# Installing
+
+#### With npm
+
+    npm install dill --save-dev
+
+#### With grunt
+
+    npm install grunt-dill-js --save-dev
+
+> [Grunt Dill Docs](https://github.com/mojotech/grunt-dill-js)
+
 # Docs
 
 * [Getting Started](docs/getting_started.md)
