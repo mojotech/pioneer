@@ -6,6 +6,7 @@ Command Line Options
 * [Error Formatting](#error-formatting)
 * [Tags](#tags)
 * [Prevent Browser Reload](#prevent-browser-reload)
+* [CoffeeScript Step Scaffold](#coffeescript-step-scaffold)
 
 ## Driver Configuration
 You can customize which driver your tests use via the `--driver` command line flag. The default driver is chrome.
@@ -32,3 +33,9 @@ To speed up testing, an optional `--prevent-browser-reload` flag can be passed t
   ```bash
   ./node_modules/.bin/dill --prevent-browser-reload --require steps/ --require widgets/
   ```
+
+## CoffeeScript Step Scaffold
+To have cucumber generate the step scaffold automatically in CoffeeScript, use the optional `--coffee` line flag.
+```bash
+./node_modules/.bin/dill --require steps/ --require widgets/ --coffee
+```
