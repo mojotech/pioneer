@@ -88,3 +88,17 @@ module.exports = ->
     })
     .getAttribute(attribute)
     .then (attr) -> attr.should.eql(expected)
+
+  @When /^I retrieve text of the "([^"]*)" element I should get "([^"]*)"$/, (rootSelector, expected) ->
+    new @Widget({
+      root: rootSelector
+    })
+    .getText()
+    .then (text) -> text.should.eql(expected)
+
+  @When /^I retrieve text of the "([^"]*)" element as a child of "([^"]*)" I should get "([^"]*)"$/, (child, root, expected) ->
+    new @Widget({
+      root: root
+    })
+    .getText(child)
+    .then (text) -> text.should.eql(expected)
