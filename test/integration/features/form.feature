@@ -11,3 +11,9 @@ Feature: Submit With
       | name    | value |
       | field1  | 1     |
       | field2  | 2     |
+
+  Scenario: When I instantiate a form widget without a root selector
+    Then the widget should use the default form selector to find the first available form element
+
+  Scenario: When I instantiate a form widget with a root selector
+    Then the widget should find the form with the supplied selector of "#form"

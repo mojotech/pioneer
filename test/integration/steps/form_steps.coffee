@@ -16,3 +16,9 @@ module.exports = ->
     })
 
     new F().submitWith(_.object(table.raw().slice(1)))
+
+  @Then /^the widget should use the default form selector to find the first available form element$/, ->
+    new @Widget.Form().getAttribute("class").should.eventually.eql("formula_1")
+
+  @Then /^the widget should find the form with the supplied selector of "([^"]*)"$/,  (selector) ->
+    new @Widget.Form({root: selector}).getAttribute("id").should.eventually.eql("form")
