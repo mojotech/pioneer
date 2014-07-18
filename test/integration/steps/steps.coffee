@@ -111,3 +111,12 @@ module.exports = ->
     w.sendKeys(sent)
     .then ->
       w.read().should.eventually.eql(read)
+
+  @When /^I fill an input with "([^"]*)" I should get "([^"]*)"$/, (write, read) ->
+    w = new @Widget({
+      root: '.inputbox'
+    })
+
+    w.fill(write)
+    .then ->
+      w.read().should.eventually.eql(read)

@@ -39,5 +39,9 @@ Feature: Reading from the DOM
   Scenario: Reading attribute of element
     When I read the "width" attribute I should get "400px"
 
+
   Scenario: Sending Keys to element
     When I send "doge" to an element I should be able to read "doge"
+
+  Scenario: Filling an input box
+    When I fill an input with "wow" I should get "wow"

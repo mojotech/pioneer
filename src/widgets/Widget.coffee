@@ -47,10 +47,15 @@ class @Widget
   click: (selector) ->
     @find(selector).click()
 
-  fill: (selector, value) ->
-    el = @find(selector)
-    el.clear().then ->
-      el.sendKeys(value)
+  fill: ->
+    args = arguments
+    if (args.length > 1)
+      @find(args[0]).then (el) ->
+        el.clear().then ->
+          el.sendKeys(args[1])
+    else
+     @find().then (el) ->
+      el.sendKeys(args[0])
 
   read: (selector, transformer) ->
     transformer ||= (value) -> value

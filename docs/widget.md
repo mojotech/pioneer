@@ -141,6 +141,16 @@ var PuppyNamer = Widget.extend({
   }
 });
 ```
+If only one argument is passed it will fill the root node with the value passed.
+
+```js
+var PuppyNamer = Widget.extend({
+  root: '.puppy-namer',
+  namePuppy: function(name) {
+    return this.fill(name);
+  }
+});
+```
 
 ### sendKeys
 
