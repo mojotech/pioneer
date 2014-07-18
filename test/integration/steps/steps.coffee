@@ -102,3 +102,12 @@ module.exports = ->
     })
     .getText(child)
     .then (text) -> text.should.eql(expected)
+
+  @When /^I send "([^"]*)" to an element I should be able to read "([^"]*)"$/, (sent, read) ->
+    w = new @Widget({
+      root: ".inputbox"
+    })
+
+    w.sendKeys(sent)
+    .then ->
+      w.read().should.eventually.eql(read)

@@ -27,6 +27,7 @@ All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.c
   * [Interacting with the DOM](#interacting-with-the-dom)
     * [Click](#click)
     * [Fill](#fill)
+    * [sendKeys](#sendkeys)
   * [Querying the DOM](#querying-the-dom)
     * [Read](#read)
     * [Find](#find)
@@ -139,6 +140,22 @@ var PuppyNamer = Widget.extend({
     return this.fill(".dog-name", name);
   }
 });
+```
+
+### sendKeys
+
+`function sendKeys(<valueToSend>,...)`
+
+`sendKeys` simulates a user typing. Derived from the [Webdriver sendKey method](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/actionsequence.js.src.html).It accepts as many arguments as desired, including special keys such as Driver.Key.ENTER. A list of those special keys can be found at [Selenium WebDriver docs](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/key.js.src.html).
+
+```js
+w = new Widget({
+  root:"#foo"
+})
+w.sendKeys("wow", Driver.Key.ENTER)
+.then(function(){
+  w.read();  
+}
 ```
 
 ## Querying the DOM
