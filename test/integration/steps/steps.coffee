@@ -102,3 +102,12 @@ module.exports = ->
     })
     .getText(child)
     .then (text) -> text.should.eql(expected)
+
+  @When /^I fill an input with "([^"]*)" I should get "([^"]*)"$/, (write, read) ->
+    w = new @Widget({
+      root: '.inputbox'
+    })
+
+    w.fill(write)
+    .then ->
+      w.read().should.eventually.eql(read)
