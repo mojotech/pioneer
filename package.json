@@ -1,5 +1,5 @@
 {
-  "name": "dill",
+  "name": "browserify",
   "description": "Delicious Cucumber tests",
   "keywords": [
     "cucumber",
@@ -7,14 +7,14 @@
     "testing"
   ],
   "author": "MojoTech",
-  "version": "0.5.0",
+  "version": "4.2.3",
   "license": "MIT",
   "engines": {
     "node": ">=0.8.0"
   },
   "directories": {
-    "lib": "./lib",
-    "bin": "./bin"
+    "doc": "docs",
+    "test": "test"
   },
   "main": "./lib/dill",
   "bin": {
@@ -37,7 +37,7 @@
     "sinon": "^1.10.0",
     "should": "^3.3.1",
     "bluebird": "^1.2.4",
-    "gulp-include": "samccone/gulp-include",
+    "gulp-include": "git://github.com/samccone/gulp-include",
     "gulp": "^3.6.2",
     "gulp-coffee": "^1.4.3",
     "exec": "^0.1.1"
@@ -52,5 +52,9 @@
     "optimist": "^0.6.1",
     "selenium-webdriver": "^2.42.1",
     "update-notifier": "0.1.10"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/mojotech/dill.js/issues"
+  },
+  "homepage": "https://github.com/mojotech/dill.js"
 }
