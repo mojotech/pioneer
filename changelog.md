@@ -1,3 +1,15 @@
+### v0.6.0[view commit logs](https://github.com/mojotech/dill.js/compare/v0.5.0...v0.6.0)
+
+  * Features
+    * Forms now default to `form` for their root selector.
+    * `getText` is now available on Widgets.
+    * `sendKeys` is now available on Widgets.
+    * The `fill` method now takes one or two arguments. When only passed a single argument will default to filling the widgets root node with the passed argument.
+
+  * Refactors
+    * Invoke cucumber programatically vs via an exec.
+    * General Doc improvements
+
 ### v0.5.0[view commit logs](https://github.com/mojotech/dill.js/compare/v0.4.1...v0.5.0)
 
   * Features
