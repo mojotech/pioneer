@@ -118,3 +118,8 @@ class @Widget
         callback(f, i).then (v) -> results.push(v)
     _.reduce(collection, _reduce, Driver.promise.fulfilled())
       .then -> results
+
+  sendKeys: ->
+    args = arguments
+    @find().then (el) =>
+      el.sendKeys.apply(el, args)
