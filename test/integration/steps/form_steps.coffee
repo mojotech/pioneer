@@ -1,6 +1,9 @@
 module.exports = ->
   world = this
 
+  @Given /^I click submit$/, ->
+    new this.Widgets.SimpleForm().submitForm()
+
   @Given /^I enter information and submit$/, ->
     form = new this.Widgets.SimpleForm()
     form.enter()

@@ -29,6 +29,8 @@ Pioneer provides an abstraction layer between your integration tests and your DO
 * [Getting Started](docs/getting_started.md)
 * [Widget](docs/widget.md)
 * [Widget.List](docs/list.md)
+* [Widget.Form](docs/form.md)
+* [Widget.Field](docs/field.md)
 * [Widget.View](docs/view.md)
 * [Widget.Iframe](docs/iframe.md)
 * [Globals](docs/globals.md)

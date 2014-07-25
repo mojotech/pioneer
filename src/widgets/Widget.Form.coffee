@@ -1,9 +1,20 @@
+Promise = require 'bluebird'
+
 class @Widget.Form extends @Widget.Fields
   root: 'form'
 
-  submitSelector: ->
-    @_type('submit')
+  submitSelector: (node) ->
+    if node?
+      if _.isString(node)
+        @find(node)
+      else
+        Promise.resolve(node)
+    else
+      @find('[type="submit"]')
+
+  submitForm: =>
+    @submitSelector().then (el) -> el.click()
 
   submitWith: (values) =>
     @fillAll(values)
-    @click @submitSelector()
+    .then(@submitForm)
