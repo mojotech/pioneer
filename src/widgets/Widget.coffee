@@ -106,7 +106,11 @@ class @Widget
   findByText: (text) ->
     @find().then (el) ->
       el.findElement(
-        Driver.By.xpath('//*[normalize-space(text())=normalize-space("' + text + '")]')
+        # WebDriver lets you go out of the child scope
+        # if you pass an absolute xpath selector
+        # this is a bug in WebDriver and is terrible
+        # by passing a `.` this is no longer an issue.
+        Driver.By.xpath('.//*[normalize-space(text())=normalize-space("' + text + '")]')
       )
 
   _ensureElement: (selector) ->

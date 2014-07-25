@@ -68,7 +68,7 @@ module.exports = ->
 
   @Given /^I search for "([^"]*)" I should get "([^"]*)"$/, (search, found) ->
     new @Widget({
-      root: "doge"
+      root: ".wow"
     })
     .findByText(search).then( (el) ->
       el.getText()
