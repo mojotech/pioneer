@@ -29,3 +29,6 @@ Feature: Manipulating Lists
 
   Scenario: Nested list lookup with additonal child lookup
     When I find the "3" child "span" within ".nested" and then I read the "p" I should see "protoss"
+
+  Scenario: Clicking on an index
+    When I click on the "3" child of "ul" I should read "clicked"

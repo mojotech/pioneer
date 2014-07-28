@@ -45,7 +45,8 @@ class @Widget
     @_driver || World.driver
 
   click: (selector) ->
-    @find(selector).click()
+    @find(selector).then (el) ->
+      el.click()
 
   fill: ->
     args = arguments
