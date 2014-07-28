@@ -1,7 +1,7 @@
-Dill.Iframe.List
+Pioneer.Iframe.List
 ===========
 
-`Dill.Iframe` is a utility class that extends from the base `Dill.Widget` Class.
+`Pioneer.Iframe` is a utility class that extends from the base `Pioneer.Widget` Class.
 
 ```js
   MyFrame = Widget.Iframe.extend({

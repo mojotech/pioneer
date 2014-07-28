@@ -1,4 +1,4 @@
-Dill.Widget
+Pioneer.Widget
 ===========
 
 Widget is the base class upon which your custom widgets should extend from. The Widget class provides you with several helpful utility methods that interact with your DOM in an asynchronous promised based manner.
@@ -14,7 +14,7 @@ MarketFilters = Widget.extend({
 });
 ```
 
-All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_WebElement.html)
+All Pioneer Widgets extend from seleniums [WebElement](http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_WebElement.html)
 
 ## Table of contents
 
@@ -166,7 +166,7 @@ w = new Widget({
 })
 w.sendKeys("wow", Driver.Key.ENTER)
 .then(function(){
-  w.read();  
+  w.read();
 }
 ```
 

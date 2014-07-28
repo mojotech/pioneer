@@ -1,12 +1,12 @@
-# Dill.js
-[![Build Status](http://img.shields.io/travis/mojotech/dill.js.svg?style=flat
-)](https://travis-ci.org/mojotech/dill.js)
+# Pioneer
+[![Build Status](http://img.shields.io/travis/mojotech/Pioneer.svg?style=flat
+)](https://travis-ci.org/mojotech/Pioneer)
 [![Gitter chat](http://img.shields.io/badge/gitter-chat-blue.svg?style=flat
-)](https://gitter.im/mojotech/dill.js)
+)](https://gitter.im/mojotech/Pioneer)
 
 ### Integration tests made easy.
 
-Dill.js provides an abstraction layer between your integration tests and your DOM markup, DRYing up your step definitions and consolidating how people interact with the DOM in tests.
+Pioneer provides an abstraction layer between your integration tests and your DOM markup, DRYing up your step definitions and consolidating how people interact with the DOM in tests.
 
 ![see it live](http://i.imgur.com/kTjwloS.gif)
 [View our Getting Started Guide](docs/getting_started.md) |
@@ -16,7 +16,7 @@ Dill.js provides an abstraction layer between your integration tests and your DO
 
 #### With npm
 
-    npm install dill --save-dev
+    npm install pioneer --save-dev
 
 #### With grunt
 

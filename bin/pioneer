@@ -12,4 +12,4 @@ if (notifier.update) {
     notifier.notify();
 }
 
-require(lib + '/dill')(lib, eformatter);
+require(lib + '/pioneer')(lib, eformatter);

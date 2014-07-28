@@ -1,5 +1,5 @@
 {
-  "name": "dill",
+  "name": "pioneer",
   "description": "Delicious Cucumber tests",
   "keywords": [
     "cucumber",
@@ -18,18 +18,18 @@
   },
   "main": "./lib/dill",
   "bin": {
-    "dill": "./bin/dill"
+    "pioneer": "./bin/dill"
   },
   "scripts": {
     "build": "npm run-script clean && gulp",
     "clean": "rm -rf lib",
     "pub": "npm run-script build && npm publish && npm run-script clean",
     "test": "mocha test/unit/**.coffee",
-    "integration": "./bin/dill test/integration/features --require test/integration/steps --require test/integration/widgets --format=pretty --driver=phantomjs --prevent-browser-reload"
+    "integration": "./bin/pioneer test/integration/features --require test/integration/steps --require test/integration/widgets --format=pretty --driver=phantomjs --prevent-browser-reload"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mojotech/dill.js.git"
+    "url": "git://github.com/mojotech/pioneer.git"
   },
   "devDependencies": {
     "coffee-script": "1.7.1",
@@ -54,7 +54,7 @@
     "update-notifier": "0.1.10"
   },
   "bugs": {
-    "url": "https://github.com/mojotech/dill.js/issues"
+    "url": "https://github.com/mojotech/pioneer/issues"
   },
-  "homepage": "https://github.com/mojotech/dill.js"
+  "homepage": "https://github.com/mojotech/pioneer"
 }

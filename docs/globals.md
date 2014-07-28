@@ -1,7 +1,7 @@
 Globals
 ===========
 
-Dill.js provides several helpful objects in the global scope to aid you in your development.
+Pioneer provides several helpful objects in the global scope to aid you in your development.
 
 
 ## Table of contents

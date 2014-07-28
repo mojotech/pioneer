@@ -12,7 +12,7 @@ gulp.task("default", function() {
     .pipe(gulp.dest("lib/support"))
 
     gulp.src([
-      'src/dill.coffee',
+      'src/pioneer.coffee',
       'src/environment.coffee',
       'src/error_formatter.coffee',
       'src/custom_formatter.coffee'

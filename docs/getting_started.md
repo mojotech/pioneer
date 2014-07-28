@@ -2,10 +2,10 @@
 
 _(Taken from our [example repo](https://github.com/samccone/dill.js-getting-started))_
 
-- Require dill.js as a dependency (and install)
+- Require Pioneer as a dependency (and install)
   ```json
   "dependencies": {
-    "dill": "^0.1.0"
+    "pioneer": "^0.6.1"
   }
   ```
   ```bash
@@ -42,7 +42,7 @@ _(Taken from our [example repo](https://github.com/samccone/dill.js-getting-star
   }
   ```
 
-- Use dill widgets to abstract your markup from your step definitions
+- Use Pioneer widgets to abstract your markup from your step definitions
   `widgets/search_form.js`
   ```javascript
   module.exports = function() {
@@ -72,5 +72,5 @@ _(Taken from our [example repo](https://github.com/samccone/dill.js-getting-star
 
 - Run your tests (require your steps and widgets)
   ```bash
-  ./node_modules/.bin/dill --require steps/ --require widgets/
+  ./node_modules/.bin/pioneer --require steps/ --require widgets/
   ```
