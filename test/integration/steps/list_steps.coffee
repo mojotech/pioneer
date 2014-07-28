@@ -44,3 +44,18 @@ module.exports = ->
     .at(+index-1)
     .then (child) ->
       child.read(childSelector).should.eventually.eql(value)
+
+  @When /^I click on the "([^"]*)" child of "([^"]*)" I should read "([^"]*)"$/, (index, rootSelector, expected) ->
+    _this = this
+    new @widgets.List({
+        root: rootSelector
+    })
+    .at(index - 1)
+    .then (item) ->
+      item.click()
+      .then ->
+        new _this.Widget({
+          root: '#onSubmit'
+        })
+        .read()
+        .should.eventually.eql(expected)

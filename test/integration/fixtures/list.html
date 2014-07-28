@@ -4,7 +4,7 @@
     <ul>
       <li>data</li>
       <li>7 of nine</li>
-      <li>deanna troi</li>
+      <li class='clickable'>deanna troi</li>
       <li>geordi laforge</li>
       <li>John Crichton</li>
     </ul>
@@ -17,5 +17,11 @@
         <span><p>protoss</p></span>
       </p>
     </div>
+    <div id="onSubmit"></div>
+    <script type="text/javascript">
+      document.querySelector('.clickable').addEventListener('click', function(){
+        document.querySelector('#onSubmit').innerHTML = 'clicked';
+      })
+    </script>
   </body>
 </html>
