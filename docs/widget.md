@@ -37,6 +37,8 @@ All Dill Widgets extend from seleniums [WebElement](http://selenium.googlecode.c
     * [isVisible](#isvisible)
     * [getAttribute](#getattribute)
     * [getText](#gettext)
+    * [getInnerHTML](#getInnerhtml)
+    * [getOuterHTML](#getOuterhtml)
 
 
 # API
@@ -247,3 +249,15 @@ For further reference visit http://selenium.googlecode.com/git/docs/api/javascri
 `function getText(<selector>)...`
 
 The `getText` method allows you to retrieve the text of a given element. It returns a promise that will resolve with the text if found, otherwise it will resolve with null.
+
+## getInnerHTML
+
+`function getInnerHTML(<selector>)`
+
+The `getInnerHTML` method will retrieve the innerHTML of the selector element. It returns a promise. Proxied off of [innerHTML](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l2016).
+
+## getOuterHTML
+
+`function getOuterHTML(<selector>)`
+
+The `getOuterHTML` method retrives the outerHTML of the selector element. It returns a promise. Proxied off of [outerHTML](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l1997).
