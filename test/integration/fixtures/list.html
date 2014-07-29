@@ -6,7 +6,7 @@
       <li>7 of nine</li>
       <li class='clickable'>deanna troi</li>
       <li>geordi laforge</li>
-      <li>John Crichton</li>
+      <li><p class='clickable'>John Crichton</p></li>
     </ul>
 
     <div class="nested">
@@ -20,6 +20,9 @@
     <div id="onSubmit"></div>
     <script type="text/javascript">
       document.querySelector('.clickable').addEventListener('click', function(){
+        document.querySelector('#onSubmit').innerHTML = 'clicked';
+      })
+      document.querySelector('p.clickable').addEventListener('click', function(){
         document.querySelector('#onSubmit').innerHTML = 'clicked';
       })
     </script>

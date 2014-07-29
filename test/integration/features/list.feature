@@ -32,3 +32,9 @@ Feature: Manipulating Lists
 
   Scenario: Clicking on an index
     When I click on the "3" child of "ul" I should read "clicked"
+
+  Scenario: Clicking at an index
+    When I click at the "3" index of "ul" I should read "clicked"
+
+  Scenario: Clicking at an index with selector
+    When I click at the "5" index with selector "p" I should read "clicked"

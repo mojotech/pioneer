@@ -7,6 +7,10 @@ class @Widget.List extends @Widget
     @items().then (items) ->
       items[index]
 
+  clickAt: (index, selector) ->
+    @at(index).then (widget) ->
+      widget.click(selector)
+
   map: (iter) ->
     @items().then (items) -> $.map(items, iter)
 

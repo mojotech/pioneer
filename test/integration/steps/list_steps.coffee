@@ -59,3 +59,28 @@ module.exports = ->
         })
         .read()
         .should.eventually.eql(expected)
+
+  @When /^I click at the "([^"]*)" index of "([^"]*)" I should read "([^"]*)"$/, (index, selector, expected) ->
+    _this = this
+    new @widgets.List({
+      root: selector
+    })
+    .clickAt(index - 1)
+    .then ->
+      new _this.Widget({
+        root: '#onSubmit'
+      })
+      .read()
+      .should.eventually.eql(expected)
+
+  @When /^I click at the "([^"]*)" index with selector "([^"]*)" I should read "([^"]*)"$/, (index, selector, expected) ->
+    _this = this
+    new @widgets.List()
+    .clickAt(index - 1, selector)
+    .then ->
+      new _this.Widget({
+        root: '#onSubmit'
+      })
+      .read()
+      .should.eventually.eql(expected)
+
