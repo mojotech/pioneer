@@ -45,6 +45,19 @@ module.exports = ->
     .then (child) ->
       child.read(childSelector).should.eventually.eql(value)
 
+  @When /^I read at the "([^"]*)" index of ul I should see "([^"]*)"$/, (index, expected) ->
+    new @Widgets.List()
+    .readAt(+index-1)
+    .should.eventually.eql(expected)
+
+  @When /^I read at the "([^"]*)" child "([^"]*)" within "([^"]*)" inside "([^"]*)" I should see "([^"]*)"$/, (index, itemSelector, root, childSelector, expected) ->
+    new @Widgets.List({
+      root: root
+      itemSelector: itemSelector
+    })
+    .readAt(+index-1, childSelector)
+    .should.eventually.eql(expected)
+
   @When /^I click on the "([^"]*)" child of "([^"]*)" I should read "([^"]*)"$/, (index, rootSelector, expected) ->
     _this = this
     new @widgets.List({
