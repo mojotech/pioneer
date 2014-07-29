@@ -137,3 +137,37 @@ module.exports = ->
         string.trim()
       )
       .join("").should.eql(expected)
+
+  @When /^I add class "([^"]*)" to "([^"]*)"$/, (className, selector) ->
+    new @Widget({
+      root: selector
+    })
+    .addClass(className)
+
+  @Then /^"([^"]*)" should have class "([^"]*)"$/, (selector, expected) ->
+    new @Widget({
+      root: selector
+    })
+    .getAttribute('class')
+    .then (attribute) ->
+      attribute.indexOf(expected).should.not.eql(-1)
+
+  @When /^I remove class "([^"]*)" from "([^"]*)"$/, (className, selector) ->
+    new @Widget({
+      root: selector
+    })
+    .removeClass(className)
+
+  @Then /^"([^"]*)" should not have class "([^"]*)"$/, (selector, expected) ->
+    new @Widget({
+      root: selector
+    })
+    .getAttribute('class')
+    .then (attribute) ->
+      attribute.indexOf(expected).should.eql(-1)
+
+  @When /^I toggle class "([^"]*)" on "([^"]*)"$/, (className, selector) ->
+    new @Widget({
+      root: selector
+    })
+    .toggleClass(className)
