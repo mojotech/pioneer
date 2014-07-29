@@ -49,4 +49,18 @@ Feature: Reading from the DOM
     When I get the innerHTML of ".wow" I should get "<doge>many money</doge>"
 
   Scenario: Getting outer HTML
-    When I get the outerHTML of ".wow doge" I should get "<doge>many money</doge>"  
+    When I get the outerHTML of ".wow doge" I should get "<doge>many money</doge>"
+
+  Scenario: Adding a class
+    When I add class "foo" to ".wow"
+    Then ".wow" should have class "foo"
+
+  Scenario: Removing a class
+    When I remove class "doge" from ".hidden"
+    Then ".hidden" should not have class "doge"
+
+  Scenario: Toggling a class
+    When I toggle class "doge" on ".hidden"
+    Then ".hidden" should not have class "doge"
+    When I toggle class "doge" on ".hidden"
+    Then ".hidden" should have class "doge"

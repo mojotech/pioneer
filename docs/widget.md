@@ -28,6 +28,9 @@ All Pioneer Widgets extend from seleniums [WebElement](http://selenium.googlecod
     * [Click](#click)
     * [Fill](#fill)
     * [sendKeys](#sendkeys)
+    * [addClass](#addclass)
+    * [removeClass](#removeclass)
+    * [toggleClass](#toggleclass)
   * [Querying the DOM](#querying-the-dom)
     * [Read](#read)
     * [Find](#find)
@@ -169,6 +172,31 @@ w.sendKeys("wow", Driver.Key.ENTER)
   w.read();
 }
 ```
+
+### addClass
+
+`function addClass(<className>)`
+
+`addClass` will add the provided class name to the DOM node of the Widget. It returns a promise that will resolve when the class has been added.
+
+```js
+var hidden = new Widget.extend({
+  root: '.showing'
+})
+.addClass('hidden')
+```
+
+### removeClass
+
+`function removeClass(<className>)`
+
+`removeClass` will remove the provided class name from the DOM node of the Widget. It returns a promise that will resolve when the class has been removed.
+
+### toggleClass
+
+`function toggleClass(<className>)`
+
+`toggleClass` will toggle the provided class name on the DOM node of the Widget. It returns a promise that will resolve when the class has been toggled.
 
 ## Querying the DOM
 

@@ -104,6 +104,18 @@ class @Widget
     @find(selector).then (elm) ->
       elm.isDisplayed()
 
+  addClass: (className) ->
+    @find().then (el) =>
+      @driver.executeScript("arguments[0].classList.add(arguments[1])", el, className)
+
+  removeClass: (className) ->
+    @find().then (el) =>
+      @driver.executeScript("arguments[0].classList.remove(arguments[1])", el, className)
+
+  toggleClass: (className) ->
+    @find().then (el) =>
+      @driver.executeScript("arguments[0].classList.toggle(arguments[1])", el, className)
+
   findAll: (selector) ->
     @driver.findElements(Driver.By.css(@_selector(selector)))
 
