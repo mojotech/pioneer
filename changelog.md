@@ -1,3 +1,13 @@
+### v0.6.2[view commit logs](https://github.com/mojotech/dill.js/compare/v0.6.1...v0.6.2)
+
+  * Features
+    * Add proxy `getInnerHTML` on the widget class.
+    * Add proxy `getOuterHTML` on the widget class.
+
+  * Fixes
+      * Fix broken `at` selector for lists.
+
+
 ### v0.6.1[view commit logs](https://github.com/mojotech/dill.js/compare/v0.6.0...v0.6.1)
 
   * Fixes
