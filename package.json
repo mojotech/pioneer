@@ -16,9 +16,9 @@
     "lib": "./lib",
     "bin": "./bin"
   },
-  "main": "./lib/dill",
+  "main": "./lib/pioneer",
   "bin": {
-    "pioneer": "./bin/dill"
+    "pioneer": "./bin/pioneer"
   },
   "scripts": {
     "build": "npm run-script clean && gulp",

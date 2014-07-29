@@ -17,5 +17,5 @@ node_modules
 .DS_Store
 
 lib/
-src/dill.js
+src/pioneer.js
 src/environment.js

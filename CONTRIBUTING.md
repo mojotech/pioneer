@@ -22,12 +22,12 @@ Contributing
 
 ## The Pieces
 
-Development on dill.js is quite simple and only requires a few steps to get up and going (after you know how the pieces fit together).
+Development on Pioneer is quite simple and only requires a few steps to get up and going (after you know how the pieces fit together).
 
 <img src="http://i.imgur.com/vS0Zexq.png" width="424px"/>
 
-Dill can be quickly understood using this image as a reference.
-Dill stresses a decoupling of testing components, to enable a developer to quickly change and iterate on their tests.
+Pioneer can be quickly understood using this image as a reference.
+Pioneer stresses a decoupling of testing components, to enable a developer to quickly change and iterate on their tests.
 The highest level component is a `.feature` file. It is in this file that a developer defines (*from the users perspective*) how the webpage should work.
 
 ```cucumber
