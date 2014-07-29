@@ -1,8 +1,8 @@
 # Pioneer
-[![Build Status](http://img.shields.io/travis/mojotech/Pioneer.svg?style=flat
-)](https://travis-ci.org/mojotech/Pioneer)
+[![Build Status](http://img.shields.io/travis/mojotech/pioneer.svg?style=flat
+)](https://travis-ci.org/mojotech/pioneer)
 [![Gitter chat](http://img.shields.io/badge/gitter-chat-blue.svg?style=flat
-)](https://gitter.im/mojotech/Pioneer)
+)](https://gitter.im/mojotech/pioneer)
 
 ### Integration tests made easy.
 
