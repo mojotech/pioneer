@@ -11,6 +11,15 @@ class @Widget.List extends @Widget
     @at(index).then (widget) ->
       widget.click(selector)
 
+  readAt: (index, selector, transformer) ->
+    args = Array.prototype.slice.call(arguments, 0);
+
+    if (_.isFunction(selector))
+      args.splice(1, 0, null)
+
+    @at(index).then (widget) =>
+      widget.read.apply(widget, args.slice(1))
+
   map: (iter) ->
     @items().then (items) -> $.map(items, iter)
 

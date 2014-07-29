@@ -30,6 +30,18 @@ Feature: Manipulating Lists
   Scenario: Nested list lookup with additonal child lookup
     When I find the "3" child "span" within ".nested" and then I read the "p" I should see "protoss"
 
+  Scenario: Reading at an index
+    When I read at the "2" index of ul I should see "7 of nine"
+
+  Scenario: Reading at an index with a transformer
+    Given I should be able to read and transform a list item at an index
+
+  Scenario: Reading at an index with a transformer and selector
+    Given I should be able to read with a subselector and transform an item at an index
+
+  Scenario: Reading at an index with selector
+    When I read at the "2" child "span" within ".nested" inside "p" I should see "human"
+
   Scenario: Clicking on an index
     When I click on the "3" child of "ul" I should read "clicked"
 
