@@ -22,7 +22,9 @@ gulp.task("default", function() {
     .pipe(gulp.dest("lib/"))
 
     gulp.src([
-      'src/config.json'
+      'src/config.json',
+      'src/pioneerformat.js',
+      'src/pioneersummaryformat.js'
     ])
     .pipe(gulp.dest("lib/"))
 });

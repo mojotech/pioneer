@@ -19,7 +19,7 @@ If no configuration path is passed in using [--configPath=](docs/command_line.md
     "test/integration/steps",
     "test/integration/widgets"
   ],
-  "format": "pretty",
+  "format": "lib/pioneerformat.js",
   "prevent-browser-reload": true,
   "driver": "phantomjs",
   "error_formatter": "error_formatter.js",
