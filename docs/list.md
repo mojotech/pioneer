@@ -34,6 +34,7 @@ This list of words can abstracted and interacted with via a `List` with ease. He
     * [Filter](#filter)
     * [Map](#map)
     * [At](#at)
+    * [clickAt](#clickat)
 
 # API
 
@@ -125,4 +126,22 @@ new ListItems().findWhere(function(item) {
     });
   })
 });
+```
+## clickAt
+
+`function clickAt(index, <selector>)`
+
+`clickAt` is a combination of the [at](#at) method and the [click](docs/widget.md#click) method that allows clicking on a certain index of list. The optional `<selector>` parameter allows for scoping within index. It returns a promise that is resolved when the index has been clicked.
+
+```html
+<ul>
+<li>zero</li>
+<li>one</li>
+<li>two</li>
+<li>three</li>
+</ul>
+```
+```js
+new Widget.List()
+.clickAt(3)         //results in <li>three</li> being clicked
 ```
