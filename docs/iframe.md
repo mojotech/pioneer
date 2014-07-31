@@ -19,7 +19,6 @@ Pioneer.Iframe.List
   * [Api](#api)
     * [Focus](#focus)
     * [Unfocus](#unfocus)
-    * [Getparenttext](#getParentText)
 
 # API
 
