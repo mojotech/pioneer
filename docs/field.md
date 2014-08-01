@@ -1,4 +1,4 @@
-Dill.Widget.Field
+Widget.Field
 =================
 
 `Dill.Field`

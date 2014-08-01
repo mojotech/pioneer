@@ -1,4 +1,4 @@
-Pioneer.Iframe
+Widget.Iframe
 ===========
 
 `Pioneer.Iframe` is a utility class that extends from the base `Pioneer.Widget` Class.
