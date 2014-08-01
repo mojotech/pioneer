@@ -1,4 +1,4 @@
-Dill.Widget.Form
+Widget.Form
 =================
 
 `Dill.Form`

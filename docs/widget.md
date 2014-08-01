@@ -1,4 +1,4 @@
-Pioneer.Widget
+Widget
 ===========
 
 Widget is the base class upon which your custom widgets should extend from. The Widget class provides you with several helpful utility methods that interact with your DOM in an asynchronous promised based manner.

@@ -1,4 +1,4 @@
-Pioneer.Widget.View
+Widget.View
 ===========
 
 `Widget.View` is a utility class intended to make working with [Marionette.js](https://github.com/marionettejs/backbone.marionette) easier. It extends from the `Widget` class so you have a very similar interface with a few new things.

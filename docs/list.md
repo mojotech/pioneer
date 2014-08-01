@@ -1,4 +1,4 @@
-Pioneer.Widget.List
+Widget.List
 ===========
 
 `Pioneer.List` is a utility to make operating on a collection of similar items intuitive. `Pioneer.List` allows you to specify collection specific methods, as well as the base `Widget` class to use for each `Widget` in the list.
