@@ -25,7 +25,7 @@
     "clean": "rm -rf lib",
     "pub": "npm run-script build && npm publish && npm run-script clean",
     "test": "mocha test/unit/**.coffee",
-    "integration": "./bin/pioneer test/integration/features --require test/integration/steps --require test/integration/widgets --format=pretty --driver=phantomjs --prevent-browser-reload"
+    "integration": "./bin/pioneer"
   },
   "repository": {
     "type": "git",
@@ -48,8 +48,8 @@
     "colors": "^0.6.2",
     "cucumber": "joshtombs/cucumber-js#0.3.3ErrorFormatting",
     "lodash": "~2.2.1",
+    "minimist": "^0.2.0",
     "moment": "^2.6.0",
-    "optimist": "^0.6.1",
     "selenium-webdriver": "^2.42.1",
     "update-notifier": "0.1.10"
   },

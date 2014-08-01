@@ -15,11 +15,16 @@ gulp.task("default", function() {
       'src/pioneer.coffee',
       'src/environment.coffee',
       'src/error_formatter.coffee',
-      'src/custom_formatter.coffee'
+      'src/custom_formatter.coffee',
+      'src/config_builder.coffee'
     ])
     .pipe(coffee())
     .pipe(gulp.dest("lib/"))
 
+    gulp.src([
+      'src/config.json'
+    ])
+    .pipe(gulp.dest("lib/"))
 });
 
 gulp.task("watch", function() {
