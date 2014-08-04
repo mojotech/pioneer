@@ -1,7 +1,5 @@
-Dill.Widget.Field
+Widget.Field
 =================
-
-`Dill.Field`
 
 ## Table of contents
   * [Api](#api)

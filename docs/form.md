@@ -1,7 +1,5 @@
-Dill.Widget.Form
+Widget.Form
 =================
-
-`Dill.Form`
 
 ## Table of contents
   * [Api](#api)
