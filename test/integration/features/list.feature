@@ -50,3 +50,7 @@ Feature: Manipulating Lists
 
   Scenario: Clicking at an index with selector
     When I click at the "5" index with selector "p" I should read "clicked"
+
+  Scenario: Looping over items in a list with each
+    When I click on each item in the list
+    Then I should see that each list item was clicked

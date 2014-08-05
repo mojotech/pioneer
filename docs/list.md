@@ -33,6 +33,7 @@ This list of words can abstracted and interacted with via a `List` with ease. He
     * [Items](#items)
     * [Filter](#filter)
     * [Map](#map)
+    * [Each](#each)
     * [At](#at)
     * [clickAt](#clickat)
     * [readAt](#readat)
@@ -97,6 +98,18 @@ new ListItems().map(function(item, index) {
 .then(function(text) {
   return text.should.eql(["one", "sunny", "day"]);
 })
+```
+
+## Each
+
+`function each(iterator(widgetInstance, index)...`
+
+Returns a promise that resolves with the list items after each item in the list has been iterated over. The iterator method receives two arguments, the widget instance and the index of the item being iterated over.
+
+```js
+new ListItems().each(function(item, index) {
+  return item.click('.close');
+});
 ```
 
 ## At

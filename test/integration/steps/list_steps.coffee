@@ -106,3 +106,11 @@ module.exports = ->
     new @Widgets.List()
     .readAt(4, "p", (val) -> val.toUpperCase())
     .should.eventually.eql("JOHN CRICHTON")
+
+  @When /^I click on each item in the list$/, ->
+    new @Widgets.List({root: "ul.click-list"}).clickEach()
+
+  @Then /^I should see that each list item was clicked$/, ->
+    new @Widgets.List({root: "ul.click-list"}).map((item) ->
+      item.read()
+    ).should.eventually.eql(["clicked", "clicked", "clicked"])
