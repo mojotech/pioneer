@@ -26,6 +26,13 @@ class @Widget.List extends @Widget
   each: (iter) ->
     @map.apply(this, arguments).then -> @items
 
+  invoke: (method) ->
+    @map (item) ->
+      if _.isString(method)
+        item[method]()
+      else
+        method.call(item)
+
   filter: (iter) ->
     @items().then (items) -> $.filter(items, iter)
 

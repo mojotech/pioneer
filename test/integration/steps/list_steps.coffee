@@ -114,3 +114,9 @@ module.exports = ->
     new @Widgets.List({root: "ul.click-list"}).map((item) ->
       item.read()
     ).should.eventually.eql(["clicked", "clicked", "clicked"])
+
+  @Given /^I can invoke click on each widget in the list$/, ->
+    new @Widgets.List({root: "ul.click-list"}).invoke('click')
+
+  @Given /^I can invoke click on each widget in the list with a method$/, ->
+    new @Widgets.List({root: "ul.click-list"}).invoke(@Widget::click)

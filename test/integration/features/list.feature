@@ -54,3 +54,11 @@ Feature: Manipulating Lists
   Scenario: Looping over items in a list with each
     When I click on each item in the list
     Then I should see that each list item was clicked
+
+  Scenario: Invoking a method over the list with a string
+    Given I can invoke click on each widget in the list
+    Then I should see that each list item was clicked
+
+  Scenario: Invoking a method over the list with a method
+    Given I can invoke click on each widget in the list with a method
+    Then I should see that each list item was clicked
