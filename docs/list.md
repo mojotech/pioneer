@@ -76,7 +76,7 @@ new ListItems().filter(function(item) {
 
 ## Map
 
-`function map(<iterator>(itemInstance))...`
+`function map(iterator(widgetInstance, index))...`
 
 Returns a `Promise` that resolves to a list of items transformed according to the iterator method.
 
@@ -85,7 +85,7 @@ The `iterator` can return a flat value or a `Promise`.
 Here is an example of mapping a list of items down to their text content.
 
 ```js
-new ListItems().map(function(item) {
+new ListItems().map(function(item, index) {
   // First we must find the `item`
   // and then call `getText` on the raw
   // `webElement` to get their contents.
