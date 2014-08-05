@@ -39,6 +39,7 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [isPresent](#ispresent)
     * [isVisible](#isvisible)
     * [getAttribute](#getattribute)
+    * [getValue](#getvalue)
     * [getText](#gettext)
     * [getInnerHTML](#getInnerhtml)
     * [getOuterHTML](#getOuterhtml)
@@ -271,6 +272,14 @@ If the element is visible then the promise is resolved with true, otherwise it i
 
 The `getAttribute` method allows you to search an element for a particular attribute. It returns a promise that will resolve with the attribute value if found, otherwise it will resolve with null.
 For further reference visit http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l1851
+
+## getValue
+
+`function getValue(<selector>, <transformer>)...`
+
+The `getValue` method lets you get the current value of a given input node. It returns a promise that resolves with the value of the node.
+
+It takes an optional scoping selector, and a transformer.
 
 ## getText
 
