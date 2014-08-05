@@ -45,9 +45,22 @@ module.exports = ->
     .then (child) ->
       child.read(childSelector).should.eventually.eql(value)
 
+  @When /^I read at the "([^"]*)" index of ul I should see "([^"]*)"$/, (index, expected) ->
+    new @Widgets.List()
+    .readAt(+index-1)
+    .should.eventually.eql(expected)
+
+  @When /^I read at the "([^"]*)" child "([^"]*)" within "([^"]*)" inside "([^"]*)" I should see "([^"]*)"$/, (index, itemSelector, root, childSelector, expected) ->
+    new @Widgets.List({
+      root: root
+      itemSelector: itemSelector
+    })
+    .readAt(+index-1, childSelector)
+    .should.eventually.eql(expected)
+
   @When /^I click on the "([^"]*)" child of "([^"]*)" I should read "([^"]*)"$/, (index, rootSelector, expected) ->
     _this = this
-    new @widgets.List({
+    new @Widgets.List({
         root: rootSelector
     })
     .at(index - 1)
@@ -62,7 +75,7 @@ module.exports = ->
 
   @When /^I click at the "([^"]*)" index of "([^"]*)" I should read "([^"]*)"$/, (index, selector, expected) ->
     _this = this
-    new @widgets.List({
+    new @Widgets.List({
       root: selector
     })
     .clickAt(index - 1)
@@ -75,7 +88,7 @@ module.exports = ->
 
   @When /^I click at the "([^"]*)" index with selector "([^"]*)" I should read "([^"]*)"$/, (index, selector, expected) ->
     _this = this
-    new @widgets.List()
+    new @Widgets.List()
     .clickAt(index - 1, selector)
     .then ->
       new _this.Widget({
@@ -84,3 +97,12 @@ module.exports = ->
       .read()
       .should.eventually.eql(expected)
 
+  @Given /^I should be able to read and transform a list item at an index$/, ->
+    new @Widgets.List()
+    .readAt(4, (val) -> val.toUpperCase())
+    .should.eventually.eql("JOHN CRICHTON")
+
+  @Given /^I should be able to read with a subselector and transform an item at an index$/, ->
+    new @Widgets.List()
+    .readAt(4, "p", (val) -> val.toUpperCase())
+    .should.eventually.eql("JOHN CRICHTON")

@@ -24,7 +24,7 @@ module.exports = ->
 
     w.sendKeys(sent)
     .then ->
-      w.read().should.eventually.eql(read)
+      w.getValue().should.eventually.eql(read)
 
   @When /^I add class "([^"]*)" to "([^"]*)"$/, (className, selector) ->
     new @Widget({

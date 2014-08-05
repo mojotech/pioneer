@@ -35,4 +35,4 @@ module.exports = ->
 
     w.fill(write)
     .then ->
-      w.read().should.eventually.eql(read)
+      w.getValue().should.eventually.eql(read)
