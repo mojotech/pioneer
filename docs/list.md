@@ -35,7 +35,7 @@ This list of words can abstracted and interacted with via a `List` with ease. He
     * [Map](#map)
     * [At](#at)
     * [clickAt](#clickat)
-
+    * [readAt](#readat)
 # API
 
 ## ItemSelector
@@ -145,3 +145,15 @@ new ListItems().findWhere(function(item) {
 new Widget.List()
 .clickAt(3)         //results in <li>three</li> being clicked
 ```
+
+## readAt
+
+`function readAt(index, <selector>, <transformer>)`
+
+`readAt` is a combination of the [at](#at) method and the [read](docs/widget.md#read) method and allows for scoping within an el at the given index. The optional `<selector>` parameter allows for scoping within index. There is also an optional transformer argument that mirrors the default [read transformer](docs/widget.md#read) implementation. Read at returns a promise that resolves with the value of read.
+
+
+``js
+new Widget.List().readAt(1, 'p', function(val){
+  return $.trim(val);
+})

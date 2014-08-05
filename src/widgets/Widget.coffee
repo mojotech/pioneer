@@ -60,12 +60,14 @@ class @Widget
 
   read: (selector, transformer) ->
     transformer ||= (value) -> value
-    selected = @find(selector)
-    selected.getAttribute('value').then (value) ->
-      if value
+    @find(selector).then (el) ->
+      return el.getText().then transformer
+
+  getValue: (selector, transformer) ->
+    transformer ||= (value) -> value
+    @find(selector).then (el) ->
+      el.getAttribute('value').then (value) ->
         return transformer(value)
-      else
-        return selected.getText().then transformer
 
   find: (selector) ->
     deferred = new $.Deferred
