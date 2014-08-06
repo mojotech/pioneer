@@ -23,6 +23,16 @@ class @Widget.List extends @Widget
   map: (iter) ->
     @items().then (items) -> $.map(items, iter)
 
+  each: (iter) ->
+    @map.apply(this, arguments).then -> @items
+
+  invoke: (method) ->
+    @map (item) ->
+      if _.isString(method)
+        item[method]()
+      else
+        method.call(item)
+
   filter: (iter) ->
     @items().then (items) -> $.filter(items, iter)
 
@@ -37,4 +47,3 @@ class @Widget.List extends @Widget
 
   findWhere: (iter) ->
     @filter(iter).then (items) -> items[0] if items
-

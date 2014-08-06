@@ -5,6 +5,9 @@ module.exports = ->
     root: "ul"
     childSelector: "li"
 
+    clickEach: ->
+      @each (item) -> item.click()
+
     toArray: ->
       @map (item) ->
         item.find().then (elm) -> elm.getText()

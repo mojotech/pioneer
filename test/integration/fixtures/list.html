@@ -9,6 +9,12 @@
       <li><p class='clickable'>John Crichton</p></li>
     </ul>
 
+    <ul class="click-list">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
     <div class="nested">
       <h1> i am a headline </h1>
       <p>
@@ -19,12 +25,23 @@
     </div>
     <div id="onSubmit"></div>
     <script type="text/javascript">
+
       document.querySelector('.clickable').addEventListener('click', function(){
         document.querySelector('#onSubmit').innerHTML = 'clicked';
-      })
+      });
+
       document.querySelector('p.clickable').addEventListener('click', function(){
         document.querySelector('#onSubmit').innerHTML = 'clicked';
-      })
+      });
+
+      Array.prototype.forEach.call(
+        document.querySelectorAll('.click-list li'),
+        function(v){
+          v.addEventListener('click', function(){
+            this.innerHTML = "clicked";
+          });
+        }
+      );
     </script>
   </body>
 </html>

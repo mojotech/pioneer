@@ -33,6 +33,8 @@ This list of words can abstracted and interacted with via a `List` with ease. He
     * [Items](#items)
     * [Filter](#filter)
     * [Map](#map)
+    * [Each](#each)
+    * [Invoke](#invoke)
     * [At](#at)
     * [clickAt](#clickat)
     * [readAt](#readat)
@@ -76,7 +78,11 @@ new ListItems().filter(function(item) {
 
 ## Map
 
-`function map(<iterator>(itemInstance))...`
+```js
+function map(function iterator(widgetInstance, index) {
+  //...
+})
+```
 
 Returns a `Promise` that resolves to a list of items transformed according to the iterator method.
 
@@ -85,7 +91,7 @@ The `iterator` can return a flat value or a `Promise`.
 Here is an example of mapping a list of items down to their text content.
 
 ```js
-new ListItems().map(function(item) {
+new ListItems().map(function(item, index) {
   // First we must find the `item`
   // and then call `getText` on the raw
   // `webElement` to get their contents.
@@ -97,6 +103,40 @@ new ListItems().map(function(item) {
 .then(function(text) {
   return text.should.eql(["one", "sunny", "day"]);
 })
+```
+
+## Each
+
+```js
+function each(function iterator(widgetInstance, index) {
+//...
+}
+```
+
+Returns a promise that resolves with the list items after each item in the list has been iterated over. The iterator method receives two arguments, the widget instance and the index of the item being iterated over.
+
+```js
+new ListItems().each(function(item, index) {
+  return item.click('.close');
+});
+```
+
+## Invoke
+
+`function invoke(methodName or method)...`
+
+Returns a promise that resolves when the specified method has been invoked on all children.
+
+```js
+new ListItems().invoke('click').then(function() {
+//....
+});
+```
+
+```js
+new ListItems().invoke(this.Widget.prototype.click).then(function() {
+//....
+});
 ```
 
 ## At

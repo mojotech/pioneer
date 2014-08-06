@@ -50,3 +50,15 @@ Feature: Manipulating Lists
 
   Scenario: Clicking at an index with selector
     When I click at the "5" index with selector "p" I should read "clicked"
+
+  Scenario: Looping over items in a list with each
+    When I click on each item in the list
+    Then I should see that each list item was clicked
+
+  Scenario: Invoking a method over the list with a string
+    Given I can invoke click on each widget in the list
+    Then I should see that each list item was clicked
+
+  Scenario: Invoking a method over the list with a method
+    Given I can invoke click on each widget in the list with a method
+    Then I should see that each list item was clicked
