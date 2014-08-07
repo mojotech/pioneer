@@ -29,4 +29,4 @@ Pioneer provides several helpful objects in the global scope to aid you in your 
 ## Argv
 
 `argv` is a reference to all the process arguments that you pass.
-Argument parsing is provided by [node-optimist](https://github.com/substack/node-optimist).
+Argument parsing is provided by [minimist](https://github.com/substack/minimist).

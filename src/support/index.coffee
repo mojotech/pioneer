@@ -88,7 +88,7 @@ module.exports = ->
     terminateDriver() if shouldPreventBrowserReload()
 
   shouldPreventBrowserReload = ->
-    ~process.argv.indexOf("--prevent-browser-reload")
+    argv['prevent-browser-reload']?
 
   terminateDriver = =>
     @driver.close()

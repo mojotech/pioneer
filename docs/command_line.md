@@ -7,6 +7,7 @@ Command Line Options
 * [Tags](#tags)
 * [Prevent Browser Reload](#prevent-browser-reload)
 * [CoffeeScript Step Scaffold](#coffeescript-step-scaffold)
+* [Configuration File Path](#configuration-file-path)
 
 ## Driver Configuration
 You can customize which driver your tests use via the `--driver` command line flag. The default driver is chrome.
@@ -38,4 +39,10 @@ To speed up testing, an optional `--prevent-browser-reload` flag can be passed t
 To have cucumber generate the step scaffold automatically in CoffeeScript, use the optional `--coffee` line flag.
 ```bash
 ./node_modules/.bin/pioneer --require steps/ --require widgets/ --coffee
+```
+
+## Configuration File Path
+Pioneer configuration options can be declared in the form of a JSON file. To declare the path to this file use the optional `--configPath=` flag. Addtional information on the format of this file can be found [here](docs/config_file.md)
+```bash
+./node_modules/.bin/pioneer --configPath=myConfig.json
 ```
