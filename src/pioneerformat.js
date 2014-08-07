@@ -2,7 +2,7 @@ var path = require('path')
 module.exports = function(options, Cucumber) {
   var color            = Cucumber.Util.ConsoleColor;
   var self             = Cucumber.Listener.Formatter(options);
-  var summaryFormatter = require(path.join(process.cwd(), 'lib/pioneersummaryformat'))(options, Cucumber)
+  var summaryFormatter = require('./pioneersummaryformat.js')(options, Cucumber)
   var currentMaxStepLength = 0;
 
   var parentHear = self.hear;
