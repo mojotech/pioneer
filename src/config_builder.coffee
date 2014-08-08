@@ -28,8 +28,17 @@ module.exports =
               ""
 
           when k is 'prevent-browser-reload'
-            process.argv.push("--prevent-browser-reload")
-            ""
+            v = val[k]
+            switch
+              when typeof(v) is "string"
+                if(v == "true")
+                  process.argv.push("--prevent-browser-reload")
+                ""
+
+              else
+                if(val[k])
+                  process.argv.push("--prevent-browser-reload")
+                ""
 
           when k is 'feature'
             "#{val[k]}"
