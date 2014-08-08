@@ -1,3 +1,9 @@
+### v0.7.1[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.0...v0.7.1)
+
+#### Fixes
+
+* Fix issue with output formatter path lookup.
+
 ### v0.7.0[view commit logs](https://github.com/mojotech/pioneer/compare/v0.6.3...v0.7.0)
 
 #### Widget
