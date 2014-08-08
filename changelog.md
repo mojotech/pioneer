@@ -1,3 +1,59 @@
+### v0.7.0[view commit logs](https://github.com/mojotech/pioneer/compare/v0.6.3...v0.7.0)
+
+#### Widget
+
+##### Accessors
+
+* getValue - The `getValue` method lets you get the current value of a given input node. It returns a promise that resolves with the value of the node.
+
+* read - No longer to be used with input fields (was extracted to `getValue`)
+
+* getInnerHTML - Returns a promise that resolves with the innerHTML of the selector element.
+
+* getOuterHTML - Returns a promise that resolves with  the outerHTML of the selector element.
+
+##### Helpers
+
+* addClass
+* removeClass
+* toggleClass
+
+#### Widget.List
+
+##### Helpers
+
+* clickAt - `clickAt` is a combination of the at method that allows clicking on a certain index of list. The optional `<selector>` parameter allows for scoping within index. It returns a promise that is resolved when the index has been clicked.
+
+* readAt - `readAt` is a combination of the at method and the read method and allows for scoping within an el at the given index. The optional `<selector>` parameter allows for scoping within index. There is also an optional transformer argument that mirrors the default read implementation. Read at
+returns a promise that resolves with the value of read
+
+* each - Returns a promise that resolves with the list items after each item in the list has been iterated over. The iterator method receives two arguments, the widget instance and the index of the item being iterated over.
+
+* invoke - Returns a promise that resolves when the specified method has been invoked on all children.
+
+#### Docs
+
+* Added missing documentation for forms and fields
+
+#### Configuration
+
+Configuring pioneer options can now be done using a JSON file. If no configuration path is passed in using `--configPath=`, then pioneer uses the [default configuration settings](https://github.com/mojotech/pioneer/blob/master/docs/config_file.md#default-configuration).
+
+Pioneer will also look for a .pioneer.json file in the directory that you invoke the command from.
+
+The `--prevent-browser-reload` flag is no longer valid, it has been changed to `--preventReload=true`. From configuration it can be specified as { “preventReload”: true }
+
+#### Cleanup
+
+* Remove Pioneer.Iframe from core - https://github.com/mojotech/pioneer.iframe
+* Remove Pioneer.View from core - https://github.com/mojotech/pioneer.marionette
+* Integration features/steps separated out to several files
+
+#### Formatting
+
+Pioneer now has its own format type that is uses by default. This formatter changed the way in which the test summary is displayed. Failing steps will now be accompanied by the feature file and line number that they correspond with.
+
+
 ### v0.6.3[view commit logs](https://github.com/mojotech/pioneer/compare/v0.6.2...v0.6.3)
 
   * Fixes
