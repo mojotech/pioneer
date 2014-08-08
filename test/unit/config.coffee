@@ -28,7 +28,7 @@ describe "Pioneer configuration", ->
         { error_formatter: 'error_formatter.js' },
         { coffee: false },
         { driver: 'phantomjs' },
-        { 'prevent-browser-reload': true }
+        { 'preventReload': true }
       ]
 
       this.multiTagConfig = [
@@ -152,7 +152,7 @@ describe "Pioneer configuration", ->
         {require: ["wow.doge", "doge.script", "that.js", "this.json", "totally.css"]},
       ])
 
-  describe "prevent-browser-reload flag", ->
+  describe "preventReload flag", ->
 
     beforeEach ->
       this.libPath  = "wow"
@@ -164,47 +164,47 @@ describe "Pioneer configuration", ->
       process.argv.should.eql([])
 
     it "should not prevent browser reload when the config file specifies boolean false" , ->
-      configBuilder.generateOptions({}, {"prevent-browser-reload":false}, this.libPath)
+      configBuilder.generateOptions({}, {"preventReload":false}, this.libPath)
       process.argv.should.eql([])
 
     it "should not prevent browser reload when the config file specifies string false" , ->
-      configBuilder.generateOptions({}, {"prevent-browser-reload":"false"}, this.libPath)
+      configBuilder.generateOptions({}, {"preventReload":"false"}, this.libPath)
       process.argv.should.eql([])
 
     it "should not prevent browser reload when the config file specifies boolean true" , ->
-      configBuilder.generateOptions({}, {"prevent-browser-reload":true}, this.libPath)
+      configBuilder.generateOptions({}, {"preventReload":true}, this.libPath)
       process.argv.should.eql(["--prevent-browser-reload"])
 
     it "should not prevent browser reload when the config file specifies string true" , ->
-      configBuilder.generateOptions({}, {"prevent-browser-reload":"true"}, this.libPath)
+      configBuilder.generateOptions({}, {"preventReload":"true"}, this.libPath)
       process.argv.should.eql(["--prevent-browser-reload"])
 
     it "should prevent browser reload when specified on the commandline" , ->
-      configBuilder.generateOptions({"prevent-browser-reload": true}, {}, this.libPath)
+      configBuilder.generateOptions({"preventReload": true}, {}, this.libPath)
       process.argv.should.eql(["--prevent-browser-reload"])
 
     it "should prevent browser reload when specified on the commandline with string" , ->
-      configBuilder.generateOptions({"prevent-browser-reload": "true"}, {}, this.libPath)
+      configBuilder.generateOptions({"preventReload": "true"}, {}, this.libPath)
       process.argv.should.eql(["--prevent-browser-reload"])
 
     it "should not prevent browser reload when specified on the commandline" , ->
-      configBuilder.generateOptions({"prevent-browser-reload": false}, {}, this.libPath)
+      configBuilder.generateOptions({"preventReload": false}, {}, this.libPath)
       process.argv.should.eql([])
 
     it "should not prevent browser reload when specified on the commandline with string" , ->
-      configBuilder.generateOptions({"prevent-browser-reload": "false"}, {}, this.libPath)
+      configBuilder.generateOptions({"preventReload": "false"}, {}, this.libPath)
       process.argv.should.eql([])
 
     it "should prevent browser reload when specified on the commandline and false in config file" , ->
-      configBuilder.generateOptions({"prevent-browser-reload": true}, {"prevent-browser-reload": false}, this.libPath)
+      configBuilder.generateOptions({"preventReload": true}, {"preventReload": false}, this.libPath)
       process.argv.should.eql(["--prevent-browser-reload"])
 
     it "should not prevent browser reload when specified false on the commandline and true in config file" , ->
-      configBuilder.generateOptions({"prevent-browser-reload": false}, {"prevent-browser-reload": true}, this.libPath)
+      configBuilder.generateOptions({"preventReload": false}, {"preventReload": true}, this.libPath)
       process.argv.should.eql([])
 
     it "should only push the argument once when specified in both config and commandline", ->
-      configBuilder.generateOptions({"prevent-browser-reload": true}, {"prevent-browser-reload": true}, this.libPath)
+      configBuilder.generateOptions({"preventReload": true}, {"preventReload": true}, this.libPath)
       process.argv.should.eql(["--prevent-browser-reload"])
 
   describe "driver flag", ->

@@ -1,15 +1,22 @@
 moment        = require 'moment'
 fs            = require 'fs'
+path          = require 'path'
 minimist      = require 'minimist'
 configBuilder = require './config_builder'
+color = require('colors')
+
 module.exports = (libPath, config) ->
   args = minimist(process.argv.slice(2))
   process.argv = []
   if(args.configPath && fs.existsSync(args.configPath))
     configPath = args.configPath
   else
-    configPath = config
-  console.log 'Configuration loaded from ' + configPath + '\n'
+    p = path.join(process.cwd(), '/.pioneer.json')
+    if(fs.existsSync(p))
+      configPath = p
+    else
+      configPath = config
+  console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
   getSpecifications(configPath, libPath, args)
 
 getSpecifications = (path, libPath, args) ->
