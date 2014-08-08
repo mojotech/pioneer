@@ -30,9 +30,9 @@ module.exports = function(err) {
 To only run selected features include `--tags=@myTag` and insert @myTag directly before the intended feature(s).
 
 ## Prevent Browser Reload
-To speed up testing, an optional `--prevent-browser-reload` flag can be passed to prevent the web driver from restarting after each feature:
+To speed up testing, an optional `--preventReload` flag can be passed to prevent the web driver from restarting after each feature:
   ```bash
-  ./node_modules/.bin/pioneer --prevent-browser-reload --require steps/ --require widgets/
+  ./node_modules/.bin/pioneer --preventReload=true --require steps/ --require widgets/
   ```
 
 ## CoffeeScript Step Scaffold

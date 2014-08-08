@@ -7,7 +7,7 @@ CONFIG_NAMES = [
   "error_formatter",
   "coffee",
   "driver",
-  "prevent-browser-reload"
+  "preventReload"
 ]
 
 module.exports =
@@ -27,7 +27,7 @@ module.exports =
             else
               ""
 
-          when k is 'prevent-browser-reload'
+          when k is 'preventReload'
             v = val[k]
             switch
               when typeof(v) is "string"

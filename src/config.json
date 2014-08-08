@@ -7,6 +7,6 @@
   "format": "lib/pioneerformat.js",
   "driver": "phantomjs",
   "error_formatter": "error_formatter.js",
-  "prevent-browser-reload": false,
+  "preventReload": false,
   "coffee": false
 }

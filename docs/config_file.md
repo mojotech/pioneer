@@ -20,7 +20,7 @@ If no configuration path is passed in using [--configPath=](docs/command_line.md
     "test/integration/widgets"
   ],
   "format": "./node_modules/pioneer/lib/pioneerformat.js",
-  "prevent-browser-reload": false,
+  "preventReload": false,
   "driver": "phantomjs",
   "error_formatter": "error_formatter.js",
   "coffee": false
@@ -61,11 +61,11 @@ To specify multiple tags, use an array.
 
 ## Prevent Browser Reload
 
-If `prevent-browser-reload` is not declared, then it will default to false.
+If `preventReload` is not declared, then it will default to false.
 
 ```json
 {
-  "prevent-browser-reload": true
+  "preventReload": true
 }
 ```
 
