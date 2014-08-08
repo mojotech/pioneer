@@ -36,7 +36,6 @@
     "mocha": "^1.19.0",
     "sinon": "^1.10.0",
     "should": "^3.3.1",
-    "bluebird": "^1.2.4",
     "gulp-include": "samccone/gulp-include",
     "gulp": "^3.6.2",
     "gulp-coffee": "^1.4.3",
@@ -51,7 +50,8 @@
     "minimist": "^0.2.0",
     "moment": "^2.6.0",
     "selenium-webdriver": "^2.42.1",
-    "update-notifier": "0.1.10"
+    "update-notifier": "0.1.10",
+    "bluebird": "^1.2.4"
   },
   "bugs": {
     "url": "https://github.com/mojotech/pioneer/issues"
