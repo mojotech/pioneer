@@ -1,4 +1,7 @@
+fs           = require 'fs'
+path         = require 'path'
 _            = require 'lodash'
+
 CONFIG_NAMES = [
   "tags",
   "feature",
@@ -26,6 +29,13 @@ module.exports =
               "--#{k}"
             else
               ""
+          when k is "format"
+            v = val[k]
+            if fs.existsSync(p = path.join(process.cwd(), v))
+              "--format=#{p}"
+            else
+              "--format=#{path.join(libPath, v)}"
+
 
           when k is 'preventReload'
             v = val[k]
