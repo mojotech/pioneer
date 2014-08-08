@@ -1,3 +1,9 @@
+### v0.7.2[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.1...v0.7.2)
+
+#### Fixes
+
+* Move bluebird dep out of dev dependencies.
+
 ### v0.7.1[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.0...v0.7.1)
 
 #### Fixes
