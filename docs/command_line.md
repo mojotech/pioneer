@@ -8,6 +8,7 @@ Command Line Options
 * [Prevent Browser Reload](#prevent-browser-reload)
 * [CoffeeScript Step Scaffold](#coffeescript-step-scaffold)
 * [Configuration File Path](#configuration-file-path)
+* [Scaffold Creation](#scaffold)
 
 ## Driver Configuration
 You can customize which driver your tests use via the `--driver` command line flag. The default driver is chrome.
@@ -45,4 +46,21 @@ To have cucumber generate the step scaffold automatically in CoffeeScript, use t
 Pioneer configuration options can be declared in the form of a JSON file. To declare the path to this file use the optional `--configPath=` flag. Addtional information on the format of this file can be found [here](docs/config_file.md)
 ```bash
 ./node_modules/.bin/pioneer --configPath=myConfig.json
+```
+
+## Scaffold Creation
+Pioneer can generate a scaffold for your first tests automatically using the optional `--scaffold` command line flag. This generates a tests/ directory, with features/, steps/ and widgets/. It creates simple.feature and simple.js files that include your first Pioneer test! It also creates a .pioneer.json file in your current working directory. This config file automatically includes the created feature files, and the following information:
+```json
+{
+  "feature": "tests/features",
+  "require": [
+    "tests/steps",
+    "tests/widgets"
+  ],
+  "format": "pioneerformat.js",
+  "driver": "chrome",
+  "error_formatter": "error_formatter.js",
+  "preventReload": false,
+  "coffee": false
+}
 ```
