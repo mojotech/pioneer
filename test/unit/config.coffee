@@ -3,7 +3,7 @@ assert          = require("assert")
 chai            = require("chai")
 expect          = chai.expect
 configBuilder   = require('../../lib/config_builder')
-_               = require 'lodash'
+_               = require('lodash')
 CONFIG_NAMES    = [
   "tags",
   "feature",
@@ -12,7 +12,8 @@ CONFIG_NAMES    = [
   "error_formatter",
   "coffee",
   "driver",
-  "preventReload"
+  "preventReload",
+  "scaffold"
 ]
 
 describe "Pioneer configuration", ->
@@ -34,6 +35,11 @@ describe "Pioneer configuration", ->
       this.multiTagConfig = [
         { tags: ["@wow", "@doge"]}
       ]
+      scaffoldStub = sinon.stub(configBuilder, "checkForFeature", -> false)
+
+    afterEach ->
+      configBuilder.checkForFeature.restore()
+
 
     it "should convertToExecOptions", ->
       configBuilder.convertToExecOptions(this.simpleConfig, this.libPath)
@@ -50,13 +56,11 @@ describe "Pioneer configuration", ->
         "--require"
         "wow/support"
       ])
-
       process.argv.should.eql(["--driver=phantomjs", "--prevent-browser-reload"])
 
     it "should convertToExecOptions with multiple tags", ->
       configBuilder.convertToExecOptions(this.multiTagConfig, this.libPath)
       .should.eql([null, null, "--tags=@wow", "--tags=@doge", "--require", "wow/support"])
-
       process.argv.should.eql([])
 
     it "should push command line arguments for driver and reload", ->
@@ -70,8 +74,8 @@ describe "Pioneer configuration", ->
         feature:"test/integration/features"
       }, {}, this.libPath)
 
-      configBuilder.convertToExecOptions.getCall(0).args[0]
-      .should.eql([
+      configBuilder.convertToExecOptions
+      .calledWith([
         {feature: 'test/integration/features'},
         {driver: "pretty"}
       ])
@@ -86,8 +90,8 @@ describe "Pioneer configuration", ->
           require: ["that.js", "this.json", "totally.css"]
         }, this.libPath)
 
-      configBuilder.convertToExecOptions.getCall(0).args[0]
-      .should.eql([
+      configBuilder.convertToExecOptions
+      .calledWith([
         {tags: ['@wow','@doge']},
         {require: ["that.js", "this.json", "totally.css"]},
         {error_formatter: "such.js"}
@@ -105,8 +109,8 @@ describe "Pioneer configuration", ->
         require: ["that.js", "this.json", "totally.css"]
       }, this.libPath)
 
-      configBuilder.convertToExecOptions.getCall(0).args[0]
-      .should.eql([
+      configBuilder.convertToExecOptions
+      .calledWith([
         {tags: ['@wow','@doge']},
         {require: ["that.js", "this.json", "totally.css"]},
         {error_formatter: "such.js"},
@@ -129,8 +133,8 @@ describe "Pioneer configuration", ->
         format: "json"
       }, this.libPath)
 
-      configBuilder.convertToExecOptions.getCall(0).args[0]
-      .should.eql([
+      configBuilder.convertToExecOptions
+      .calledWith([
         {tags: ['@wow','@doge']},
         {require: ["that.js", "this.json", "totally.css"]},
         {format: "pretty"},
@@ -147,8 +151,8 @@ describe "Pioneer configuration", ->
         require: ["that.js", "this.json", "totally.css"]
       }, this.libPath)
 
-      configBuilder.convertToExecOptions.getCall(0).args[0]
-      .should.eql([
+      configBuilder.convertToExecOptions
+      .calledWith([
         {require: ["wow.doge", "doge.script", "that.js", "this.json", "totally.css"]},
       ])
 
@@ -157,6 +161,10 @@ describe "Pioneer configuration", ->
     beforeEach ->
       this.libPath  = "wow"
       process.argv = []
+      scaffoldStub = sinon.stub(configBuilder, "checkForFeature", -> false)
+
+    afterEach ->
+      configBuilder.checkForFeature.restore()
 
     it "should not prevent browser reload without any specifications" , ->
       configBuilder.convertToExecOptions.restore()
@@ -212,6 +220,10 @@ describe "Pioneer configuration", ->
     beforeEach ->
       this.libPath  = "wow"
       process.argv = []
+      scaffoldStub = sinon.stub(configBuilder, "checkForFeature", -> false)
+
+    afterEach ->
+      configBuilder.checkForFeature.restore()
 
     it "should not be included when not specified" , ->
       configBuilder.generateOptions({}, {}, this.libPath)

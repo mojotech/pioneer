@@ -42,6 +42,7 @@
     "exec": "^0.1.1"
   },
   "dependencies": {
+    "bluebird": "^1.2.4",
     "chai": "~1.8.1",
     "chai-as-promised": "~4.1.0",
     "colors": "^0.6.2",
@@ -49,9 +50,10 @@
     "lodash": "~2.2.1",
     "minimist": "^0.2.0",
     "moment": "^2.6.0",
+    "readline-sync": "^0.4.5",
+    "rimraf": "^2.2.8",
     "selenium-webdriver": "^2.42.1",
-    "update-notifier": "0.1.10",
-    "bluebird": "^1.2.4"
+    "update-notifier": "0.1.10"
   },
   "bugs": {
     "url": "https://github.com/mojotech/pioneer/issues"
