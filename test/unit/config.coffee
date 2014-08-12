@@ -67,94 +67,92 @@ describe "Pioneer configuration", ->
       configBuilder.convertToExecOptions(this.simpleConfig, this.libPath)
       process.argv.should.eql(["--driver=phantomjs", "--prevent-browser-reload"])
 
-    it "should generate options with just commandline options", ->
-      stub = sinon.stub(configBuilder, "convertToExecOptions", (objArray, libPath) ->)
-      configBuilder.generateOptions({
-        driver:"pretty",
-        feature:"test/integration/features"
-      }, {}, this.libPath)
+    describe "generating options", ->
+      beforeEach ->
+        stub = sinon.stub(configBuilder, "convertToExecOptions", (objArray, libPath) ->)
 
-      configBuilder.convertToExecOptions
-      .calledWith([
-        {feature: 'test/integration/features'},
-        {driver: "pretty"}
-      ])
+      afterEach ->
+        configBuilder.convertToExecOptions.restore()
 
-    it "should generate options with just config file options", ->
-      configBuilder.convertToExecOptions.restore()
-      stub = sinon.stub(configBuilder, "convertToExecOptions", (objArray, libPath) ->)
-      configBuilder.generateOptions({
+      it "should generate options with just commandline options", ->
+        configBuilder.generateOptions({
+          driver:"pretty",
+          feature:"test/integration/features"
+        }, {}, this.libPath)
+
+        configBuilder.convertToExecOptions
+        .calledWith([
+          {feature: 'test/integration/features'},
+          {driver: "pretty"}
+        ])
+
+      it "should generate options with just config file options", ->
+        configBuilder.generateOptions({
+          },{
+            tags:["@wow","@doge"],
+            error_formatter: "such.js",
+            require: ["that.js", "this.json", "totally.css"]
+          }, this.libPath)
+
+        configBuilder.convertToExecOptions
+        .calledWith([
+          {tags: ['@wow','@doge']},
+          {require: ["that.js", "this.json", "totally.css"]},
+          {error_formatter: "such.js"}
+        ])
+
+      it "should generate options with both config and commandline options", ->
+        configBuilder.generateOptions({
+          coffee: true,
+          driver: "phantomjs"
         },{
           tags:["@wow","@doge"],
           error_formatter: "such.js",
           require: ["that.js", "this.json", "totally.css"]
         }, this.libPath)
 
-      configBuilder.convertToExecOptions
-      .calledWith([
-        {tags: ['@wow','@doge']},
-        {require: ["that.js", "this.json", "totally.css"]},
-        {error_formatter: "such.js"}
-      ])
+        configBuilder.convertToExecOptions
+        .calledWith([
+          {tags: ['@wow','@doge']},
+          {require: ["that.js", "this.json", "totally.css"]},
+          {error_formatter: "such.js"},
+          {coffee: true},
+          {driver: "phantomjs"}
+        ])
 
-    it "should generate options with both config and commandline options", ->
-      configBuilder.convertToExecOptions.restore()
-      stub = sinon.stub(configBuilder, "convertToExecOptions", (objArray, libPath) ->)
-      configBuilder.generateOptions({
-        coffee: true,
-        driver: "phantomjs"
-      },{
-        tags:["@wow","@doge"],
-        error_formatter: "such.js",
-        require: ["that.js", "this.json", "totally.css"]
-      }, this.libPath)
+      it "should allow command line arguments to override config file arguments", ->
+        configBuilder.generateOptions({
+          coffee: true,
+          driver: "firefox",
+          format: "pretty"
+        },{
+          tags:["@wow","@doge"],
+          driver: "chrome",
+          require: ["that.js", "this.json", "totally.css"],
+          coffee: false,
+          format: "json"
+        }, this.libPath)
 
-      configBuilder.convertToExecOptions
-      .calledWith([
-        {tags: ['@wow','@doge']},
-        {require: ["that.js", "this.json", "totally.css"]},
-        {error_formatter: "such.js"},
-        {coffee: true},
-        {driver: "phantomjs"}
-      ])
+        configBuilder.convertToExecOptions
+        .calledWith([
+          {tags: ['@wow','@doge']},
+          {require: ["that.js", "this.json", "totally.css"]},
+          {format: "pretty"},
+          {coffee: true},
+          {driver: "firefox"}
+        ])
 
-    it "should allow command line arguments to override config file arguments", ->
-      configBuilder.convertToExecOptions.restore()
-      stub = sinon.stub(configBuilder, "convertToExecOptions", (objArray, libPath) ->)
-      configBuilder.generateOptions({
-        coffee: true,
-        driver: "firefox",
-        format: "pretty"
-      },{
-        tags:["@wow","@doge"],
-        driver: "chrome",
-        require: ["that.js", "this.json", "totally.css"],
-        coffee: false,
-        format: "json"
-      }, this.libPath)
+      it "should allow required files from both config file and commandline options", ->
+        configBuilder.generateOptions({
+          require: ["wow.doge", "doge.script"]
+        },{
+          require: ["that.js", "this.json", "totally.css"]
+        }, this.libPath)
 
-      configBuilder.convertToExecOptions
-      .calledWith([
-        {tags: ['@wow','@doge']},
-        {require: ["that.js", "this.json", "totally.css"]},
-        {format: "pretty"},
-        {coffee: true},
-        {driver: "firefox"}
-      ])
-
-    it "should allow required files from both config file and commandline options", ->
-      configBuilder.convertToExecOptions.restore()
-      stub = sinon.stub(configBuilder, "convertToExecOptions", (objArray, libPath) ->)
-      configBuilder.generateOptions({
-        require: ["wow.doge", "doge.script"]
-      },{
-        require: ["that.js", "this.json", "totally.css"]
-      }, this.libPath)
-
-      configBuilder.convertToExecOptions
-      .calledWith([
-        {require: ["wow.doge", "doge.script", "that.js", "this.json", "totally.css"]},
-      ])
+        configBuilder.convertToExecOptions
+        .calledWith([
+          {require: ["wow.doge", "doge.script", "that.js", "this.json", "totally.css"]},
+        ])
 
   describe "preventReload flag", ->
 
@@ -167,7 +165,6 @@ describe "Pioneer configuration", ->
       configBuilder.hasFeature.restore()
 
     it "should not prevent browser reload without any specifications" , ->
-      configBuilder.convertToExecOptions.restore()
       configBuilder.generateOptions({}, {}, this.libPath)
       process.argv.should.eql([])
 
