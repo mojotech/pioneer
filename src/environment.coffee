@@ -1,6 +1,7 @@
+Driver = require('selenium-webdriver')
+# $  = Driver.promise
 module.exports = ->
   global.argv   = require('minimist')(process.argv)
-  global.Driver = require 'selenium-webdriver'
 
   global.$      = Driver.promise
 

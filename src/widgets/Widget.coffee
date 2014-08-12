@@ -1,4 +1,5 @@
 _ = require('lodash')
+Driver = require('selenium-webdriver')
 
 class @Widget
   @extend: (protoProps, staticProps) ->

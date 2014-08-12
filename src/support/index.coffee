@@ -1,5 +1,6 @@
-_     = require('lodash')
-color = require('colors')
+Driver = require('selenium-webdriver')
+_      = require('lodash')
+color  = require('colors')
 module.exports = ->
   @timeout = 5000
 
