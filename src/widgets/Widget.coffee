@@ -1,4 +1,4 @@
-class @Widget
+@W = class @Widget
   @extend: (protoProps, staticProps) ->
     parent = @
     if Object.hasOwnProperty(protoProps, 'constructor')
