@@ -3,9 +3,9 @@ fs            = require 'fs'
 path          = require 'path'
 minimist      = require 'minimist'
 configBuilder = require './config_builder'
-color = require('colors')
+color         = require 'colors'
 
-module.exports = (libPath, config) ->
+module.exports = (libPath) ->
   args = minimist(process.argv.slice(2))
   process.argv = []
   if(args.configPath && fs.existsSync(args.configPath))
@@ -15,19 +15,22 @@ module.exports = (libPath, config) ->
     if(fs.existsSync(p))
       configPath = p
     else
-      configPath = config
+      configPath = null
   console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
   getSpecifications(configPath, libPath, args)
 
 getSpecifications = (path, libPath, args) ->
   obj = {}
-  fs.readFile(path,
-    'utf8',
-    (err, data)->
-      throw err if(err)
-      object = JSON.parse(data)
-      applySpecifications(object, libPath, args)
-  )
+  if(path)
+    fs.readFile(path,
+      'utf8',
+      (err, data)->
+        throw err if(err)
+        object = JSON.parse(data)
+        applySpecifications(object, libPath, args)
+    )
+  else
+    applySpecifications(obj, libPath, args)
 
 applySpecifications = (obj, libPath, args) ->
   start(configBuilder.generateOptions(args, obj, libPath))

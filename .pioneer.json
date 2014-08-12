@@ -1,0 +1,12 @@
+{
+  "feature": "test/integration/features",
+  "require": [
+    "test/integration/steps",
+    "test/integration/widgets"
+  ],
+  "format": "pioneerformat.js",
+  "driver": "phantomjs",
+  "error_formatter": "error_formatter.js",
+  "preventReload": true,
+  "coffee": false
+}
