@@ -1,9 +1,8 @@
 Driver = require('selenium-webdriver')
-# $  = Driver.promise
+$      = Driver.promise
 module.exports = ->
   global.argv   = require('minimist')(process.argv)
 
-  global.$      = Driver.promise
 
   # *********************************************************************************
   # Extend Object with class helpers (used in the context of a class definition):

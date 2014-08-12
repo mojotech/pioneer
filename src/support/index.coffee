@@ -1,4 +1,5 @@
 Driver = require('selenium-webdriver')
+$      = Driver.promise
 _      = require('lodash')
 color  = require('colors')
 module.exports = ->
