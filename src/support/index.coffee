@@ -1,5 +1,6 @@
 Driver = require('selenium-webdriver')
 $      = Driver.promise
+argv   = require('minimist')(process.argv)
 _      = require('lodash')
 color  = require('colors')
 module.exports = ->
