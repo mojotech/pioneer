@@ -1,3 +1,5 @@
+_ = require('lodash')
+
 class @Widget
   @extend: (protoProps, staticProps) ->
     parent = @

@@ -1,3 +1,4 @@
+_     = require('lodash')
 color = require('colors')
 module.exports = ->
   @timeout = 5000

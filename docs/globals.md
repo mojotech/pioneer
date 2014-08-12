@@ -8,7 +8,6 @@ Pioneer provides several helpful objects in the global scope to aid you in your 
 
 * [Helpers](#helpers)
   * [$](#promise)
-  * [_](#_)
   * [Driver](#driver)
   * [Argv](#argv)
 
@@ -17,10 +16,6 @@ Pioneer provides several helpful objects in the global scope to aid you in your 
 ## <a name='promise'></a>$
 
 `$` is a reference to the webdriver [promise library](http://selenium.googlecode.com/git/docs/api/javascript/namespace_webdriver_promise.html).
-
-## _
-
-`_` is a reference to [lodash](http://lodash.com/docs).
 
 ## Driver
 
