@@ -2,7 +2,7 @@ _      = require('lodash')
 Driver = require('selenium-webdriver')
 $      = Driver.promise
 
-class @Widget
+@W = class @Widget
   @extend: (protoProps, staticProps) ->
     parent = @
     if Object.hasOwnProperty(protoProps, 'constructor')
