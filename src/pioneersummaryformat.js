@@ -2,6 +2,7 @@ module.exports = function (options, Cucumber) {
   var failedScenarioLogBuffer = "";
   var undefinedStepLogBuffer  = "";
   var failedStepResults       = Cucumber.Type.Collection();
+  var undefinedStepResults    = Cucumber.Type.Collection();
   var statsJournal            = Cucumber.Listener.StatsJournal();
   var color                   = Cucumber.Util.ConsoleColor;
 
@@ -61,6 +62,7 @@ module.exports = function (options, Cucumber) {
     var snippetBuilder = Cucumber.SupportCode.StepDefinitionSnippetBuilder(step, self.getStepDefinitionSyntax());
     var snippet        = snippetBuilder.buildSnippet();
     self.appendStringToUndefinedStepLogBuffer(snippet);
+    undefinedStepResults.add(step);
   };
 
   self.getStepDefinitionSyntax = function getStepDefinitionSyntax() {
@@ -160,7 +162,12 @@ module.exports = function (options, Cucumber) {
   self.logUndefinedStepSnippets = function logUndefinedStepSnippets() {
     var undefinedStepLogBuffer = self.getUndefinedStepLogBuffer();
     self.log(color.format('pending', "\nYou can implement step definitions for undefined steps with these snippets:\n\n"));
-    self.log(color.format('pending', undefinedStepLogBuffer));
+    undefinedStepResults.syncForEach(function(step){
+      self.log(step.getUri() + ':' + step.getLine() + '\n');
+      var snippetBuilder = Cucumber.SupportCode.StepDefinitionSnippetBuilder(step, self.getStepDefinitionSyntax());
+      var snippet        = snippetBuilder.buildSnippet();
+      self.log(color.format('pending', snippet))
+    });
   };
 
   return self;
