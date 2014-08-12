@@ -10,22 +10,7 @@ Configuration File
 * [CoffeeScript Step Scaffold](#coffeescript-step-scaffold)
 
 ## Default Configuration
-If no configuration path is passed in using [--configPath=](docs/command_line.md#configuration-file-path), then pioneer will check to see if the file .pioneer.json exists in the current working directory. If it does not, then the default pioneer configuration is as follows:
-
-```json
-{
-  "feature": "test/integration/features",
-  "require": [
-    "test/integration/steps",
-    "test/integration/widgets"
-  ],
-  "format": "./node_modules/pioneer/lib/pioneerformat.js",
-  "preventReload": false,
-  "driver": "phantomjs",
-  "error_formatter": "error_formatter.js",
-  "coffee": false
-}
-```
+If no configuration path is passed in using [--configPath=](docs/command_line.md#configuration-file-path), then pioneer will check to see if the file .pioneer.json exists in the current working directory.
 
 ## Driver Configuration
 
