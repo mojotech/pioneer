@@ -10,11 +10,12 @@ module.exports = ->
     .should.eventually.eql(content)
 
   @When /^I read the "([^"]*)" with an all caps tranformer I should see "([^"]*)"$/, (selector, content) ->
-    allCaps = (str) -> str.toUpperCase()
     new @Widget({
       root: selector
     })
-    .read(null, allCaps)
+    .read({
+      transformer: (str) -> str.toUpperCase()
+    })
     .should.eventually.eql(content)
 
   @When /^I find the "([^"]*)" element within "([^"]*)" I should see "([^"]*)"$/, (child, parent, content) ->

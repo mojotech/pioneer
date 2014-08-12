@@ -26,7 +26,7 @@ module.exports = ->
     new @Widget({
       root: ".wow"
     })
-    .findByText(search).then( (el) ->
+    .find({text: search}).then( (el) ->
       el.getText()
     )
     .should.eventually.eql(found)
