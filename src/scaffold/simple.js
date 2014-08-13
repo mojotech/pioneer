@@ -6,7 +6,7 @@ module.exports = function(){
   this.When(/^I enter \"([^\"]*)\"$/, function(value){
     new this.Widget({
       root: "#new-todo"
-    }).sendKeys(value,Driver.Key.ENTER);
+    }).sendKeys(value,'\uE007');
   });
 
   this.Then(/^I should see \"([^\"]*)\"$/, function(expected){
