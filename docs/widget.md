@@ -35,7 +35,6 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [Read](#read)
     * [Find](#find)
     * [FindAll](#findall)
-    * [FindByText](#findbytext)
     * [isPresent](#ispresent)
     * [isVisible](#isvisible)
     * [getAttribute](#getattribute)
@@ -120,9 +119,10 @@ var PuppySearch = Widget.extend({
 
 ### Click
 
-`function click(<cssSelector>)...`
+`function click({selector:<cssSelector>})...`
 
 `click` simulates a user clicking on the DOM selector that is passed in as a parameter to the function. It returns a promise to let you know when the click has been successful or rejected.
+If only a string is passed, and not an object, it will parse it as a selector.
 
 ```js
 var PuppySearch = Widget.extend({
@@ -135,15 +135,20 @@ var PuppySearch = Widget.extend({
 
 ### Fill
 
-`function fill(<cssSelector>, <valueToFillWith>)...`
+`function fill({selector:<cssSelector>, value: valueToFillWith})...`
 
 `fill` allows you you to simulate a user filling in an input with a given value. It returns a promise to let you know when the fill has been successful or rejected.
+`fill` takes a hash of options including an optional selector, and a required value to send to the widget. If only an array is passed, it will fill the root with that array.
 
 ```js
+var name = ['Jack ', 'the ', 'Ripper', Driver.Enter]
 var PuppyNamer = Widget.extend({
   root: '.dog-namer',
   nameDog: function(name) {
-    return this.fill(".dog-name", name);
+    return this.fill({
+      selector: ".dog-name",
+      value: name
+    });
   }
 });
 ```
@@ -203,9 +208,10 @@ var hidden = new Widget.extend({
 
 ## Read
 
-`function read(<cssSelector> [,transfomerFunction])...`
+`function read({selector: <selector>, transformer: <function>})`
 
-`read` allows you to get the "value" attribute or text of a given DOM node. An optional second parameter performs a transformation on the value/text. It returns a promise with the result of the read or rejection.
+`read` allows you to get the text of a given DOM node. `read` takes a hash of options: `<selector>` can scope the read, and `<transformer>` performs a transformation on the value/text. If you only pass a string to the method and not an object then it will use the string as the selector scope for the read operation.
+It returns a promise that resolves with the result of the read or rejection.
 
 ```js
 var PuppyDetails = Widget.extend({
@@ -214,19 +220,38 @@ var PuppyDetails = Widget.extend({
     return this.read(".dog-name");
   }
 });
+var HorseDetails = Widget.extend({
+  root: '.horse-details',
+  getName: function(name) {
+    return this.read({
+      selector: ".pony-name",
+      transformer: function(text){
+        return text.toLowerCase()
+      }
+    });
+  }
+});
 ```
 
 ## Find
 
-`function find(<cssSelector>)...`
+`function find({selector: <selector>, text: <text>})...`
 
 `find` allows you to find a (single) matching element on the page and grab the resulting DOM node. If a node is not found it will reject the returned promise value, otherwise the promise is resolved with the DOM node.
+`find` takes in an optional hash, in which a selector key can be specified, or text can be specified to find the first matching child of the widget. `find` does not function properly when both options are passed.
+If only a string is passed to the method then it will use that string for selector for the find operation.
 
 ```js
 var PuppyDetails = Widget.extend({
   root: '.puppy-details',
   getInfo: function(name) {
     return this.find(".dog-info");
+  }
+});
+var ReptileDetails = Widget.extend({
+  root: '.reptile-details',
+  getInfo: function(name) {
+    return this.find({text: "lizards"});
   }
 });
 ```
@@ -246,12 +271,6 @@ var PuppyDetails = Widget.extend({
 });
 ```
 
-## FindByText
-
-`function findByText(<text>)...`
-
-`findByText` allows you to find the first matching child of the widget. If the element is found then the promise will be resolved with a raw webElement otherwise the promise is resolved with null.
-
 ## isPresent
 
 `function isPresent(<selector>)...`
@@ -261,40 +280,56 @@ If the element is found then the promise is successfully resolved with true, oth
 
 ## isVisible
 
-`function isVisible(<selector>)...`
+`function isVisible({selector: <selector>})...`
 
 `isVisible` is a utility method to check to see if a given selector is currently visible on the page.
 If the element is visible then the promise is resolved with true, otherwise it is resolved with false.
+If only a string is passed to the method then it will use that string as a selector.
 
 ## getAttribute
 
-`function getAttribute(<attribute>)...`
+`function getAttribute({selector: <selector>, attribute: attributeName})...`
 
-The `getAttribute` method allows you to search an element for a particular attribute. It returns a promise that will resolve with the attribute value if found, otherwise it will resolve with null.
+The `getAttribute` method allows you to search an element for a particular attribute. It takes a hash with an optional selector key. If you only pass a string to the method and not an object then it will use the string as the attribute name. It returns a promise that will resolve with the attribute value if found, otherwise it will resolve with null.
 For further reference visit http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l1851
+
+```html
+<p><img class='nested' width='400px'>I am nested</span></p>
+```
+```js
+var width = Widget.extend({
+  root: 'p',
+  getImgWidth: function(){
+    return this.getAttribute({selector: ".nested", attribute:"width"})
+  }
+});
+```
 
 ## getValue
 
-`function getValue(<selector>, <transformer>)...`
+`function getValue({selector: <selector>, transformer: <transformer>})...`
 
 The `getValue` method lets you get the current value of a given input node. It returns a promise that resolves with the value of the node.
 
-It takes an optional scoping selector, and a transformer.
+It takes an optional hash with a scoping selector, and/or a transformer. if only a string is passed to the method and not an object, it will use the string as the selector.
 
 ## getText
 
-`function getText(<selector>)...`
+`function getText({selector: <selector>})...`
 
 The `getText` method allows you to retrieve the text of a given element. It returns a promise that will resolve with the text if found, otherwise it will resolve with null.
+`getText` takes an optional hash with a selector key.If only a string is passed to the method then it will use that string for selector for the find operation.
 
 ## getInnerHTML
 
-`function getInnerHTML(<selector>)`
+`function getInnerHTML({selector: <selector>})`
 
 The `getInnerHTML` method will retrieve the innerHTML of the selector element. It returns a promise. Proxied off of [innerHTML](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l2016).
+If a string is passed to `getInnerHTML` it will parse it as a selector.
 
 ## getOuterHTML
 
-`function getOuterHTML(<selector>)`
+`function getOuterHTML({selector: <selector>})`
 
 The `getOuterHTML` method retrives the outerHTML of the selector element. It returns a promise. Proxied off of [outerHTML](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l1997).
+If a string is passed to `getOuterHTML` it will parse it as a selector.

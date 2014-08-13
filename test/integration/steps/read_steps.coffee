@@ -9,11 +9,12 @@ module.exports = ->
     .should.eventually.eql(content)
 
   @When /^I read the "([^"]*)" with an all caps tranformer I should see "([^"]*)"$/, (selector, content) ->
-    allCaps = (str) -> str.toUpperCase()
     new @Widget({
       root: selector
     })
-    .read(null, allCaps)
+    .read({
+      transformer: (str) -> str.toUpperCase()
+    })
     .should.eventually.eql(content)
 
   @When /^I find the "([^"]*)" element within "([^"]*)" I should see "([^"]*)"$/, (child, parent, content) ->
@@ -30,6 +31,14 @@ module.exports = ->
     })
     .getAttribute(attribute)
     .then (attr) -> attr.should.eql(expected)
+
+  @When /^I read the "([^"]*)" attribute of a nested element I should get "([^"]*)"$/, (attr, expected) ->
+    new @Widget({
+      root:".container"
+    }).getAttribute({
+      selector: ".nested",
+      attribute: attr
+    }).then (val) -> val.should.eql(expected)
 
   @When /^I get the innerHTML of "([^"]*)" I should get "([^"]*)"$/, (rootSelector, expected) ->
     new @Widget({
