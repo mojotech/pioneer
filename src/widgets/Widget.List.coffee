@@ -1,24 +1,28 @@
+_ = require("lodash")
+
 class @Widget.List extends @Widget
   itemSelector: 'li'
 
   itemClass: World.Widget
 
-  at: (index) ->
-    @items().then (items) ->
-      items[index]
+  at: (opts) ->
+    if _.isNumber(opts)
+      @items().then (items) ->
+        items[opts]
+    else
+      throw new Error("Argument must be a number. https://github.com/mojotech/pioneer/blob/master/docs/list.md#at")
 
-  clickAt: (index, selector) ->
-    @at(index).then (widget) ->
-      widget.click(selector)
+  clickAt: (opts) ->
+    if _.isNumber(opts)
+      opts = {index: opts}
+    @at(opts.index).then (widget) ->
+      widget.click(opts.selector)
 
-  readAt: (index, selector, transformer) ->
-    args = Array.prototype.slice.call(arguments, 0);
-
-    if (_.isFunction(selector))
-      args.splice(1, 0, null)
-
-    @at(index).then (widget) =>
-      widget.read.apply(widget, args.slice(1))
+  readAt: (opts) ->
+    if (_.isNumber(opts))
+      return @at(opts).then (widget) -> widget.read()
+    else
+      @at(opts.index).then (widget) -> widget.read(opts)
 
   map: (iter) ->
     @items().then (items) -> $.map(items, iter)
