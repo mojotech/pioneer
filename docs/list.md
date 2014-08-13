@@ -170,9 +170,11 @@ new ListItems().findWhere(function(item) {
 ```
 ## clickAt
 
-`function clickAt(index, <selector>)`
+`function clickAt({index: index, selector:<selector>})`
 
-`clickAt` is a combination of the [at](#at) method and the [click](widget.md#click) method that allows clicking on a certain index of list. The optional `<selector>` parameter allows for scoping within index. It returns a promise that is resolved when the index has been clicked.
+`clickAt` is a combination of the [at](#at) method and the [click](widget.md#click) method that allows clicking on a certain index of list.
+`clickAt` takes a hash, with an optional `<selector>` parameter which allows for scoping within index. If only a number is passed and not an options hash it will default to using that as the at index lookup
+It returns a promise that is resolved when the child at the index has been clicked.
 
 ```html
 <ul>
@@ -189,9 +191,10 @@ new Widget.List()
 
 ## readAt
 
-`function readAt(index, <selector>, <transformer>)`
+`function readAt({index: index, selector: <selector>, transformer: <transformer>)`
 
 `readAt` is a combination of the [at](#at) method and the [read](widget.md#read) method and allows for scoping within an el at the given index. The optional `<selector>` parameter allows for scoping within index. There is also an optional transformer argument that mirrors the default [read transformer](widget.md#read) implementation. Read at returns a promise that resolves with the value of read.
+If only a number is passed and not an options hash it will default to using that as the at index lookup
 
 
 ``js

@@ -10,14 +10,27 @@
         Field2: <input id="field2" type='text' name="field2" value="default"><br>
         <input id="submit" type='submit' name="submit" onClick="return showText()">
       </form>
+      <form>
+        <select id="selector" onChange="return clicked()">
+          <option value="wow1" class="clickable">one</option>
+          <option value="wow2" class="clickable">two</option>
+          <option value="wow3" class="clickable">three</option>
+        </select>
+      </form>
     </div>
     <div id="onSubmit"></div>
+    <div id="onClick"></div>
     <script type="text/javascript">
       function showText(){
         var field1 = document.getElementById("field1").value
         var field2 = document.getElementById("field2").value
         document.getElementById('onSubmit').innerHTML = "field1 is " + field1 +" and "+"field2 is " + field2
         return false;
+      }
+
+      function clicked(){
+        var selector = document.getElementById("selector")
+        document.querySelector('#onClick').innerHTML = selector.options[selector.selectedIndex].text;
       }
     </script>
   </body>

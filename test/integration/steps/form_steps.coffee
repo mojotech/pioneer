@@ -1,3 +1,5 @@
+_      = require('lodash')
+
 module.exports = ->
   world = this
 
@@ -25,3 +27,35 @@ module.exports = ->
 
   @Then /^the widget should find the form with the supplied selector of "([^"]*)"$/,  (selector) ->
     new @Widget.Form({root: selector}).getAttribute("id").should.eventually.eql("form")
+
+  @When /^I search for a nested option I should find it$/, ->
+    new @Widget({
+      root: "select"
+    }).find("[value=\"wow3\"]").then (el) ->
+      el.getText().then (val) ->
+        val.should.eql("three")
+
+  @When /^I select an option by value$/, ->
+    _this = this
+    new @Widget.Form({
+      root: "select"
+    })
+    .select({value:"wow2"}).then ->
+      new _this.Widget({
+        root: '#onClick'
+      })
+      .read()
+      .should.eventually.eql('two')
+
+  @When /^I select an option by text$/, ->
+    _this = this
+    new @Widget.Form({
+      root: "select"
+    })
+    .select({text:"three"})
+    .then ->
+      new _this.Widget({
+        root: '#onClick'
+      })
+      .read()
+      .should.eventually.eql('three')

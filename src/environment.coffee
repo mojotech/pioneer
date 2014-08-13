@@ -1,9 +1,6 @@
+Driver = require('selenium-webdriver')
+$      = Driver.promise
 module.exports = ->
-  global.argv   = require('minimist')(process.argv)
-  global.Driver = require 'selenium-webdriver'
-
-  global._      = require 'lodash'
-  global.$      = Driver.promise
 
   # *********************************************************************************
   # Extend Object with class helpers (used in the context of a class definition):
