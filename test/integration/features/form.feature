@@ -21,3 +21,12 @@ Feature: Submit With
 
   Scenario: When I instantiate a form widget with a root selector
     Then the widget should find the form with the supplied selector of "#form"
+
+  Scenario: When I search for a nested option
+    When I search for a nested option I should find it
+
+  Scenario: When I select by value
+    When I select an option by value
+
+  Scenario: When I select by text
+    When I select an option by text

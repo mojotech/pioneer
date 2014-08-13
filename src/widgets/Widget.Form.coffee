@@ -1,5 +1,5 @@
-Promise = require 'bluebird'
-
+Promise = require('bluebird')
+_       = require('lodash')
 class @Widget.Form extends @Widget.Fields
   root: 'form'
 
@@ -18,3 +18,21 @@ class @Widget.Form extends @Widget.Fields
   submitWith: (values) =>
     @fillAll(values)
     .then(@submitForm)
+
+  select: (opts) ->
+    if opts.text? and opts.value?
+      throw new Error('You may only have one select by attribute.')
+    else if opts.text? or _.isString(opts)
+      @_selectByText(opts.text)
+    else if opts.value?
+      @_selectByValue(opts.value)
+    else
+      throw new Error('You must provide something to select by.')
+
+  _selectByText: (text) ->
+    @find({text: text}).then (el) ->
+      el.click()
+
+  _selectByValue: (value) ->
+    @find("option[value=\"#{value}\"]").then (el) ->
+      el.click()
