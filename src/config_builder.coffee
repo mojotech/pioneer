@@ -1,5 +1,6 @@
 fs           = require 'fs'
 path         = require 'path'
+scaffold     = require './scaffold_builder.js'
 _            = require 'lodash'
 
 CONFIG_NAMES = [
@@ -10,13 +11,14 @@ CONFIG_NAMES = [
   "error_formatter",
   "coffee",
   "driver",
-  "preventReload"
+  "preventReload",
+  "scaffold"
 ]
 
 module.exports =
   convertToExecOptions: (objArry, libPath) ->
     execOptions =
-      _.map objArry, (val) ->
+      _.map objArry, (val) =>
         k = _.keys(val)[0]
 
         switch
@@ -58,6 +60,10 @@ module.exports =
               p.concat("--require", v)
             , [])
 
+          when k is 'scaffold'
+            if(val[k])
+              scaffold.createScaffold()
+
           when typeof(val[k]) is 'object'
             for v in val[k]
               "--#{k}=#{v}"
@@ -95,4 +101,19 @@ module.exports =
     .compact()
     .value()
 
-    @convertToExecOptions(options, libPath)
+    if(!!@checkForFeature(options))
+      if(fs.existsSync(path.join(process.cwd(), '/features')))
+        @convertToExecOptions(options, libPath)
+      else
+        if(!!minimist["_"].length)
+          options.push({feature: minimist["_"]})
+          @convertToExecOptions(options, libPath)
+        else
+          scaffold.featureNotSpecified()
+    else
+      @convertToExecOptions(options, libPath)
+
+  checkForFeature: (options) ->
+    _.findIndex(options, (opt) ->
+      _.keys(opt)[0] == 'feature'
+    )
