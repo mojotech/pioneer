@@ -1,3 +1,8 @@
+### v0.8.0-re[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.2...v0.8.0-pre)
+
+#### Prerelease
+
+
 ### v0.7.2[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.1...v0.7.2)
 
 #### Fixes
