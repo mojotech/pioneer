@@ -1,3 +1,4 @@
+_      = require('lodash')
 expect = require("chai").expect
 
 module.exports = ->
