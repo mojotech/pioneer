@@ -1,6 +1,11 @@
+_ = require("lodash")
+
 class @Widget.Fields extends @Widget
   fillAll: (values) ->
-    @_map Object.keys(values), (f) => @fill(@_name(f), values[f])
+    @_map Object.keys(values), (f) => @fill({
+      selector: @_name(f)
+      value: values[f]
+    })
 
   readAll: ->
     _readAll = (f) =>
@@ -14,3 +19,12 @@ class @Widget.Fields extends @Widget
 
   _type: (type) ->
     "[type='#{type}']"
+
+  _map: (collection, callback) ->
+    results = []
+    _reduce = (p, f, i) ->
+      p.then ->
+        callback(f, i).then (v) -> results.push(v)
+    _.reduce(collection, _reduce, Driver.promise.fulfilled())
+      .then -> results
+

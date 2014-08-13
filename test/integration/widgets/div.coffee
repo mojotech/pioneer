@@ -5,4 +5,4 @@ module.exports = ->
     root: "#onSubmit"
 
     getText: ->
-      @find().getText();
+      @find().then (el) -> el.getText()
