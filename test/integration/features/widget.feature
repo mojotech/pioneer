@@ -22,12 +22,26 @@ Feature: Manipulating Widgets
     When I add class "foo" to ".wow"
     Then ".wow" should have class "foo"
 
+  Scenario: Adding a class with selector
+    When I add class "foo" to "doge" in ".wow"
+    Then "doge" should have class "foo"
+
   Scenario: Removing a class
     When I remove class "doge" from ".hidden"
     Then ".hidden" should not have class "doge"
+
+  Scenario: Removing a class with selector
+    When I remove class "inputbox" from "input" in "p"
+    Then "input" should not have class ".inputbox"
 
   Scenario: Toggling a class
     When I toggle class "doge" on ".hidden"
     Then ".hidden" should not have class "doge"
     When I toggle class "doge" on ".hidden"
     Then ".hidden" should have class "doge"
+
+  Scenario: Toggling a class with selector
+    When I toggle class "such" on "doge" in ".wow"
+    Then "doge" should have class "such"
+    When I toggle class "such" on "doge" in ".wow"
+    Then "doge" should not have class "such"

@@ -60,3 +60,30 @@ module.exports = ->
       root: selector
     })
     .toggleClass(className)
+
+  @When /^I add class "([^"]*)" to "([^"]*)" in "([^"]*)"$/, (className, childSelector, selector) ->
+    new @Widget({
+      root: selector
+    })
+    .addClass({
+      selector: childSelector,
+      className: className
+    })
+
+  @When /^I remove class "([^"]*)" from "([^"]*)" in "([^"]*)"$/, (className, childSelector, selector) ->
+    new @Widget({
+      root: selector
+    })
+    .removeClass({
+      className: className,
+      selector: childSelector
+    })
+
+  @When /^I toggle class "([^"]*)" on "([^"]*)" in "([^"]*)"$/, (className, childSelector, selector) ->
+    new @Widget({
+      root: selector
+    })
+    .toggleClass({
+      className: className,
+      selector: childSelector
+    })

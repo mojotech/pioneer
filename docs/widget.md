@@ -190,9 +190,9 @@ w.sendKeys("wow", Driver.Key.ENTER)
 
 ### addClass
 
-`function addClass(<className>)`
+`function addClass({className: name, selector: <selector>})`
 
-`addClass` will add the provided class name to the DOM node of the Widget. It returns a promise that will resolve when the class has been added.
+`addClass` will add the provided class name to the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve when the class has been added.
 
 ```js
 var hidden = new Widget.extend({
@@ -203,15 +203,15 @@ var hidden = new Widget.extend({
 
 ### removeClass
 
-`function removeClass(<className>)`
+`function removeClass({className: name, selector: <selector>})`
 
-`removeClass` will remove the provided class name from the DOM node of the Widget. It returns a promise that will resolve when the class has been removed.
+`removeClass` will remove the provided class name from the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve when the class has been removed.
 
 ### toggleClass
 
-`function toggleClass(<className>)`
+`function toggleClass({className: name, selector: <selector>})`
 
-`toggleClass` will toggle the provided class name on the DOM node of the Widget. It returns a promise that will resolve when the class has been toggled.
+`toggleClass` will toggle the provided class name on the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve when the class has been toggled.
 
 ## Querying the DOM
 
