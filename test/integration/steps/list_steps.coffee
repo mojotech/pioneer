@@ -1,3 +1,5 @@
+_      = require('lodash')
+
 module.exports = ->
   @Given /^I should see "([^"]*)" items in a list$/, (count) ->
     new @Widgets.List().items()
@@ -55,7 +57,10 @@ module.exports = ->
       root: root
       itemSelector: itemSelector
     })
-    .readAt(+index-1, childSelector)
+    .readAt({
+      index: +index-1,
+      selector: childSelector
+    })
     .should.eventually.eql(expected)
 
   @When /^I click on the "([^"]*)" child of "([^"]*)" I should read "([^"]*)"$/, (index, rootSelector, expected) ->
@@ -89,7 +94,10 @@ module.exports = ->
   @When /^I click at the "([^"]*)" index with selector "([^"]*)" I should read "([^"]*)"$/, (index, selector, expected) ->
     _this = this
     new @Widgets.List()
-    .clickAt(index - 1, selector)
+    .clickAt({
+      index: index - 1,
+      selector: selector
+    })
     .then ->
       new _this.Widget({
         root: '#onSubmit'
@@ -99,12 +107,19 @@ module.exports = ->
 
   @Given /^I should be able to read and transform a list item at an index$/, ->
     new @Widgets.List()
-    .readAt(4, (val) -> val.toUpperCase())
+    .readAt({
+      index: 4,
+      transformer: (val) -> val.toUpperCase()
+    })
     .should.eventually.eql("JOHN CRICHTON")
 
   @Given /^I should be able to read with a subselector and transform an item at an index$/, ->
     new @Widgets.List()
-    .readAt(4, "p", (val) -> val.toUpperCase())
+    .readAt({
+      index: 4,
+      selector: "p",
+      transformer: (val) -> val.toUpperCase()
+    })
     .should.eventually.eql("JOHN CRICHTON")
 
   @When /^I click on each item in the list$/, ->

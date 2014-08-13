@@ -1,4 +1,8 @@
-class @Widget
+_      = require('lodash')
+Driver = require('selenium-webdriver')
+$      = Driver.promise
+
+@W = class @Widget
   @extend: (protoProps, staticProps) ->
     parent = @
     if Object.hasOwnProperty(protoProps, 'constructor')
@@ -44,67 +48,83 @@ class @Widget
   @getter 'driver', ->
     @_driver || World.driver
 
-  click: (selector) ->
-    @find(selector).then (el) ->
+  click: (opts) ->
+    @find(opts).then (el) ->
       el.click()
 
-  fill: ->
-    args = arguments
-    if (args.length > 1)
-      @find(args[0]).then (el) ->
-        el.clear().then ->
-          el.sendKeys(args[1])
+  fill: (opts) ->
+    if !opts and !opts.value?
+      throw new Error("You must pass a value to fill with. https://github.com/mojotech/pioneer/blob/master/docs/widget.md#fill")
+
+    if _.isObject(opts)
+      @find(opts.selector).then (el) ->
+        el.sendKeys.apply(el, Array::slice.call(opts.value))
     else
-     @find().then (el) ->
-      el.sendKeys(args[0])
+      @find().then (el) ->
+        el.sendKeys.apply(el, Array::slice.call(opts))
 
-  read: (selector, transformer) ->
-    transformer ||= (value) -> value
-    @find(selector).then (el) ->
-      return el.getText().then transformer
+  read: (opts) ->
+    if _.isString(opts) or opts is undefined
+      @find(opts).then (el) -> el.getText()
 
-  getValue: (selector, transformer) ->
-    transformer ||= (value) -> value
-    @find(selector).then (el) ->
-      el.getAttribute('value').then (value) ->
-        return transformer(value)
+    else
+      _.defaults opts,
+        transformer: (value) -> value
+        selector: null
 
-  find: (selector) ->
+      @find(opts.selector).then (el) ->
+        return el.getText().then opts.transformer
+
+  getValue: (opts={}) ->
+    if _.isString(opts)
+      opts = {selector: opts}
+
+    _.defaults opts,
+      transformer: (val) -> val
+
+    @find(opts).then (el) ->
+      el.getAttribute('value').then opts.transformer
+
+  find: (opts) ->
     deferred = new $.Deferred
 
+    if (!opts or _.isString(opts))
+      opts = {selector: opts}
+
+    if (opts.text)
+      return @_findByText(opts)
+
     if (@el)
-      if !selector
+      if !opts.selector
         deferred.fulfill(@el)
       else
-        return @el.findElement(Driver.By.css(selector))
+        return @el.findElement(Driver.By.css(opts.selector))
 
       return deferred
 
-    @_ensureElement(selector)
-    @driver.findElement(Driver.By.css(@_selector(selector)))
+    @_ensureElement(opts.selector).then =>
+      @driver.findElement(Driver.By.css(@_selector(opts.selector)))
 
-  getHtml: (selector) ->
-     @find(selector).then (el) -> el.getOuterHtml()
+  getHtml: (opts) ->
+     @find(opts).then (el) -> el.getOuterHtml()
 
-  getText: (selector) ->
-    @find(selector).then (el) -> el.getText()
+  getText: (opts) ->
+    @find(opts).then (el) -> el.getText()
 
   getAttribute: (attribute) ->
-    @find().then (el) ->
-      el.getAttribute(attribute)
+    @find().then (el) -> el.getAttribute(attribute)
 
-  getInnerHTML: (selector) ->
-    @find(selector).then (el) -> el.getInnerHtml()
+  getInnerHTML: (opts) ->
+    @find(opts).then (el) -> el.getInnerHtml()
 
-  getOuterHTML: (selector) ->
-    @find(selector).then (el) -> el.getOuterHtml()
+  getOuterHTML: (opts) ->
+    @find(opts).then (el) -> el.getOuterHtml()
 
   isPresent: (selector) ->
     @driver.isElementPresent(Driver.By.css(@_selector(selector)))
 
-  isVisible: (selector) ->
-    @find(selector).then (elm) ->
-      elm.isDisplayed()
+  isVisible: (opts) ->
+    @find(opts).then (elm) -> elm.isDisplayed()
 
   addClass: (className) ->
     @find().then (el) =>
@@ -124,14 +144,14 @@ class @Widget
   _selector: (selector) ->
     @root + (if selector then " #{selector}" else '')
 
-  findByText: (text) ->
+  _findByText: (opts) ->
     @find().then (el) ->
       el.findElement(
         # WebDriver lets you go out of the child scope
         # if you pass an absolute xpath selector
         # this is a bug in WebDriver and is terrible
         # by passing a `.` this is no longer an issue.
-        Driver.By.xpath('.//*[normalize-space(text())=normalize-space("' + text + '")]')
+        Driver.By.xpath('.//*[normalize-space(text())=normalize-space("' + opts.text + '")]')
       )
 
   _ensureElement: (selector) ->
@@ -141,15 +161,5 @@ class @Widget
       "#{@_selector(selector)} not found"
     )
 
-  _map: (collection, callback) ->
-    results = []
-    _reduce = (p, f, i) ->
-      p.then ->
-        callback(f, i).then (v) -> results.push(v)
-    _.reduce(collection, _reduce, Driver.promise.fulfilled())
-      .then -> results
-
-  sendKeys: ->
-    args = arguments
-    @find().then (el) =>
-      el.sendKeys.apply(el, args)
+  sendKeys: (args...)->
+    @find().then (el) -> el.sendKeys.apply(el, args)

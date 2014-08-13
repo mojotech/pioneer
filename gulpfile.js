@@ -16,7 +16,8 @@ gulp.task("default", function() {
       'src/environment.coffee',
       'src/error_formatter.coffee',
       'src/custom_formatter.coffee',
-      'src/config_builder.coffee'
+      'src/config_builder.coffee',
+      'src/scaffold_builder.coffee'
     ])
     .pipe(coffee())
     .pipe(gulp.dest("lib/"))
@@ -27,6 +28,13 @@ gulp.task("default", function() {
       'src/pioneersummaryformat.js'
     ])
     .pipe(gulp.dest("lib/"))
+
+    gulp.src([
+      'src/scaffold/simple.txt',
+      'src/scaffold/simple.js',
+      'src/scaffold/example.json'
+    ])
+    .pipe(gulp.dest("lib/scaffold"))
 });
 
 gulp.task("watch", function() {
