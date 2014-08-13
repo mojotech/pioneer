@@ -1,3 +1,4 @@
+_             = require('lodash')
 Path          = require "path"
 fixturesBase  = Path.resolve(__dirname, "../", "fixtures")
 

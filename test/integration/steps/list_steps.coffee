@@ -1,3 +1,5 @@
+_      = require('lodash')
+
 module.exports = ->
   @Given /^I should see "([^"]*)" items in a list$/, (count) ->
     new @Widgets.List().items()
