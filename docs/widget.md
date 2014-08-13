@@ -288,10 +288,22 @@ If only a string is passed to the method then it will use that string as a selec
 
 ## getAttribute
 
-`function getAttribute({<attribute>})...`
+`function getAttribute({selector: <selector>, attribute: attributeName})...`
 
-The `getAttribute` method allows you to search an element for a particular attribute. It returns a promise that will resolve with the attribute value if found, otherwise it will resolve with null.
+The `getAttribute` method allows you to search an element for a particular attribute. It takes a hash with an optional selector key. If you only pass a string to the method and not an object then it will use the string as the attribute name. It returns a promise that will resolve with the attribute value if found, otherwise it will resolve with null.
 For further reference visit http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l1851
+
+```html
+<p><img class='nested' width='400px'>I am nested</span></p>
+```
+```js
+var width = Widget.extend({
+  root: 'p',
+  getImgWidth: function(){
+    return this.getAttribute({selector: ".nested", attribute:"width"})
+  }
+});
+```
 
 ## getValue
 

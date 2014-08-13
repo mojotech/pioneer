@@ -111,8 +111,10 @@ $      = Driver.promise
   getText: (opts) ->
     @find(opts).then (el) -> el.getText()
 
-  getAttribute: (attribute) ->
-    @find().then (el) -> el.getAttribute(attribute)
+  getAttribute: (opts) ->
+    if _.isString(opts)
+      opts = {attribute: opts}
+    @find(opts).then (el) -> el.getAttribute(opts.attribute)
 
   getInnerHTML: (opts) ->
     @find(opts).then (el) -> el.getInnerHtml()

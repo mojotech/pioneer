@@ -33,6 +33,14 @@ module.exports = ->
     .getAttribute(attribute)
     .then (attr) -> attr.should.eql(expected)
 
+  @When /^I read the "([^"]*)" attribute of a nested element I should get "([^"]*)"$/, (attr, expected) ->
+    new @Widget({
+      root:".container"
+    }).getAttribute({
+      selector: ".nested",
+      attribute: attr
+    }).should.eventually.eql(expected)
+
   @When /^I get the innerHTML of "([^"]*)" I should get "([^"]*)"$/, (rootSelector, expected) ->
     new @Widget({
       root: rootSelector
