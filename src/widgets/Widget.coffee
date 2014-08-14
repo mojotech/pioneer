@@ -123,8 +123,14 @@ $      = Driver.promise
   isPresent: (selector) ->
     @driver.isElementPresent(Driver.By.css(@_selector(selector)))
 
-  isVisible: (opts) ->
-    @find(opts).then (elm) -> elm.isDisplayed()
+  isVisible: (opts={}) ->
+    if(_.isString(opts))
+      opts = {selector: opts}
+    @isPresent(opts.selector).then (present) =>
+      if(present)
+        @find(opts).then (elm) -> elm.isDisplayed()
+      else
+        false
 
   addClass: (className) ->
     @find().then (el) =>

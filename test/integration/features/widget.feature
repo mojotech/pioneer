@@ -15,6 +15,9 @@ Feature: Manipulating Widgets
   Scenario: Is Not Visible
     When I see if ".hidden" is visible I should get "false"
 
+  Scenario: Is Visible on a non-present element
+    When I see if ".suchwow" is visible I should get "false"
+
   Scenario: Sending Keys to element
     When I send "doge" to an element I should be able to read "doge"
 
