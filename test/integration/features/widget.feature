@@ -48,3 +48,5 @@ Feature: Manipulating Widgets
     Then "doge" should have class "such"
     When I toggle class "such" on "doge" in ".wow"
     Then "doge" should not have class "such"
+  Scenario: Hovering over a element
+    Given I should be able to hover over an element

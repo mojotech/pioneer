@@ -177,3 +177,10 @@ $      = Driver.promise
 
   sendKeys: (args...)->
     @find().then (el) -> el.sendKeys.apply(el, args)
+
+  hover: (opts) ->
+    @find(opts).then (el) =>
+      new Driver.ActionSequence(@driver)
+      .mouseMove(el)
+      .perform()
+      .then => this
