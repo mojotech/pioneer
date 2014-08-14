@@ -27,6 +27,7 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
   * [Interacting with the DOM](#interacting-with-the-dom)
     * [Click](#click)
     * [Fill](#fill)
+    * [Hover](#hover)
     * [sendKeys](#sendkeys)
     * [addClass](#addclass)
     * [removeClass](#removeclass)
@@ -161,6 +162,21 @@ var PuppyNamer = Widget.extend({
     return this.fill(name);
   }
 });
+```
+
+### Hover
+
+`function hover({find options})...`
+
+the `Hover` method on a widget takes the same params as [find](#find) to locate the DOM node to be hovered. It returns a promise that is resolved with the widget after the mouse has been moved over the target element. If you do not pass anything to hover it will hover over the widgets root node.
+
+```js
+new this.Widget({
+  root: "h4"
+})
+.hover().then(function(widget) {
+  //...
+})
 ```
 
 ### sendKeys

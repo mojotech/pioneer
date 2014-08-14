@@ -10,3 +10,13 @@ module.exports = ->
     w.fill(write)
     .then ->
       w.getValue().should.eventually.eql(read)
+
+  @Given /^I should be able to hover over an element$/, ->
+    new @W({
+      root: 'h4'
+    })
+    .hover()
+    .then (w) ->
+      w.read()
+      .should.eventually
+      .eql("ok ok only on hover")
