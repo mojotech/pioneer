@@ -15,6 +15,9 @@ Feature: Reading Widgets
   Scenario: Reading attribute of element
     When I read the "width" attribute I should get "400px"
 
+  Scenario: Reading attribute of element with selector
+    When I read the "height" attribute of a nested element I should get "100"
+
   Scenario: Getting inner HTML
     When I get the innerHTML of ".wow" I should get "<doge>many money</doge>"
 
