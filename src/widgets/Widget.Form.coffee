@@ -1,6 +1,7 @@
 Promise = require('bluebird')
 _       = require('lodash')
-class @Widget.Form extends @Widget.Fields
+
+class @Widget.Form extends @Widget
   root: 'form'
 
   submitSelector: (node) ->
@@ -36,3 +37,31 @@ class @Widget.Form extends @Widget.Fields
   _selectByValue: (value) ->
     @find("option[value=\"#{value}\"]").then (el) ->
       el.click()
+
+  fillAll: (values) ->
+    @_map Object.keys(values), (f) => @fill({
+      selector: @_name(f)
+      value: values[f]
+    })
+
+  readAll: ->
+    _readAll = (f) =>
+      @read(@_name(f)).then (v) -> [f, v]
+
+    @_map(@fields, _readAll).then (read) ->
+      _.object(read)
+
+  _name: (name) ->
+    "[name='#{name}']"
+
+  _type: (type) ->
+    "[type='#{type}']"
+
+  _map: (collection, callback) ->
+    results = []
+    _reduce = (p, f, i) ->
+      p.then ->
+        callback(f, i).then (v) -> results.push(v)
+    _.reduce(collection, _reduce, Driver.promise.fulfilled())
+      .then -> results
+
