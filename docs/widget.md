@@ -29,6 +29,7 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [Click](#click)
     * [Fill](#fill)
     * [Hover](#hover)
+    * [DoubleClick](#doubleclick)
     * [sendKeys](#sendkeys)
     * [addClass](#addclass)
     * [removeClass](#removeclass)
@@ -184,6 +185,21 @@ new this.Widget({
   root: "h4"
 })
 .hover().then(function(widget) {
+  //...
+})
+```
+
+### doubleclick
+
+`function doubleClick({find options})...`
+
+the `doubleClick` method on a widget takes the same params as [find](#find) to locate the DOM node to be doubleClicked. It returns a promise that is resolved with the widget after the mouse has been doubleClicked on the target element. If you do not pass anything to doubleClick it will double click the root node of the widget.
+
+```js
+new this.Widget({
+  root: ".double"
+})
+.doubleClick().then(function(widget) {
   //...
 })
 ```
