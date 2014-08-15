@@ -1,7 +1,7 @@
 <h1 align="center">Pioneer</h1>
 
 <p align="center">
-<img height="200px" width="200px" src="logo.svg"/>
+<img height="200px" width="200px" src="logo.png"/>
 </p>
 <p align="center">
   <a title='Build Status' href="https://travis-ci.org/mojotech/pioneer">
