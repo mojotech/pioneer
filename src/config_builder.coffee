@@ -101,7 +101,7 @@ module.exports =
     .compact()
     .value()
 
-    if(!!@checkForFeature(options))
+    if(!@hasFeature(options))
       if(fs.existsSync(path.join(process.cwd(), '/features')))
         @convertToExecOptions(options, libPath)
       else
@@ -113,7 +113,11 @@ module.exports =
     else
       @convertToExecOptions(options, libPath)
 
-  checkForFeature: (options) ->
-    _.findIndex(options, (opt) ->
-      _.keys(opt)[0] == 'feature'
-    )
+  hasFeature: (options) ->
+    r = false
+    _.forEach options, (opt) =>
+        k = _.keys(opt)[0]
+        if(k == 'feature')
+          r = true
+
+    r

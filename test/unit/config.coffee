@@ -35,10 +35,10 @@ describe "Pioneer configuration", ->
       this.multiTagConfig = [
         { tags: ["@wow", "@doge"]}
       ]
-      scaffoldStub = sinon.stub(configBuilder, "checkForFeature", -> false)
+      scaffoldStub = sinon.stub(configBuilder, "hasFeature", -> true)
 
     afterEach ->
-      configBuilder.checkForFeature.restore()
+      configBuilder.hasFeature.restore()
 
 
     it "should convertToExecOptions", ->
@@ -159,10 +159,10 @@ describe "Pioneer configuration", ->
     beforeEach ->
       this.libPath  = "wow"
       process.argv = []
-      scaffoldStub = sinon.stub(configBuilder, "checkForFeature", -> false)
+      scaffoldStub = sinon.stub(configBuilder, "hasFeature", -> true)
 
     afterEach ->
-      configBuilder.checkForFeature.restore()
+      configBuilder.hasFeature.restore()
 
     it "should not prevent browser reload without any specifications" , ->
       configBuilder.generateOptions({}, {}, this.libPath)
@@ -217,10 +217,10 @@ describe "Pioneer configuration", ->
     beforeEach ->
       this.libPath  = "wow"
       process.argv = []
-      scaffoldStub = sinon.stub(configBuilder, "checkForFeature", -> false)
+      scaffoldStub = sinon.stub(configBuilder, "hasFeature", -> true)
 
     afterEach ->
-      configBuilder.checkForFeature.restore()
+      configBuilder.hasFeature.restore()
 
     it "should not be included when not specified" , ->
       configBuilder.generateOptions({}, {}, this.libPath)
