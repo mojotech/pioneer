@@ -1,3 +1,5 @@
+### v0.8.0-pre.3[view commit logs](https://github.com/mojotech/pioneer/compare/v0.8.0-pre.2...v0.8.0-pre.3)
+
 ### v0.8.0-pre.2[view commit logs](https://github.com/mojotech/pioneer/compare/v0.8.0-pre...v0.8.0-pre.2)
 
 ### v0.8.0-pre[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.2...v0.8.0-pre)
