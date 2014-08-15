@@ -20,3 +20,13 @@ module.exports = ->
       w.read()
       .should.eventually
       .eql("ok ok only on hover")
+
+  @Given /^I should be able to double click an element$/, ->
+    new @W({
+      root: '.double'
+    })
+    .doubleClick()
+    .then (w) ->
+      w.read()
+      .should.eventually
+      .eql("wow such click")

@@ -184,3 +184,11 @@ $      = Driver.promise
       .mouseMove(el)
       .perform()
       .then => this
+
+  doubleClick: (opts) ->
+    @find(opts)
+    .then (el) =>
+      new Driver.ActionSequence(@driver)
+      .doubleClick(el)
+      .perform()
+      .then => this

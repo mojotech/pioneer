@@ -50,3 +50,6 @@ Feature: Manipulating Widgets
     Then "doge" should not have class "such"
   Scenario: Hovering over a element
     Given I should be able to hover over an element
+
+  Scenario: Doubling clicking an element
+    Given I should be able to double click an element
