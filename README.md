@@ -28,9 +28,9 @@ Pioneer provides an abstraction layer between your integration tests and your DO
 
 #### With grunt
 
-    npm install grunt-dill-js --save-dev
+    npm install grunt-pioneer --save-dev
 
-> [Grunt Dill Docs](https://github.com/mojotech/grunt-dill-js)
+> [Grunt Pioneer Docs](https://github.com/mojotech/grunt-pioneer)
 
 # Docs
 
