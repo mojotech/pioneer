@@ -1,10 +1,18 @@
-# Pioneer
-[![Build Status](http://img.shields.io/travis/mojotech/pioneer.svg?style=flat
-)](https://travis-ci.org/mojotech/pioneer)
-[![Gitter chat](http://img.shields.io/badge/gitter-chat-blue.svg?style=flat
-)](https://gitter.im/mojotech/pioneer)
+<h1 align="center">Pioneer</h1>
 
-### Integration tests made easy.
+<p align="center">
+<img height="200px" width="200px" src="logo.svg"/>
+</p>
+<p align="center">
+  <a title='Build Status' href="https://travis-ci.org/mojotech/pioneer">
+    <img src='http://img.shields.io/travis/mojotech/pioneer.svg?style=flat-square' />
+  </a>
+  <a href='https://gitter.im/mojotech/pioneer'>
+    <img src='http://img.shields.io/badge/gitter-chat-blue.svg?style=flat-square' alt='Chat' />
+  </a>
+</p>
+
+<h3 align="center"> Integration tests made easy. </h3>
 
 Pioneer provides an abstraction layer between your integration tests and your DOM markup, DRYing up your step definitions and consolidating how people interact with the DOM in tests.
 
