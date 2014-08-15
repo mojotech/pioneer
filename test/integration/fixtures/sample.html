@@ -1,5 +1,14 @@
 <html>
   <head></head>
+  <style>
+  h4 span {
+    display: none;
+  }
+
+  h4:hover span {
+    display: inline;
+  }
+  </style>
   <body>
     <h1> hello world </h1>
     <div class="wow" width="400px">
@@ -14,5 +23,13 @@
     <deep>
       <space9>wormhole</space9>
     </deep>
+    <div class="double">double me</div>
+    <h4>ok ok <span>only on hover</span><h4>
   </body>
+
+  <script type="text/javascript">
+  document.querySelector('.double').addEventListener("dblclick", function() {
+    this.innerHTML = "wow such click";
+  }, false);
+  </script>
 </html>
