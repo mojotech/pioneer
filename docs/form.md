@@ -7,8 +7,8 @@ Widget.Form
     * [submitForm](#submitform)
     * [submitWith](#submitwith)
     * [select](#select)
-
-#API
+    * [fillAll](#fillall)
+    * [readAll](#readAll)
 
 ## submitSelector
 
@@ -66,5 +66,5 @@ Widget.find({
 }).then(function(widget) {
   widget.readAll()
 })
-            // Result:[["field1", "firstValue"],["field2", "secondValue"],["field3", "thirdValue"]]
+// Result:[["field1", "firstValue"],["field2", "secondValue"],["field3", "thirdValue"]]
 ```
