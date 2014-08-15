@@ -22,11 +22,36 @@ describe "Scaffold Builder", ->
 
   it "should be called if no feature path is specified", ->
     scaffold = this.sandbox.stub(scaffoldBuilder, "featureNotSpecified", ->)
-    noFeature = this.sandbox.stub(configBuilder, "checkForFeature", -> true)
+    noFeature = this.sandbox.stub(configBuilder, "hasFeature", -> false)
     configBuilder.generateOptions({
       _: []
     }, {}, this.libPath, ->)
     scaffold.callCount.should.eql(1)
+
+  describe "hasFeature()", ->
+
+    it "should return false when there is no feature file specified", ->
+      configBuilder.hasFeature([{}]).should.eql(false)
+
+    it "should return true with a feature file specified", ->
+      configBuilder.hasFeature([{feature:"myFeatureFile"}]).should.eql(true)
+
+    it "should return false with complicated options", ->
+      configBuilder.hasFeature([{
+        tags: "@suchtag",
+        require: ["file1", "file2", "file3"],
+        coffe: true,
+        error_formatter: "nice_errors.js"
+      }]).should.eql(false)
+
+    it "should return true with complicated options", ->
+      configBuilder.hasFeature([{
+        feature: "featurefile",
+        tags: "@suchtag",
+        require: ["file1", "file2", "file3"],
+        coffee: true,
+        error_formatter: "nice_errors.js"
+      }]).should.eql(true)
 
   describe "createScaffold()", ->
     beforeEach ->
