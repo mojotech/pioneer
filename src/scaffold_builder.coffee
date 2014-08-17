@@ -38,6 +38,8 @@ module.exports =
       @askToOverWrite(hiddenPioneer, fs.readFileSync(path.join(__dirname, "scaffold/example.json"), 'utf8'))
     console.log('Scaffold created. You may now run your first test'.inverse.green)
 
+    process.exit()
+
   askToOverWrite: (file, data) ->
     ans = readlineSync.question("It looks like you already have a" + file + "file, are you sure that you would like to overwrite this? y/n\n")
     if(['y', 'yes'].indexOf(ans.toLowerCase()) > -1)

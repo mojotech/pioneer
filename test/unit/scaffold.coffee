@@ -11,6 +11,7 @@ describe "Scaffold Builder", ->
   beforeEach ->
     this.libPath = "wow"
     this.sandbox = sinon.sandbox.create()
+    this.sandbox.stub(process, 'exit', ->)
     overwrite = this.sandbox.stub(scaffoldBuilder,
       "askToOverWrite",
       (file, data) ->
