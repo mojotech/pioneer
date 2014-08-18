@@ -135,3 +135,16 @@ module.exports = ->
 
   @Given /^I can invoke click on each widget in the list with a method$/, ->
     new @Widgets.List({root: "ul.click-list"}).invoke(@Widget::click)
+
+  @Given /^I can invoke read on each widget in the list with a transformer and selector$/, ->
+    new @Widgets.List({
+      root: ".nested",
+      itemSelector: "span"
+    })
+    .invoke({
+      method: "read",
+      arguments: [{
+        transformer: (val) -> return val.toUpperCase()
+        selector: "p"
+      }]
+    }).should.eventually.eql(["ORC", "HUMAN", "PROTOSS"])
