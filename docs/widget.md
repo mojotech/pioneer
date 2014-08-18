@@ -23,6 +23,7 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [Finding](#finding)
     * [Extending](#extending)
     * [Overriding](#overriding)
+    * [Shorthand](#shorthand)
   * [Root](#root)
   * [Interacting with the DOM](#interacting-with-the-dom)
     * [Click](#click)
@@ -102,6 +103,14 @@ myWidget = new Widget({optional: args});
 Widget.find({optional: args}).then(function(widget) {
   myWidget = widget;
 });
+```
+
+### Shorthand
+
+A `Widget` can be expressed using the shorthand `W`
+
+```js
+myWidget = new W({optional: args})
 ```
 
 ## Root
