@@ -30,12 +30,14 @@ class @Widget.List extends @Widget
   each: (iter) ->
     @map.apply(this, arguments).then -> @items
 
-  invoke: (method) ->
+  invoke: (opts) ->
+    if(_.isString(opts) or _.isFunction(opts))
+      opts = {method: opts}
     @map (item) ->
-      if _.isString(method)
-        item[method]()
+      if _.isFunction(opts.method)
+        opts.method.apply(item, opts.arguments)
       else
-        method.call(item)
+        item[opts.method].apply(item, opts.arguments)
 
   filter: (iter) ->
     @items().then (items) -> $.filter(items, iter)
