@@ -1,3 +1,84 @@
+### v0.8.0[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.2...v0.8.0)
+
+#### Breaking Changes
+* Removed global variables (`$`, `Driver`, ` _`,  `argv`)
+
+* `read` no longer supports multiple arguments. Changed to hash-style arguments
+* `findByText` removed. To find by text use the optional “text” key on the `find` method
+* `fill` no longer supports multiple arguments. Changed to hash-style arguments
+* `getValue` no longer supports multiple arguments. Changed to hash-style arguments
+
+* `clickAt` no longer supports multiple arguments. Changed to hash-style arguments
+* `readAt` no longer supports multiple arguments. Changed to hash-style arguments
+
+###### Widget
+
+* New shorthand declaration via `this.W` from `this.Widget`
+* Methods now support hash-style arguments for instance…..
+
+```js
+return new this.Widget({
+  root: “div”
+})
+.fill({
+  selector: “input”,
+  value: [“Pioneer” Driver.Key.SPACE, “is”, Driver.Key.SPACE, “awesome!”]
+});
+```
+
+#### Helpers
+
+* `addClass`, `removeClass`, `toggleClass` now accepts an optional selector to allow scoping within the widget
+* `getAttribute` - now accepts an optional selector to allow scoping within the widget
+* `isVisible` - will first check to see if an element is present and return false if it is not.
+* `hover` - the `Hover` method on a widget takes the same params as find to locate the DOM node to be hovered. It returns a promise that is resolved with the widget after the mouse has been moved over the target element. If you do not pass anything to hover it will hover over the widgets root node.
+* `doubleClick` - the `doubleClick` method on a widget takes the same params as [find](#find) to locate the DOM node to be doubleClicked. It returns a promise that is resolved with the widget after the mouse has been doubleClicked on the target element. If you do not pass anything to doubleClick it will double click the root node of the widget.
+
+#### Widget.Fields
+Fields Is now removed as being a base class. Its methods have been moved within `Widget.Form`
+
+#### Widget.List
+
+*  `select` can be used to select an option from a dropdown menu. It takes a hash with an optional `<selector>` in which you can specifiy either `<text>` or `<value>` to select by. Specifiying both text and a value will result in an error. It returns a promise that will resolve with null.
+
+<needs a code example>
+```html
+<div class="form2">
+  <select>
+    <option value="one">Option Number 1</option>
+    <option value="two">Option Number 2</option>
+    <option value="three">Option Number 3</option>
+  </select>
+</div>
+```
+
+```js
+return new this.Widget.Form({
+  root: "form2"
+})
+.select({
+  selector: "select",
+  value: "three"
+})
+
+//Resulting in the selection of the option with a value of "three".
+```
+
+* `invoke` - arguments to pass to the invoking method can now be passed using an object
+
+
+#### Scaffolding
+
+Pioneer can generate a scaffold for you to build your suite on via the newly added`--scaffold` command line flag.
+
+Scaffold generates a tests/ directory, with features/, steps/ and widgets/. It creates simple.feature and simple.js files that include your first Pioneer test! It also creates a .pioneer.json file in your current working directory.
+
+The option to generate a scaffold is also presented if Pioneer is called without specifying a feature file.
+
+#### Configuration
+
+* Pioneer no longer has a default configuration. A similar goal can be accomplished via a `.pioneer.json` within the directory that you run your tests from.
+
 ### v0.7.2[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.1...v0.7.2)
 
 #### Fixes
