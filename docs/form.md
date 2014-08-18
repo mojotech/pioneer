@@ -34,7 +34,7 @@ waiver.submitWith({name: "Joe Doe", address: "55 Main St", reason: "N/A"});
 `function select({text: <text>, value: <value>, selector: <selector>})`
 
 `select` can be used to select an option from a dropdown menu.
-`select` takes an hash with an optional `<selector>` in which you can specifiy either `<text>` or `<value>` to select by. Specifiying both text and a value will result in an error. It returns a promise that will resolve with null.
+`select` takes a hash with an optional `<selector>` in which you can specifiy either `<text>` or `<value>` to select by. Specifiying both text and a value will result in an error. It returns a promise that will resolve with null.
 
 ## fillAll
 
