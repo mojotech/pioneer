@@ -16,10 +16,6 @@
 
 Pioneer provides an abstraction layer between your integration tests and your DOM markup, DRYing up your step definitions and consolidating how people interact with the DOM in tests.
 
-![see it live](http://i.imgur.com/kTjwloS.gif)
-[View our Getting Started Guide](docs/getting_started.md) |
-[See an example repo.](https://github.com/samccone/dill.js-getting-started)
-
 # Installing
 
 #### With npm
