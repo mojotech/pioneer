@@ -35,6 +35,26 @@ waiver.submitWith({name: "Joe Doe", address: "55 Main St", reason: "N/A"});
 
 `select` takes a hash with an optional `<selector>` in which you can specifiy either `<text>` or `<value>` to select by. Specifiying both text and a value will result in an error. It returns a promise that will resolve with null.
 
+```html
+<div class="form2">
+  <select>
+    <option value="one">Option Number 1</option>
+    <option value="two">Option Number 2</option>
+    <option value="three">Option Number 3</option>
+  </select>
+</div>
+```
+```js
+return new this.Widget.Form({
+  root: "form2"
+})
+.select({
+  selector: "select",
+  value: "three"
+})
+//Resulting in the selection of the option with a value of "three".
+```
+
 ## fillAll
 
 `fillAll` will call the [fill](docs/widget.md#fill) method on each of the the keys value pairs passed into the method.
