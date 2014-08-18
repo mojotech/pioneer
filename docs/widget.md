@@ -184,7 +184,7 @@ new this.Widget({
 
 `function doubleClick({find options})...`
 
-the `doublClick` method on a widget takes the same params as [find](#find) to locate the DOM node to be doubleClicked. It returns a promise that is resolved with the widget after the mouse has been doubleClicked on the target element. If you do not pass anything to doubleClick it will double click the root node of the widget.
+the `doubleClick` method on a widget takes the same params as [find](#find) to locate the DOM node to be doubleClicked. It returns a promise that is resolved with the widget after the mouse has been doubleClicked on the target element. If you do not pass anything to doubleClick it will double click the root node of the widget.
 
 ```js
 new this.Widget({
