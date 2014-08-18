@@ -36,7 +36,7 @@ module.exports =
       fs.writeFileSync(hiddenPioneer, fs.readFileSync(path.join(__dirname, "scaffold/example.json"), 'utf8'))
     else
       @askToOverWrite(hiddenPioneer, fs.readFileSync(path.join(__dirname, "scaffold/example.json"), 'utf8'))
-    console.log('Scaffold created. You may now run your first test'.inverse.green)
+    @_logCompleted()
 
   askToOverWrite: (file, data) ->
     ans = readlineSync.question("It looks like you already have a" + file + "file, are you sure that you would like to overwrite this? y/n\n")
@@ -44,3 +44,6 @@ module.exports =
       fs.writeFileSync(file, data)
     else
       console.log("You chose not to overwrite" + file + ", to run the scaffold files include tests/features in the feature option of your config files.")
+
+  _logCompleted: ->
+    console.log('Scaffold created. You may now run your first test'.inverse.green)
