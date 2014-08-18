@@ -62,3 +62,6 @@ Feature: Manipulating Lists
   Scenario: Invoking a method over the list with a method
     Given I can invoke click on each widget in the list with a method
     Then I should see that each list item was clicked
+
+  Scenario: Invoking a method over the list with arguments
+    Given I can invoke read on each widget in the list with a transformer and selector
