@@ -60,6 +60,7 @@ describe "Scaffold Builder", ->
         this.format = fs.readFileSync(this.pioneerJSON)
       else
         this.format = null
+      logs = this.sandbox.stub(scaffoldBuilder, "_logCompleted", -> )
       scaffoldBuilder.createScaffold()
 
     afterEach ->
