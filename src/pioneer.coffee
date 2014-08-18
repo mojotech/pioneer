@@ -16,7 +16,10 @@ init = (libPath) ->
       configPath = p
     else
       configPath = null
-  console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
+  if(configPath)
+    console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
+  else
+    console.log ('No configuration path specified.\n').yellow.inverse
   getSpecifications(configPath, libPath, args)
 
 getSpecifications = (path, libPath, args) ->
