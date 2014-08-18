@@ -123,9 +123,10 @@ new ListItems().each(function(item, index) {
 
 ## Invoke
 
-`function invoke(methodName or method)...`
+`function invoke({method: (methodName or method), arguments:<[arguments]>})...`
 
 Returns a promise that resolves when the specified method has been invoked on all children.
+If you only pass a string (or method) to `invoke`, and not an object, then it will use the string (or method) as the method to apply on each child.
 
 ```js
 new ListItems().invoke('click').then(function() {
@@ -137,6 +138,17 @@ new ListItems().invoke('click').then(function() {
 new ListItems().invoke(this.Widget.prototype.click).then(function() {
 //....
 });
+```
+
+```js
+new ListItems().invoke({
+  method: "click",
+  arguments: [{
+    selector: "p"
+  }]
+}).then(function(){
+  //...
+})
 ```
 
 ## At
