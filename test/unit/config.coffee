@@ -1,8 +1,7 @@
 sinon           = require("sinon")
 assert          = require("assert")
-chai            = require("chai")
-expect          = chai.expect
 configBuilder   = require('../../lib/config_builder')
+pioneer         = require('../../lib/pioneer.js')
 _               = require('lodash')
 CONFIG_NAMES    = [
   "tags",
@@ -17,6 +16,25 @@ CONFIG_NAMES    = [
 ]
 
 describe "Pioneer configuration", ->
+  describe "parseAndValidateJSON()", ->
+    beforeEach ->
+      this.path = "wow"
+      this.invalidJSON = "{\"someError\":\"JSON\""
+      this.validJSON = "{\"someobject\":\"that works\"}"
+
+    it "should handle an invalid json object", ->
+      assert.throws(( ->
+        pioneer._parseAndValidateJSON(this.invalidJSON, this.path)),
+        Error,
+        this.path + " does not include a valid JSON object"
+      )
+
+    it "should handle a valid json object", ->
+      pioneer._parseAndValidateJSON(this.validJSON, this.path)
+      .should.eql({
+        someobject: "that works"
+      })
+
   describe "configuration formatter", ->
     beforeEach ->
       process.argv  = []

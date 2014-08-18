@@ -5,7 +5,7 @@ minimist      = require 'minimist'
 configBuilder = require './config_builder'
 color         = require 'colors'
 
-module.exports = (libPath) ->
+init = (libPath) ->
   args = minimist(process.argv.slice(2))
   process.argv = []
   if(args.configPath && fs.existsSync(args.configPath))
@@ -26,7 +26,7 @@ getSpecifications = (path, libPath, args) ->
       'utf8',
       (err, data)->
         throw err if(err)
-        object = JSON.parse(data)
+        object = parseAndValidateJSON(data, path)
         applySpecifications(object, libPath, args)
     )
   else
@@ -44,3 +44,12 @@ start = (opts) ->
   cucumber.Cli(opts).run ->
     testTime = moment.duration(new Date().getTime() - timeStart)._data
     console.log "Duration " + "(" + testTime.minutes + "m:" + testTime.seconds + "s:" + testTime.milliseconds + "ms)"
+
+parseAndValidateJSON = (config, path) ->
+  try
+    JSON.parse(config)
+  catch err
+    throw new Error(path + " does not include a valid JSON object.\n")
+
+module.exports = init
+module.exports._parseAndValidateJSON = parseAndValidateJSON
