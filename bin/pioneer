@@ -11,4 +11,6 @@ if (notifier.update) {
     notifier.notify();
 }
 
+global.ARGV = Array.prototype.slice.call(process.argv)
+
 require(lib + '/pioneer')(lib);
