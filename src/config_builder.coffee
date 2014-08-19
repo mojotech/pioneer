@@ -15,6 +15,13 @@ CONFIG_NAMES = [
   "scaffold"
 ]
 
+CUCUMBER_FORMATTERS = [
+  "pretty",
+  "progress",
+  "json",
+  "summary"
+]
+
 module.exports =
   convertToExecOptions: (objArry, libPath) ->
     execOptions =
@@ -40,7 +47,9 @@ module.exports =
               ""
           when k is "format"
             v = val[k]
-            if fs.existsSync(p = path.join(process.cwd(), v))
+            if @isCucumberFormatter(v)
+              "--format=#{v}"
+            else if fs.existsSync(p = path.join(process.cwd(), v))
               "--format=#{p}"
             else
               "--format=#{path.join(libPath, v)}"
@@ -128,3 +137,6 @@ module.exports =
           r = true
 
     r
+
+  isCucumberFormatter: (formatter) ->
+    !!(_.find(CUCUMBER_FORMATTERS, (f) -> f is formatter))

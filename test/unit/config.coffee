@@ -69,7 +69,7 @@ describe "Pioneer configuration", ->
         "test/integration/steps"
         "--require"
         "test/integration/widgets"
-        "--format=#{this.libPath}/pretty"
+        "--format=pretty"
         "--error_formatter=error_formatter.js"
         "--require"
         "wow/support"
