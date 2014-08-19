@@ -22,6 +22,13 @@ module.exports =
         k = _.keys(val)[0]
 
         switch
+          when k is 'tags'
+            "--#{k}=".concat(
+              (_(Array::concat(val[k]))
+              .flatten()
+              .value())
+              .join(", "))
+
           when k is 'driver'
             process.argv.push "--driver=#{val[k]}"
             ""
