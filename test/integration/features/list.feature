@@ -65,3 +65,6 @@ Feature: Manipulating Lists
 
   Scenario: Invoking a method over the list with arguments
     Given I can invoke read on each widget in the list with a transformer and selector
+
+  Scenario: Visiblity on list items
+    Given I can check the visibility on a list's items
