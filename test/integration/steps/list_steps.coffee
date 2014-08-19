@@ -148,3 +148,13 @@ module.exports = ->
         selector: "p"
       }]
     }).should.eventually.eql(["ORC", "HUMAN", "PROTOSS"])
+
+  @Given /^I can check the visibility on a list's items$/, ->
+    new @Widgets.List({
+      root: ".nested",
+      itemSelector: "span"
+    })
+    .map (w) ->
+      w.isVisible()
+    .should.eventually
+    .eql([true, true, true])

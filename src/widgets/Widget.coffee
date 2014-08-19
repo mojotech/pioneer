@@ -123,7 +123,10 @@ $      = Driver.promise
     @find(opts).then (el) -> el.getOuterHtml()
 
   isPresent: (selector) ->
-    @driver.isElementPresent(Driver.By.css(@_selector(selector)))
+    if @_selector(selector) != "undefined"
+      @driver.isElementPresent(Driver.By.css(@_selector(selector)))
+    else
+      @el.isDisplayed()
 
   isVisible: (opts={}) ->
     if(_.isString(opts))
