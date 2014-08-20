@@ -31,7 +31,7 @@ module.exports =
       fs.mkdirSync(steps)
     fs.writeFileSync(path.join(features, 'simple.feature'), fs.readFileSync(path.join(__dirname, "scaffold/simple.txt"), 'utf8'))
     fs.writeFileSync(path.join(steps, 'simple.js'), fs.readFileSync(path.join(__dirname, "scaffold/simple.js"), 'utf8'))
-    hiddenPioneer = path.join(process.cwd(), '/.pioneer.json')
+    hiddenPioneer = path.join(process.cwd(), '/pioneer.json')
     if(!fs.existsSync(hiddenPioneer))
       fs.writeFileSync(hiddenPioneer, fs.readFileSync(path.join(__dirname, "scaffold/example.json"), 'utf8'))
     else
