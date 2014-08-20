@@ -1,3 +1,17 @@
+### v0.8.1[view commit logs](https://github.com/mojotech/pioneer/compare/v0.8.0...v0.8.1)
+
+#### Fixes
+
+* Fix bug where `isPresent` would fail when the widget was constructed via an `el` based constructor.
+
+* Fix broken multi-tag formatter.
+
+#### New
+
+* Added a global `timeout` to adjust how long a step will wait before failing.
+
+* Added a new gloabl `ARGV` to give you access to the raw `process.argv` passed into the process.
+
 ### v0.8.0[view commit logs](https://github.com/mojotech/pioneer/compare/v0.7.2...v0.8.0)
 
 #### Breaking Changes
