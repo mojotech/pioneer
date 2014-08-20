@@ -1,11 +1,11 @@
-Driver = require('selenium-webdriver')
-$      = Driver.promise
-argv   = require('minimist')(process.argv)
-_      = require('lodash')
-color  = require('colors')
-module.exports = ->
-  @timeout = 5000
+Driver          = require('selenium-webdriver')
+$               = Driver.promise
+argv            = require('minimist')(process.argv)
+_               = require('lodash')
+color           = require('colors')
+global.timeout  = 5000
 
+module.exports = ->
   @visit = (path) =>
     @driver.get "#{@host}#{path}"
 
@@ -55,7 +55,7 @@ module.exports = ->
 
       callforth = =>
         flowStep code, args, callback, (error) =>
-          if new Date - start > @timeout
+          if new Date - start > timeout
             callback(error)
           else
             $.delayed(1000).then -> callforth()
