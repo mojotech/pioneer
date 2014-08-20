@@ -78,7 +78,7 @@ describe "Pioneer configuration", ->
 
     it "should convertToExecOptions with multiple tags", ->
       configBuilder.convertToExecOptions(this.multiTagConfig, this.libPath)
-      .should.eql([null, null, "--tags=@wow", "--tags=@doge", "--require", "wow/support"])
+      .should.eql([null, null, "--tags=@wow, @doge", "--require", "wow/support"])
       process.argv.should.eql([])
 
     it "should push command line arguments for driver and reload", ->
