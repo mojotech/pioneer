@@ -1,6 +1,6 @@
-_      = require('lodash')
-Driver = require('selenium-webdriver')
-$      = Driver.promise
+_       = require('lodash')
+Driver  = require('selenium-webdriver')
+$       = Driver.promise
 
 @W = class @Widget
   @extend: (protoProps, staticProps) ->
@@ -174,7 +174,7 @@ $      = Driver.promise
   _ensureElement: (selector) ->
     @driver.wait(
       _.bind(@isPresent, this, selector),
-      10000,
+      global.timeout,
       "#{@_selector(selector)} not found"
     )
 
