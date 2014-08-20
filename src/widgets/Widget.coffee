@@ -33,6 +33,14 @@ $       = Driver.promise
       _this.el = el
       _this
 
+  staticMethods = ["click", "fill", "hover", "doubleClick", "read", "isPresent", "isVisible", "getAttribute", "getValue", "getText", "getInnerHTML", "getOuterHTML", "hasClass", "sendKeys", "clear"]
+  for staticMethod in staticMethods
+    m = (args...) =>
+      @find({root: "html"}).then (w) ->
+        w[args[0]].apply(w, args.slice(1))
+
+    @[staticMethod] = _.partial(m, staticMethod)
+
   constructor: (attributes = {}) ->
     _.extend @, attributes
 
