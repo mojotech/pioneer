@@ -45,6 +45,8 @@ start = (opts) ->
 
   cucumber = require 'cucumber'
   cucumber.Cli(opts).run ->
+
+  process.on 'exit', (code) ->
     testTime = moment.duration(new Date().getTime() - timeStart)._data
     console.log "Duration " + "(" + testTime.minutes + "m:" + testTime.seconds + "s:" + testTime.milliseconds + "ms)"
 
