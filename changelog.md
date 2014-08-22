@@ -1,3 +1,9 @@
+### v0.8.2[view commit logs](https://github.com/mojotech/pioneer/compare/v0.8.1...v0.8.2)
+
+#### Fixes
+
+* Fix incorrect exit code on failure
+
 ### v0.8.1[view commit logs](https://github.com/mojotech/pioneer/compare/v0.8.0...v0.8.1)
 
 #### Fixes
