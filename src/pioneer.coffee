@@ -4,6 +4,7 @@ path          = require 'path'
 minimist      = require 'minimist'
 configBuilder = require './config_builder'
 color         = require 'colors'
+cucumber      = require 'cucumber'
 
 init = (libPath) ->
   args = minimist(process.argv.slice(2))
@@ -43,12 +44,10 @@ start = (opts) ->
 
   require('./environment')()
 
-  cucumber = require 'cucumber'
-  cucumber.Cli(opts).run ->
-
-  process.on 'exit', (code) ->
+  cucumber.Cli(opts).run (success) ->
     testTime = moment.duration(new Date().getTime() - timeStart)._data
     console.log "Duration " + "(" + testTime.minutes + "m:" + testTime.seconds + "s:" + testTime.milliseconds + "ms)"
+    process.exit(if success then 0 else 1)
 
 parseAndValidateJSON = (config, path) ->
   try

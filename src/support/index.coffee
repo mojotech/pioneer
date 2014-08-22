@@ -89,7 +89,10 @@ module.exports = ->
     terminateDriver() unless shouldPreventBrowserReload()
 
   @registerHandler "AfterFeatures", (event, callback) =>
-    terminateDriver() if shouldPreventBrowserReload()
+    if shouldPreventBrowserReload()
+      terminateDriver().then -> callback()
+    else
+      callback()
 
   shouldPreventBrowserReload = ->
     argv['prevent-browser-reload']?
