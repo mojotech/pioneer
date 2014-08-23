@@ -155,6 +155,14 @@ $       = Driver.promise
     @find(opts.selector).then (el) =>
       @driver.executeScript("arguments[0].classList.toggle(arguments[1])", el, opts.className)
 
+  hasClass: (opts) ->
+    if _.isString(opts)
+      opts = {className: opts}
+    @find(opts.selector).then (el) =>
+      @driver.executeScript((el, className) ->
+        el.classList.contains className
+      , el, opts.className)
+
   findAll: (selector) ->
     @driver.findElements(Driver.By.css(@_selector(selector)))
 

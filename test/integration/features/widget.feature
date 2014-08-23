@@ -48,6 +48,19 @@ Feature: Manipulating Widgets
     Then "doge" should have class "such"
     When I toggle class "such" on "doge" in ".wow"
     Then "doge" should not have class "such"
+
+  Scenario: Has class
+    When I add class "foo" to ".wow"
+    Then ".wow" should contain class "foo"
+    When I remove class "foo" from ".wow"
+    Then ".wow" should not contain class "foo"
+
+  Scenario: Has class
+    When I add class "foo" to "doge" in ".wow"
+    Then "doge" should contain class "foo" in ".wow"
+    When I remove class "foo" from "doge" in ".wow"
+    Then "doge" should not contain class "foo" in ".wow"
+
   Scenario: Hovering over a element
     Given I should be able to hover over an element
 
