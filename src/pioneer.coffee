@@ -9,19 +9,24 @@ cucumber      = require 'cucumber'
 init = (libPath) ->
   args = minimist(process.argv.slice(2))
   process.argv = []
-  if(args.configPath && fs.existsSync(args.configPath))
-    configPath = args.configPath
+  if isHelpRequested(args)
+    console.log 'What would you like help with?\n'
+  else if isVersionRequested(args)
+    console.log 'Version: 0.8.2\n'
   else
-    p = path.join(process.cwd(), '/.pioneer.json')
-    if(fs.existsSync(p))
-      configPath = p
+    if(args.configPath && fs.existsSync(args.configPath))
+      configPath = args.configPath
     else
-      configPath = null
-  if(configPath)
-    console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
-  else
-    console.log ('No configuration path specified.\n').yellow.inverse
-  getSpecifications(configPath, libPath, args)
+      p = path.join(process.cwd(), '/.pioneer.json')
+      if(fs.existsSync(p))
+        configPath = p
+      else
+        configPath = null
+    if(configPath)
+      console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
+    else
+      console.log ('No configuration path specified.\n').yellow.inverse
+    getSpecifications(configPath, libPath, args)
 
 getSpecifications = (path, libPath, args) ->
   obj = {}
@@ -54,6 +59,12 @@ parseAndValidateJSON = (config, path) ->
     JSON.parse(config)
   catch err
     throw new Error(path + " does not include a valid JSON object.\n")
+
+isHelpRequested = (args) ->
+  args.help || args.h
+
+isVersionRequested = (args) ->
+  args.version || args.v
 
 module.exports = init
 module.exports._parseAndValidateJSON = parseAndValidateJSON
