@@ -10,6 +10,10 @@ Feature: Submit With
     Given I enter information and submit
     Then I should see "field1 is myEmail@gmail.com and field2 is default"
 
+  Scenario: Clearing an input before filling
+    Given I fill the field with default with something else
+    Then I should only see something else
+
   Scenario: When I fill in fields
     Given I fill a form with:
       | name    | value |

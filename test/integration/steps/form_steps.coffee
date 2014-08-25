@@ -6,6 +6,19 @@ module.exports = ->
   @Given /^I click submit$/, ->
     new this.Widgets.SimpleForm().submitForm()
 
+  @Given /^I fill the field with default with something else$/, ->
+    new @Widget({
+      root: "#field2"
+    })
+    .fill({value: "doge"})
+
+  @Then /^I should only see something else$/, ->
+    new @Widget({
+      root: "#field2"
+    })
+    .getValue()
+    .should.eventually.eql("doge")
+
   @Given /^I enter information and submit$/, ->
     form = new this.Widgets.SimpleForm()
     form.enter()
