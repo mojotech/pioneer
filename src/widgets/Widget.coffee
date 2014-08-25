@@ -58,10 +58,12 @@ $       = Driver.promise
 
     if _.isObject(opts)
       @find(opts.selector).then (el) ->
-        el.sendKeys.apply(el, Array::slice.call(opts.value))
+        el.clear().then ->
+          el.sendKeys.apply(el, Array::slice.call(opts.value))
     else
       @find().then (el) ->
-        el.sendKeys.apply(el, Array::slice.call(opts))
+        el.clear().then ->
+          el.sendKeys.apply(el, Array::slice.call(opts))
 
   read: (opts) ->
     if _.isString(opts) or opts is undefined
