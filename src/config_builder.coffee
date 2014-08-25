@@ -76,10 +76,6 @@ module.exports =
               p.concat("--require", v)
             , [])
 
-          when k is 'scaffold'
-            if(val[k])
-              scaffold.createScaffold()
-
           when typeof(val[k]) is 'object'
             for v in val[k]
               "--#{k}=#{v}"
