@@ -87,3 +87,33 @@ module.exports = ->
       className: className,
       selector: childSelector
     })
+
+  @Then /^"([^"]*)" should contain class "([^"]*)"$/, (selector, className) =>
+    widget = new @Widget({
+      root: selector
+    })
+    .hasClass(className).should.eventually.be.true
+
+  @Then /^"([^"]*)" should not contain class "([^"]*)"$/, (selector, className) =>
+    new @Widget({
+      root: selector
+    })
+    .hasClass(className).should.eventually.be.false
+
+  @Then /^"([^"]*)" should contain class "([^"]*)" in "([^"]*)"$/, (childSelector, className, selector) =>
+    widget = new @Widget({
+      root: selector
+    })
+    .hasClass({
+      className: className
+      selector: childSelector
+    }).should.eventually.be.true
+
+  @Then /^"([^"]*)" should not contain class "([^"]*)" in "([^"]*)"$/, (childSelector, className, selector) =>
+    widget = new @Widget({
+      root: selector
+    })
+    .hasClass({
+      className: className
+      selector: childSelector
+    }).should.eventually.be.false
