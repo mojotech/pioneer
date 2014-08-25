@@ -9,6 +9,9 @@ cucumber      = require 'cucumber'
 init = (libPath) ->
   args = minimist(process.argv.slice(2))
   process.argv = []
+  if isVersionRequested(args)
+    console.log require('../package').version
+    return
   if(args.configPath && fs.existsSync(args.configPath))
     configPath = args.configPath
   else
@@ -54,6 +57,9 @@ parseAndValidateJSON = (config, path) ->
     JSON.parse(config)
   catch err
     throw new Error(path + " does not include a valid JSON object.\n")
+
+isVersionRequested = (args) ->
+  args.version || args.v
 
 module.exports = init
 module.exports._parseAndValidateJSON = parseAndValidateJSON

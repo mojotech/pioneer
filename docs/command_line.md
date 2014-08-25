@@ -9,6 +9,7 @@ Command Line Options
 * [CoffeeScript Step Scaffold](#coffeescript-step-scaffold)
 * [Configuration File Path](#configuration-file-path)
 * [Scaffold Creation](#scaffold)
+* [Version](#version)
 
 ## Driver Configuration
 You can customize which driver your tests use via the `--driver` command line flag. The default driver is chrome.
@@ -64,3 +65,7 @@ Pioneer can generate a scaffold for your first tests automatically using the opt
   "coffee": false
 }
 ```
+
+## Version
+
+You can display the current version of Pioneer that you are using by passing the optional `--version` or `-v` command line flag.
