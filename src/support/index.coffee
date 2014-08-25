@@ -6,9 +6,6 @@ color           = require('colors')
 global.timeout  = 5000
 
 module.exports = ->
-  @visit = (path) =>
-    @driver.get "#{@host}#{path}"
-
   _Before = @Before
   _After  = @After
 
@@ -84,6 +81,7 @@ module.exports = ->
     @lastStepType = 'Given'
     if !@driver || !shouldPreventBrowserReload()
       @driver = new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
+      @driver.visit = @driver.get
 
   @After ->
     terminateDriver() unless shouldPreventBrowserReload()
