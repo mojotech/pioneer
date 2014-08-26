@@ -66,3 +66,6 @@ Feature: Manipulating Widgets
 
   Scenario: Doubling clicking an element
     Given I should be able to double click an element
+
+  Scenario: Clearing an input
+    Given I should be able to clear an input

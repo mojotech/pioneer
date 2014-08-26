@@ -205,3 +205,8 @@ $       = Driver.promise
       .doubleClick(el)
       .perform()
       .then => this
+
+  clear: (opts) ->
+    @find(opts)
+    .then (el) =>
+      el.clear().then => this
