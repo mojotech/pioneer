@@ -50,7 +50,7 @@ Pioneer configuration options can be declared in the form of a JSON file. To dec
 ```
 
 ## Scaffold Creation
-Pioneer can generate a scaffold for your first tests automatically using the optional `--scaffold` command line flag. This generates a tests/ directory, with features/, steps/ and widgets/. It creates simple.feature and simple.js files that include your first Pioneer test! It also creates a .pioneer.json file in your current working directory. This config file automatically includes the created feature files, and the following information:
+Pioneer can generate a scaffold for your first tests automatically using the optional `--scaffold` command line flag. This generates a tests/ directory, with features/, steps/ and widgets/. It creates simple.feature and simple.js files that include your first Pioneer test! It also creates a `pioneer.json` file in your current working directory. This config file automatically includes the created feature files, and the following information:
 ```json
 {
   "feature": "tests/features",

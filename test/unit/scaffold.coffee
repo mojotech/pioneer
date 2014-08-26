@@ -56,7 +56,7 @@ describe "Scaffold Builder", ->
 
   describe "createScaffold()", ->
     beforeEach ->
-      this.pioneerJSON = path.join(process.cwd(), '/.pioneer.json')
+      this.pioneerJSON = path.join(process.cwd(), '/pioneer.json')
       if(fs.existsSync(this.pioneerJSON))
         this.format = fs.readFileSync(this.pioneerJSON)
       else
@@ -70,7 +70,7 @@ describe "Scaffold Builder", ->
       if(this.format)
         fs.writeFileSync(this.pioneerJSON, this.format)
       else
-        fs.unlinkSync(path.join(process.cwd(), '/.pioneer.json'))
+        fs.unlinkSync(path.join(process.cwd(), '/pioneer.json'))
 
     it "should create a tests/ directory", ->
       fs.existsSync(path.join(process.cwd(), '/tests')).should.be.true

@@ -18,7 +18,7 @@ init = (libPath) ->
   else if args.scaffold
     scaffoldBuilder.createScaffold()
   else
-    p = path.join(process.cwd(), '/.pioneer.json')
+    p = path.join(process.cwd(), '/pioneer.json')
     if(fs.existsSync(p))
       configPath = p
     else

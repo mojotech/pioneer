@@ -10,7 +10,7 @@ Configuration File
 * [CoffeeScript Step Scaffold](#coffeescript-step-scaffold)
 
 ## Default Configuration
-If no configuration path is passed in using [--configPath=](docs/command_line.md#configuration-file-path), then pioneer will check to see if the file .pioneer.json exists in the current working directory.
+If no configuration path is passed in using [--configPath=](docs/command_line.md#configuration-file-path), then pioneer will check to see if the file `pioneer.json` exists in the current working directory.
 
 ## Driver Configuration
 
