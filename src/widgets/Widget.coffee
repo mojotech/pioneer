@@ -188,8 +188,14 @@ $       = Driver.promise
       "#{@_selector(selector)} not found"
     )
 
-  sendKeys: (args...)->
-    @find().then (el) -> el.sendKeys.apply(el, args)
+  sendKeys: (opts...)->
+    if(opts.length > 1)
+      @sendKeys({keys: opts})
+    else
+      opts = opts[0]
+      if !(_.isObject(opts))
+        opts = {keys: Array::concat(opts)}
+      @find(opts.selector).then (el) -> el.sendKeys.apply(el, Array::concat(opts.keys))
 
   hover: (opts) ->
     @find(opts).then (el) =>

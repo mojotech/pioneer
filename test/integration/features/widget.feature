@@ -21,6 +21,9 @@ Feature: Manipulating Widgets
   Scenario: Sending Keys to element
     When I send "doge" to an element I should be able to read "doge"
 
+  Scenario: Sending Keys with an object
+    When I send keys to an element with an object I should be able to read them
+
   Scenario: Adding a class
     When I add class "foo" to ".wow"
     Then ".wow" should have class "foo"
