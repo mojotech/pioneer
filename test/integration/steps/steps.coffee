@@ -30,3 +30,11 @@ module.exports = ->
       w.read()
       .should.eventually
       .eql("wow such click")
+
+  @Given /^I should be able to clear an input$/, ->
+    w = new @W({
+      root: ".inputbox"
+    })
+    w.sendKeys("filled with this").then =>
+      w.clear().then (widget) ->
+        widget.getValue().should.eventually.eql("")

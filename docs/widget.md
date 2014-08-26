@@ -35,6 +35,7 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [removeClass](#removeclass)
     * [toggleClass](#toggleclass)
     * [hasClass](#hasclass)
+    * [clear](#clear)
   * [Querying the DOM](#querying-the-dom)
     * [Read](#read)
     * [Find](#find)
@@ -251,6 +252,23 @@ var hidden = new Widget.extend({
 `function hasClass({className: name, selector: <selector>})`
 
 `hasClass` will test the existence of the provided class name on the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve with `true` or `false`.
+
+### clear
+
+`function clear({selector: <selector>})`
+
+`clear` will call [clear](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l1967) on the element. Takes a hash that supports an optional selector to scope the `clear` operation. If only a string is passed to clear, and not an object then it will use it as a selector for the `find` operation.
+Returns a promise that resolves with the widget once the element has been cleared.
+
+```js
+new this.Widget({
+  root: "#container"
+}).clear({
+  selector: "input"
+}).then(function(widget){
+  ...
+});
+```
 
 ## Querying the DOM
 
