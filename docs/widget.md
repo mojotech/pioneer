@@ -25,6 +25,22 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [Overriding](#overriding)
     * [Shorthand](#shorthand)
   * [Root](#root)
+  * [Static Methods](#static-methods)
+    * [click](#static-click)
+    * [fill](#static-fill)
+    * [hover](#static-hover)
+    * [doubleClick](#static-doubleclick)
+    * [read](#static-read)
+    * [isPresent](#static-ispresent)
+    * [isVisible](#static-isvisible)
+    * [getAttribute](#static-getattribute)
+    * [getValue](#static-getvalue)
+    * [getText](#static-gettext)
+    * [getInnerHTML](#static-getinnerhtml)
+    * [getOuterHTML](#static-getouterhtml)
+    * [hasClass](#static-hasclass)
+    * [sendKeys](#static-sendkeys)
+    * [clear](#clear)
   * [Interacting with the DOM](#interacting-with-the-dom)
     * [Click](#click)
     * [Fill](#fill)
@@ -126,6 +142,178 @@ It is a common pattern to have multiple widgets represent different parts of the
 var PuppySearch = Widget.extend({
   root: '.dog-search',
 });
+```
+
+## Static Methods
+
+Static methods can be used for situations where you do not want to declare a new Widget to do something. Static methods ALWAYS require selectors, otherwise Pioneer won't know what you want to operate on!
+
+These methods allow you to do simple operations with less code.
+For example:
+
+```js
+new this.Widget({
+  root: "#that-button"
+}).click()
+```
+
+can be simplified to:
+
+```js
+this.Widget.click({selector: "#that-button"})
+```
+
+### static click
+
+Static implementation of [click](#click)
+
+### static fill
+
+Static implementation of [fill](#fill)
+
+```js
+this.W.fill({
+  selector: ".field1",
+  value: ["such good text", Driver.Key.ENTER]
+})
+```
+
+### static hover
+
+Static implementation of [hover](#hover)
+
+```js
+this.W.hover({
+  selector: "#your-target"
+})
+```
+
+### static doubleClick
+
+Static implementation of [doubleClick](#doubleclick)
+
+```js
+this.W.doubleClick({
+  selector: "#some-target"
+})
+```
+
+### static read
+
+Static implementation of [read](#read)
+
+```js
+this.W.read({
+  selector: "p.third",
+  transformer: function(text){
+    text.toUpperCase()
+  }
+})
+```
+
+### static isPresent
+
+Static implementation of [isPresent](#ispresent) not the element is present.
+
+```js
+this.W.isPresent({
+  selector: "body"
+})
+```
+
+### static isVisible
+
+Static implementation of [isVisible](#isvisible) not the element is visible.
+
+```js
+this.W.isVisible({
+  selector: ".hidden"
+})
+```
+
+### static getAttribute
+
+Static implementation of [getAttribute](#getattribute)
+
+```js
+this.W.getAttribute({
+  selector: "img.thumb",
+  attribute: "width"
+})
+```
+
+### static getValue
+
+Static implementation of [getValue](#getvalue)
+
+```js
+this.W.getValue({
+  selector: ".field2"
+})
+```
+
+### static getText
+
+Static implementation of [getText](#gettext)
+
+```js
+this.W.getText({
+  selector: "p.fifth"
+})
+```
+
+### static getInnerHTML
+
+Static implementation of [getInnerHTML](#getinnerhtml)
+
+```js
+this.W.getInnerHTML({
+  selector: ".some-div"
+})
+```
+
+### static getOuterHTML
+
+Static implementation of [getOuterHTML](#getouterhtml)
+
+```js
+this.W.getOuterHTML({
+  selector: "#container"
+})
+```
+
+### static hasClass
+
+Static implementation of [hasClass](#hasclass)
+
+```js
+this.W.hasClass({
+  selector: "li.active",
+  className: "inactive"
+})
+```
+
+### static sendKeys
+
+Static implementation of [sendKeys](#sendkeys)
+
+```js
+this.W.sendKeys({
+  selector: ".username",
+  keys: "pioneer_expert"
+})
+```
+
+### static clear
+
+Static implementation of [clear](#clear)
+
+```js
+this.W.clear({
+  selector: ".password"
+}).then(function(widget){
+  ...
+})
 ```
 
 ## Interacting with the DOM
