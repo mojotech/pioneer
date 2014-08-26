@@ -197,7 +197,7 @@ It returns a promise that is resolved when the child at the index has been click
 </ul>
 ```
 ```js
-new Widget.List()
+new this.Widget.List()
 .clickAt(3)         //results in <li>three</li> being clicked
 ```
 
@@ -210,6 +210,6 @@ If only a number is passed and not an options hash it will default to using that
 
 
 ``js
-new Widget.List().readAt(1, 'p', function(val){
+new this.Widget.List().readAt(1, 'p', function(val){
   return $.trim(val);
 })
