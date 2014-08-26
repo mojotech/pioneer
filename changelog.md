@@ -1,3 +1,67 @@
+### v0.9.0[view commit logs](https://github.com/mojotech/pioneer/compare/v0.8.2...v0.9.0)
+
+#### Breaking Changes
+
+* Widget `fill` method now clears the element before sending the value
+* Pioneer no longer looks for a `.pioneer.json` file to read configuration options from. Instead it will look for a `pioneer.json` file.
+
+#### Widget
+
+###### Helpers
+
+* `hasClass` will test the existence of the provided class name on the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve with `true` or `false`.
+
+* `sendKeys` now supports hash style arguments, including an optional selector.
+
+* `clear` calls the webdriver [clear](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html) method. It takes a hash that supports an optional selector to scope the `clear` operation. If only a string is passed to clear, and not an object then it will use it as a selector for the `find` operation. It returns a promise that resolves with a widget.
+
+```js
+new this.Widget({
+  root: “.some-div”
+}).sendKeys({
+  selector: “input”,
+  keys: [
+    "wow",
+    Driver.Key.SPACE,
+    "pioneer",
+    Driver.Key.ENTER
+  ]
+})
+```
+
+###### Static Methods
+
+* Static methods can be used for situations where you do not want to declare a new Widget to do something.
+* Static methods introduced for the following widget helpers:
+  - click
+  - fill
+  - hover
+  - doubleClick
+  - read
+  - isPresent
+  - isVisible
+  - getAttribute
+  - getValue
+  - getText
+  - getInnerHTML
+  - getOuterHTML
+  - hasClass
+  - sendKeys
+  - clear
+
+
+#### Command Line Flags
+
+* Version: `--version` or `-v` may now be passed to display the current version of Pioneer
+
+#### Driver
+
+* `driver.visit` aliased to `driver.get`
+
+#### Format
+
+* pioneer format no longer displays the filename and line number of each scenario and step. Instead it will display the feature file at the beginning of each feature
+
 ### v0.8.2[view commit logs](https://github.com/mojotech/pioneer/compare/v0.8.1...v0.8.2)
 
 #### Fixes
