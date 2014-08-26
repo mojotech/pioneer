@@ -98,7 +98,7 @@ This is a handy paradigm to embrace when you have small one-off widgets that do 
 
 ```js
 // Creating a new instance with overrides
-myWidget = new Widget({optional: args});
+myWidget = new this.Widget({optional: args});
 
 // Creating a new instance via the find factory with overrides
 Widget.find({optional: args}).then(function(widget) {
@@ -212,7 +212,7 @@ new this.Widget({
 `sendKeys` simulates a user typing. Derived from the [Webdriver sendKey method](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/actionsequence.js.src.html).It accepts as many arguments as desired, including special keys such as Driver.Key.ENTER. A list of those special keys can be found at [Selenium WebDriver docs](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/key.js.src.html).
 
 ```js
-w = new Widget({
+w = new this.Widget({
   root:"#foo"
 })
 w.sendKeys("wow", Driver.Key.ENTER)
