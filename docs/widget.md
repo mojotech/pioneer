@@ -34,7 +34,6 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [addClass](#addclass)
     * [removeClass](#removeclass)
     * [toggleClass](#toggleclass)
-    * [hasClass](#hasclass)
     * [clear](#clear)
   * [Querying the DOM](#querying-the-dom)
     * [Read](#read)
@@ -47,6 +46,7 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [getText](#gettext)
     * [getInnerHTML](#getInnerhtml)
     * [getOuterHTML](#getOuterhtml)
+    * [hasClass](#hasclass)
 
 
 # API
@@ -247,12 +247,6 @@ var hidden = new Widget.extend({
 
 `toggleClass` will toggle the provided class name on the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve when the class has been toggled.
 
-### hasClass
-
-`function hasClass({className: name, selector: <selector>})`
-
-`hasClass` will test the existence of the provided class name on the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve with `true` or `false`.
-
 ### clear
 
 `function clear({selector: <selector>})`
@@ -399,3 +393,9 @@ If a string is passed to `getInnerHTML` it will parse it as a selector.
 
 The `getOuterHTML` method retrives the outerHTML of the selector element. It returns a promise. Proxied off of [outerHTML](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/webdriver.js.src.html#l1997).
 If a string is passed to `getOuterHTML` it will parse it as a selector.
+
+### hasClass
+
+`function hasClass({className: name, selector: <selector>})`
+
+`hasClass` will test the existence of the provided class name on the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve with `true` or `false`.
