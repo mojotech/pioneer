@@ -1,5 +1,6 @@
 _      = require('lodash')
 expect = require("chai").expect
+Driver = require('selenium-webdriver')
 
 module.exports = ->
   @When /^I see if "([^"]*)" is present within "([^"]*)" I should get "([^"]*)"$/, (child, root, isPresent) ->
@@ -26,6 +27,29 @@ module.exports = ->
     w.sendKeys(sent)
     .then ->
       w.getValue().should.eventually.eql(read)
+
+  @When /^I make sure inputbox is empty$/, ->
+    new @Widget({root: ".inputbox"}).then (w) =>
+      w.find().then (el) -> el.clear()
+
+  @Then /^I send keys to an element with an object I should be able to read them$/, ->
+    w = new @Widget({
+      root: "p"
+    })
+    w.sendKeys({
+      selector: ".inputbox",
+      keys: [
+        "wow",
+        Driver.Key.SPACE,
+        "such",
+        Driver.Key.SPACE,
+        "send",
+        Driver.Key.SPACE,
+        "keys"
+      ]
+    }).then ->
+      w.getValue({selector: ".inputbox"})
+      .should.eventually.eql("wow such send keys")
 
   @When /^I add class "([^"]*)" to "([^"]*)"$/, (className, selector) ->
     new @Widget({
