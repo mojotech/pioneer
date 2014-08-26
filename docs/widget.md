@@ -250,7 +250,7 @@ var hidden = new Widget.extend({
 
 `function hasClass({className: name, selector: <selector>})`
 
-`hasClass` will test the existance of the provided class name on the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve with `true` or `false`.
+`hasClass` will test the existence of the provided class name on the DOM node of the Widget. It takes a hash that can contain an optional selector. If you only pass a string to the method and not an object then it will use the string as the class name. It returns a promise that will resolve with `true` or `false`.
 
 ## Querying the DOM
 
