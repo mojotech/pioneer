@@ -10,31 +10,3 @@ module.exports = ->
     w.fill(write)
     .then ->
       w.getValue().should.eventually.eql(read)
-
-  @Given /^I should be able to hover over an element$/, ->
-    new @W({
-      root: 'h4'
-    })
-    .hover()
-    .then (w) ->
-      w.read()
-      .should.eventually
-      .eql("ok ok only on hover")
-
-  @Given /^I should be able to double click an element$/, ->
-    new @W({
-      root: '.double'
-    })
-    .doubleClick()
-    .then (w) ->
-      w.read()
-      .should.eventually
-      .eql("wow such click")
-
-  @Given /^I should be able to clear an input$/, ->
-    w = new @W({
-      root: ".inputbox"
-    })
-    w.sendKeys("filled with this").then =>
-      w.clear().then (widget) ->
-        widget.getValue().should.eventually.eql("")
