@@ -1,10 +1,11 @@
-moment        = require 'moment'
-fs            = require 'fs'
-path          = require 'path'
-minimist      = require 'minimist'
-configBuilder = require './config_builder'
-color         = require 'colors'
-cucumber      = require 'cucumber'
+moment          = require('moment')
+fs              = require('fs')
+path            = require('path')
+minimist        = require('minimist')
+configBuilder   = require('./config_builder')
+scaffoldBuilder = require('./scaffold_builder')
+color           = require('colors')
+cucumber        = require('cucumber')
 
 init = (libPath) ->
   args = minimist(process.argv.slice(2))
@@ -14,6 +15,8 @@ init = (libPath) ->
     return
   if(args.configPath && fs.existsSync(args.configPath))
     configPath = args.configPath
+  else if args.scaffold
+    scaffoldBuilder.createScaffold()
   else
     p = path.join(process.cwd(), '/.pioneer.json')
     if(fs.existsSync(p))
