@@ -38,5 +38,3 @@ Pioneer provides an abstraction layer between your integration tests and your DO
 * [Step Helpers](docs/step_helpers.md)
 * [Command Line Options](docs/command_line.md)
 * [Configuration File](docs/config_file.md)
-
-See http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_Capabilities.html for available options.

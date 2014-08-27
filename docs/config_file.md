@@ -22,6 +22,8 @@ If no configuration path is passed in using [--configPath=](docs/command_line.md
 }
 ```
 
+http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_Capabilities.html
+
 ## Error Formatting
 
 ```json
