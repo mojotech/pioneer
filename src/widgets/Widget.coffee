@@ -61,17 +61,14 @@ $       = Driver.promise
       el.click()
 
   fill: (opts) ->
-    if !opts and !opts.value?
+    if !(_.isObject(opts)) and !opts
       throw new Error("You must pass a value to fill with. https://github.com/mojotech/pioneer/blob/master/docs/widget.md#fill")
 
-    if _.isObject(opts)
-      @find(opts.selector).then (el) ->
-        el.clear().then ->
-          el.sendKeys.apply(el, Array::slice.call(opts.value))
-    else
-      @find().then (el) ->
-        el.clear().then ->
-          el.sendKeys.apply(el, Array::slice.call(opts))
+    opts = if _.isObject(opts) then opts else {value: opts}
+
+    @find(opts.selector).then (el) ->
+      el.clear().then ->
+        el.sendKeys.apply(el, Array::slice.call(opts.value))
 
   read: (opts) ->
     if _.isString(opts) or opts is undefined
