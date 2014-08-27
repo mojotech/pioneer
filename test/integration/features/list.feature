@@ -24,6 +24,9 @@ Feature: Manipulating Lists
   Scenario: Finding the first matching element in a list
     When I find with "a" I should see "<li>data</li>"
 
+  Scenario: Calling AT with a string
+    When I call at with a string I should get an error
+
   Scenario: Nested list lookup
     When I find the "span" within ".nested" I should see 3 items
 

@@ -19,6 +19,13 @@ module.exports = ->
     .isVisible()
     .then (isFound) -> (isFound+"").should.eql(found)
 
+  @When /^I see if an element identified by a string is visible$/, ->
+    new @Widget({
+      root: ".wow"
+    })
+    .isVisible("doge")
+    .should.eventually.be.true
+
   @When /^I send "([^"]*)" to an element I should be able to read "([^"]*)"$/, (sent, read) ->
     w = new @Widget({
       root: ".inputbox"
@@ -53,6 +60,15 @@ module.exports = ->
     }).then ->
       w.getValue({selector: ".inputbox"})
       .should.eventually.eql("wow such send keys")
+
+  @When /^I send keys to an element with multiple arguments I should be able to read them$/, ->
+    new @Widget({
+      root: ".inputbox"
+    })
+    .sendKeys("some", Driver.Key.SPACE, "important", Driver.Key.SPACE, "data")
+    .then =>
+      @W.getValue({selector: ".inputbox"})
+      .should.eventually.eql("some important data")
 
   @When /^I add class "([^"]*)" to "([^"]*)"$/, (className, selector) ->
     new @Widget({

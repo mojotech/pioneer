@@ -12,6 +12,9 @@ Feature: Manipulating Widgets
   Scenario: Is Visible
     When I see if ".wow" is visible I should get "true"
 
+  Scenario: Is Visible with string syntax
+    When I see if an element identified by a string is visible
+
   Scenario: Is Not Visible
     When I see if ".hidden" is visible I should get "false"
 
@@ -23,6 +26,9 @@ Feature: Manipulating Widgets
 
   Scenario: Sending Keys with an object
     When I send keys to an element with an object I should be able to read them
+
+  Scenario: Sending Keys with multiple arguments
+    When I send keys to an element with multiple arguments I should be able to read them
 
   Scenario: Adding a class
     When I add class "foo" to ".wow"
