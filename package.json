@@ -25,7 +25,8 @@
     "clean": "rm -rf lib",
     "pub": "npm run-script build && npm publish && npm run-script clean",
     "test": "mocha test/unit/**.coffee",
-    "integration": "./bin/pioneer"
+    "integration": "./bin/pioneer",
+    "coverage": "./coverage.sh"
   },
   "repository": {
     "type": "git",
@@ -33,13 +34,15 @@
   },
   "devDependencies": {
     "coffee-script": "1.7.1",
-    "mocha": "^1.19.0",
-    "sinon": "^1.10.0",
-    "should": "^3.3.1",
-    "gulp-include": "samccone/gulp-include",
+    "coveralls": "^2.11.1",
+    "exec": "^0.1.1",
     "gulp": "^3.6.2",
     "gulp-coffee": "^1.4.3",
-    "exec": "^0.1.1"
+    "gulp-include": "samccone/gulp-include",
+    "istanbul": "^0.3.0",
+    "mocha": "^1.19.0",
+    "should": "^3.3.1",
+    "sinon": "^1.10.0"
   },
   "dependencies": {
     "bluebird": "^1.2.4",
