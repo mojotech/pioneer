@@ -25,8 +25,11 @@ module.exports = ->
     })
 
     w.sendKeys(sent)
-    .then ->
-      w.getValue().should.eventually.eql(read)
+    .then =>
+      new @Widget({
+        root: "p"
+      })
+      .getValue(".inputbox").should.eventually.eql(read)
 
   @When /^I make sure inputbox is empty$/, ->
     new @Widget({root: ".inputbox"}).then (w) =>
