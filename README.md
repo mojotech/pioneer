@@ -10,6 +10,9 @@
   <a href='https://gitter.im/mojotech/pioneer'>
     <img src='http://img.shields.io/badge/gitter-chat-blue.svg?style=flat-square' alt='Chat' />
   </a>
+  <a href='https://coveralls.io/r/mojotech/pioneer'>
+    <img src='http://img.shields.io/coveralls/mojotech/pioneer.svg?style=flat-square' />
+  </a>
 </p>
 
 <h3 align="center"> Integration tests made easy. </h3>
