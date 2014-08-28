@@ -76,12 +76,11 @@ module.exports =
               p.concat("--require", v)
             , [])
 
-          when typeof(val[k]) is 'object'
-            for v in val[k]
-              "--#{k}=#{v}"
-
           else
-            "--#{k}=#{val[k]}"
+            if k?
+              "--#{k}=#{val[k]}"
+            else
+              ""
 
     _(execOptions)
     .concat(["--require", "#{libPath}/support"])
@@ -99,12 +98,7 @@ module.exports =
       if (minimist[name]?)
         obj[name] = minimist[name]
         if name is 'require'
-          if(typeof(obj[name]) == 'string')
-            obj[name] = [obj[name]].concat(config[name])
-          else
-            config[name].map((field)->
-              obj[name].push(field)
-            )
+          obj[name] = Array::concat(obj[name]).concat(config[name])
       else if config[name]?
         obj[name] = config[name]
 

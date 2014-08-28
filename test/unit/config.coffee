@@ -299,6 +299,40 @@ describe "Pioneer configuration", ->
       configBuilder.generateOptions({"driver":"phantomjs"}, {"driver":"firefox"}, this.libPath)
       process.argv.should.eql(["--driver=phantomjs"])
 
+  describe "coffee flag", ->
+
+    beforeEach ->
+      this.libPath  = "wow"
+      this.support  = this.libPath + "/support"
+
+    it "should pass --coffee when coffee is specified as true", ->
+      configBuilder.convertToExecOptions([{"coffee": true}], this.libPath)
+      .should.eql([
+        null,
+        null,
+        "--coffee",
+        "--require",
+        this.support
+      ])
+
+    it "should not pass --coffee when coffee is set to false in the config file", ->
+      configBuilder.convertToExecOptions([{"coffee": false}], this.libPath)
+      .should.eql([
+        null,
+        null,
+        "--require",
+        this.support
+      ])
+
+    it "should not pass --coffee when coffee is not specified anywhere", ->
+      configBuilder.convertToExecOptions([{}], this.libPath)
+      .should.eql([
+        null,
+        null,
+        "--require",
+        this.support
+      ])
+
   describe "format flag", ->
 
     describe "isCucumberFormatter()", ->
