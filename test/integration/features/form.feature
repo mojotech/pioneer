@@ -34,3 +34,9 @@ Feature: Submit With
 
   Scenario: When I select by text
     When I select an option by text
+
+  Scenario: Selecting with no selector
+    When I try to select with no selector
+
+  Scenario: Selecting with both selectors
+    When I try to select with both selectors
