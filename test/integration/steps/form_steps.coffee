@@ -91,3 +91,13 @@ module.exports = ->
       .select({ text: "three", value: "wow3"})
     ).to.throw("You may only have one select by attribute")
 
+  @When /^I read all fields of a form I should see the results$/, ->
+    f = new @Widgets.SimpleForm()
+    f.submitWith({
+      field1: "wow",
+      field2: "such"
+    }).then ->
+      f.readAll().should.eventually.eql({
+        field1: "wow",
+        field2: "such"
+      })

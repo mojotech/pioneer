@@ -43,7 +43,7 @@ class @Widget.Form extends @Widget
 
   readAll: ->
     _readAll = (f) =>
-      @read(@_name(f)).then (v) -> [f, v]
+      @getValue(@_name(f)).then (v) -> [f, v]
 
     @_map(@fields, _readAll).then (read) ->
       _.object(read)

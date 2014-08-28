@@ -40,3 +40,6 @@ Feature: Submit With
 
   Scenario: Selecting with both selectors
     When I try to select with both selectors
+
+  Scenario: Reading all fields of a form
+    When I read all fields of a form I should see the results
