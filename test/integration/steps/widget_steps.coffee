@@ -172,3 +172,10 @@ module.exports = ->
     w.sendKeys("filled with this").then =>
       w.clear().then (widget) ->
         widget.getValue().should.eventually.eql("")
+
+  @When /^I find all div elements in the body tag then I should get a list of them$/, ->
+    new @Widget({
+      root: "body"
+    })
+    .findAll("div")
+    .should.eventually.be.an.instanceof(@W.List)

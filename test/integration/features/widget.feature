@@ -66,3 +66,6 @@ Feature: Manipulating Widgets
 
   Scenario: Clearing an input
     Given I should be able to clear an input
+
+  Scenario: Finding all elements
+    When I find all div elements in the body tag then I should get a list of them

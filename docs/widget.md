@@ -512,17 +512,21 @@ var ReptileDetails = Widget.extend({
 
 ## FindAll
 
-`function findAll(<cssSelector>)...`
+`function findAll(cssSelector)...`
 
-`findAll` allows you to find a list of matching elements on a page and get an array of the matched DOM nodes. If no elements are found the promise is rejected, otherwise it is resolved with an array of nodes.
+`findAll` allows you to find a list of matching elements on a page. It returns a promise that resolves with a new [Widget List]() with the same root as the widget that invoked `findAll`. The item selector of this new Widget List will be the cssSelector argument.
+
 
 ```js
 var PuppyDetails = Widget.extend({
   root: '.puppy-details',
   getInfoItems: function(name) {
-    return this.find(".dog-info li");
+    return this.findAll("li.dog-info");
   }
 });
+PuppyDetails.getInfoItems().then(function(list){
+  list.invoke(...)
+})
 ```
 
 ## isPresent

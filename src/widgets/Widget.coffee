@@ -172,7 +172,11 @@ $       = Driver.promise
       )
 
   findAll: (selector) ->
-    @driver.findElements(Driver.By.css(@_selector(selector)))
+    @find().then =>
+      new World.Widget.List({
+        el: @el
+        itemSelector: selector
+      })
 
   _selector: (selector) ->
     @root + (if selector then " #{selector}" else '')
