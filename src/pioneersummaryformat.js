@@ -104,7 +104,7 @@ module.exports = function (options, Cucumber) {
 
   self.logFailedStepResult = function logFailedStepResult(stepResult) {
     var failureMessage = stepResult.getFailureException();
-    self.log(require("./error_formatter")(failureMessage.stack || failureMessage));
+    self.log(require("./errorformat")(failureMessage.stack || failureMessage));
     self.log("\n\n");
   };
 

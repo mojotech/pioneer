@@ -44,7 +44,7 @@ describe "Pioneer configuration", ->
         { feature: 'test/integration/features' },
         { require: [ 'test/integration/steps', 'test/integration/widgets' ] },
         { format: 'pretty' },
-        { error_formatter: 'error_formatter.js' },
+        { error_formatter: 'errorformat.js' },
         { coffee: false },
         { driver: 'phantomjs' },
         { 'preventReload': true }
@@ -70,7 +70,7 @@ describe "Pioneer configuration", ->
         "--require"
         "test/integration/widgets"
         "--format=pretty"
-        "--error_formatter=error_formatter.js"
+        "--error_formatter=errorformat.js"
         "--require"
         "wow/support"
       ])
