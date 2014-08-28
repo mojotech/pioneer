@@ -7,62 +7,64 @@ scaffoldBuilder = require('./scaffold_builder')
 color           = require('colors')
 cucumber        = require('cucumber')
 
-init = (libPath) ->
-  args = minimist(process.argv.slice(2))
-  process.argv = []
-  if isVersionRequested(args)
-    console.log require('../package').version
-    return
-  if(args.configPath && fs.existsSync(args.configPath))
-    configPath = args.configPath
-  else if args.scaffold
-    scaffoldBuilder.createScaffold()
-  else
-    p = path.join(process.cwd(), '/pioneer.json')
-    if(fs.existsSync(p))
-      configPath = p
+class Pioneer
+  constructor: (libPath) ->
+    args = minimist(process.argv.slice(2))
+    process.argv = []
+
+    if this.isVersionRequested(args)
+      console.log require('../package').version
+      return
+    if(args.configPath && fs.existsSync(args.configPath))
+      configPath = args.configPath
+    else if args.scaffold
+      scaffoldBuilder.createScaffold()
     else
-      configPath = null
-  if(configPath)
-    console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
-  else
-    console.log ('No configuration path specified.\n').yellow.inverse
-  getSpecifications(configPath, libPath, args)
+      p = path.join(process.cwd(), '/pioneer.json')
+      if(fs.existsSync(p))
+        configPath = p
+      else
+        configPath = null
+    if(configPath)
+      console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
+    else
+      console.log ('No configuration path specified.\n').yellow.inverse
 
-getSpecifications = (path, libPath, args) ->
-  obj = {}
-  if(path)
-    fs.readFile(path,
-      'utf8',
-      (err, data)->
-        throw err if(err)
-        object = parseAndValidateJSON(data, path)
-        applySpecifications(object, libPath, args)
-    )
-  else
-    applySpecifications(obj, libPath, args)
+    this.getSpecifications(configPath, libPath, args)
 
-applySpecifications = (obj, libPath, args) ->
-  start(configBuilder.generateOptions(args, obj, libPath))
+  getSpecifications: (path, libPath, args) ->
+    obj = {}
+    if(path)
+      fs.readFile(path,
+        'utf8',
+        (err, data) =>
+          throw err if(err)
+          object = this.parseAndValidateJSON(data, path)
+          this.applySpecifications(object, libPath, args)
+      )
+    else
+      this.applySpecifications(obj, libPath, args)
 
-start = (opts) ->
-  timeStart = new Date().getTime()
+  applySpecifications: (obj, libPath, args) ->
+    this.start(configBuilder.generateOptions(args, obj, libPath))
 
-  require('./environment')()
+  start: (opts) ->
+    timeStart = new Date().getTime()
 
-  cucumber.Cli(opts).run (success) ->
-    testTime = moment.duration(new Date().getTime() - timeStart)._data
-    console.log "Duration " + "(" + testTime.minutes + "m:" + testTime.seconds + "s:" + testTime.milliseconds + "ms)"
-    process.exit(if success then 0 else 1)
+    require('./environment')()
 
-parseAndValidateJSON = (config, path) ->
-  try
-    JSON.parse(config)
-  catch err
-    throw new Error(path + " does not include a valid JSON object.\n")
+    cucumber.Cli(opts).run (success) ->
+      testTime = moment.duration(new Date().getTime() - timeStart)._data
+      console.log "Duration " + "(" + testTime.minutes + "m:" + testTime.seconds + "s:" + testTime.milliseconds + "ms)"
+      process.exit(if success then 0 else 1)
 
-isVersionRequested = (args) ->
-  args.version || args.v
+  parseAndValidateJSON: (config, path) ->
+    try
+      JSON.parse(config)
+    catch err
+      throw new Error(path + " does not include a valid JSON object.\n")
 
-module.exports = init
-module.exports._parseAndValidateJSON = parseAndValidateJSON
+  isVersionRequested: (args) ->
+    args.version || args.v
+
+module.exports = Pioneer

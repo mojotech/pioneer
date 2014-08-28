@@ -3,7 +3,7 @@ sinon           = require("sinon")
 sinonChai       = require("sinon-chai")
 assert          = require("assert")
 configBuilder   = require('../../lib/config_builder')
-pioneer         = require('../../lib/pioneer.js')
+Pioneer         = require('../../lib/pioneer.js')
 _               = require('lodash')
 path            = require('path')
 fs              = require('fs')
@@ -32,13 +32,13 @@ describe "Pioneer configuration", ->
 
     it "should handle an invalid json object", ->
       assert.throws(( ->
-        pioneer._parseAndValidateJSON(this.invalidJSON, this.path)),
+        Pioneer::parseAndValidateJSON(this.invalidJSON, this.path)),
         Error,
         this.path + " does not include a valid JSON object"
       )
 
     it "should handle a valid json object", ->
-      pioneer._parseAndValidateJSON(this.validJSON, this.path)
+      Pioneer::parseAndValidateJSON(this.validJSON, this.path)
       .should.eql({
         someobject: "that works"
       })
