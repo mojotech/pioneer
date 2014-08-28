@@ -12,7 +12,16 @@ Widget.Form
 
 ## submitSelector
 
-`submitSelector(<node>)` finds and returns the specified submit node. If node is not provided it will find the element of type 'submit'.
+`submitSelector` finds and returns an element of type `submit`. It can be overridden to find select another element for the target of [submitForm](#submitform)
+
+```js
+var F = new this.Widget.Form.extend({
+  root: "#my-form",
+  submitSelector: function(){
+    return this.find("button.mySubmit")
+  }
+})
+```
 
 ## submitForm
 

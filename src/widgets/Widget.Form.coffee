@@ -4,14 +4,8 @@ _       = require('lodash')
 class @Widget.Form extends @Widget
   root: 'form'
 
-  submitSelector: (node) ->
-    if node?
-      if _.isString(node)
-        @find(node)
-      else
-        Promise.resolve(node)
-    else
-      @find('[type="submit"]')
+  submitSelector: ->
+    @find('[type="submit"]')
 
   submitForm: =>
     @submitSelector().then (el) -> el.click()
