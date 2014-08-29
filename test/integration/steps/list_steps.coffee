@@ -1,4 +1,5 @@
 _      = require('lodash')
+expect = require('chai').expect
 
 module.exports = ->
   @Given /^I should see "([^"]*)" items in a list$/, (count) ->
@@ -31,6 +32,12 @@ module.exports = ->
     new @Widgets.List().findBy(string)
     .then (item) -> item.getHtml()
     .should.eventually.eql(content)
+
+  @When /^I call at with a string I should get an error$/, ->
+    expect( =>
+      new @Widgets.List().at("0")
+    )
+    .to.throw("Argument must be a number. https://github.com/mojotech/pioneer/blob/master/docs/list.md#at")
 
   @When /^I find the "([^"]*)" within "([^"]*)" I should see (\d+) items$/, (itemSelector, root, count) ->
     new @Widgets.List({

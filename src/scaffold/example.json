@@ -6,7 +6,7 @@
   ],
   "format": "pioneerformat.js",
   "driver": "chrome",
-  "error_formatter": "error_formatter.js",
+  "error_formatter": "errorformat.js",
   "preventReload": false,
   "coffee": false
 }

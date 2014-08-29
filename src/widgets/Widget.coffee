@@ -166,12 +166,17 @@ $       = Driver.promise
     if _.isString(opts)
       opts = {className: opts}
     @find(opts.selector).then (el) =>
-      @driver.executeScript((el, className) ->
-        el.classList.contains className
-      , el, opts.className)
+      @driver.executeScript(
+        "return arguments[0].classList.contains(arguments[1])",
+        el, opts.className
+      )
 
   findAll: (selector) ->
-    @driver.findElements(Driver.By.css(@_selector(selector)))
+    @find().then =>
+      new World.Widget.List({
+        el: @el
+        itemSelector: selector
+      })
 
   _selector: (selector) ->
     @root + (if selector then " #{selector}" else '')

@@ -60,7 +60,7 @@ Pioneer can generate a scaffold for your first tests automatically using the opt
   ],
   "format": "pioneerformat.js",
   "driver": "chrome",
-  "error_formatter": "error_formatter.js",
+  "error_formatter": "errorformat.js",
   "preventReload": false,
   "coffee": false
 }

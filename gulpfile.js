@@ -14,7 +14,7 @@ gulp.task("default", function() {
     gulp.src([
       'src/pioneer.coffee',
       'src/environment.coffee',
-      'src/error_formatter.coffee',
+      'src/errorformat.coffee',
       'src/custom_formatter.coffee',
       'src/config_builder.coffee',
       'src/scaffold_builder.coffee'

@@ -1,4 +1,5 @@
 _      = require('lodash')
+expect = require('chai').expect
 
 module.exports = ->
   world = this
@@ -72,3 +73,31 @@ module.exports = ->
       })
       .read()
       .should.eventually.eql('three')
+
+
+  @When /^I try to select with no selector$/, ->
+    expect( =>
+      new @Widget.Form({
+        root: "select"
+      })
+      .select()
+    ).to.throw("You must provide something to select by.")
+
+  @When /^I try to select with both selectors$/, ->
+    expect( =>
+      new @Widget.Form({
+        root: "select"
+      })
+      .select({ text: "three", value: "wow3"})
+    ).to.throw("You may only have one select by attribute")
+
+  @When /^I read all fields of a form I should see the results$/, ->
+    f = new @Widgets.SimpleForm()
+    f.submitWith({
+      field1: "wow",
+      field2: "such"
+    }).then ->
+      f.readAll().should.eventually.eql({
+        field1: "wow",
+        field2: "such"
+      })

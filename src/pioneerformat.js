@@ -99,7 +99,7 @@ module.exports = function(options, Cucumber) {
 
     if (stepResult.isFailed()) {
       var failure            = stepResult.getFailureException();
-      self.logIndented(require("./error_formatter")(failure.stack || failure) + "\n", 3);
+      self.logIndented(require("./errorformat")(failure.stack || failure) + "\n", 3);
     }
     callback();
   };

@@ -62,6 +62,8 @@ describe "Scaffold Builder", ->
       else
         this.format = null
       logs = this.sandbox.stub(scaffoldBuilder, "_logCompleted", -> )
+      if(fs.existsSync(this.pioneerJSON))
+        fs.unlinkSync(this.pioneerJSON)
       scaffoldBuilder.createScaffold()
 
     afterEach ->
@@ -90,3 +92,5 @@ describe "Scaffold Builder", ->
     it "should create simple stpes", ->
       fs.existsSync(path.join(process.cwd(), '/tests/steps/simple.js')).should.be.true
 
+    it "should create a pioneer.json file if one doesn't exist", ->
+      fs.existsSync(this.pioneerJSON).should.be.true

@@ -8,11 +8,20 @@ Widget.Form
     * [submitWith](#submitwith)
     * [select](#select)
     * [fillAll](#fillall)
-    * [readAll](#readAll)
+    * [readAll](#readall)
 
 ## submitSelector
 
-`submitSelector(<node>)` finds and returns the specified submit node. If node is not provided it will find the element of type 'submit'.
+`submitSelector` finds and returns an element of type `submit`. It can be overridden to find select another element for the target of [submitForm](#submitform)
+
+```js
+var F = new this.Widget.Form.extend({
+  root: "#my-form",
+  submitSelector: function(){
+    return this.find("button.mySubmit")
+  }
+})
+```
 
 ## submitForm
 
@@ -71,7 +80,7 @@ Widget.find({
 
 ## readAll
 
-`readAll` will map all fields and then [read](docs/widget.md#read) its value. It returns an array in the form of [[fieldName, value],[fieldName, value]].
+`readAll` will map all fields and then [getValue](docs/widget.md#getvalue) its value. It returns an object with each field name as a key and the value of that field.
 
 ```html
 <form>
@@ -86,5 +95,5 @@ Widget.find({
 }).then(function(widget) {
   widget.readAll()
 })
-// Result:[["field1", "firstValue"],["field2", "secondValue"],["field3", "thirdValue"]]
+// Result: {field1: "firstValue", field2: "secondValue", field3: "thirdValue"}
 ```

@@ -19,6 +19,13 @@ module.exports = ->
     .isVisible()
     .then (isFound) -> (isFound+"").should.eql(found)
 
+  @When /^I see if an element identified by a string is visible$/, ->
+    new @Widget({
+      root: ".wow"
+    })
+    .isVisible("doge")
+    .should.eventually.be.true
+
   @When /^I send "([^"]*)" to an element I should be able to read "([^"]*)"$/, (sent, read) ->
     w = new @Widget({
       root: ".inputbox"
@@ -54,33 +61,26 @@ module.exports = ->
       w.getValue({selector: ".inputbox"})
       .should.eventually.eql("wow such send keys")
 
+  @When /^I send keys to an element with multiple arguments I should be able to read them$/, ->
+    new @Widget({
+      root: ".inputbox"
+    })
+    .sendKeys("some", Driver.Key.SPACE, "important", Driver.Key.SPACE, "data")
+    .then =>
+      @W.getValue({selector: ".inputbox"})
+      .should.eventually.eql("some important data")
+
   @When /^I add class "([^"]*)" to "([^"]*)"$/, (className, selector) ->
     new @Widget({
       root: selector
     })
     .addClass(className)
 
-  @Then /^"([^"]*)" should have class "([^"]*)"$/, (selector, expected) ->
-    new @Widget({
-      root: selector
-    })
-    .getAttribute('class')
-    .then (attribute) ->
-      attribute.indexOf(expected).should.not.eql(-1)
-
   @When /^I remove class "([^"]*)" from "([^"]*)"$/, (className, selector) ->
     new @Widget({
       root: selector
     })
     .removeClass(className)
-
-  @Then /^"([^"]*)" should not have class "([^"]*)"$/, (selector, expected) ->
-    new @Widget({
-      root: selector
-    })
-    .getAttribute('class')
-    .then (attribute) ->
-      attribute.indexOf(expected).should.eql(-1)
 
   @When /^I toggle class "([^"]*)" on "([^"]*)"$/, (className, selector) ->
     new @Widget({
@@ -172,3 +172,10 @@ module.exports = ->
     w.sendKeys("filled with this").then =>
       w.clear().then (widget) ->
         widget.getValue().should.eventually.eql("")
+
+  @When /^I find all div elements in the body tag then I should get a list of them$/, ->
+    new @Widget({
+      root: "body"
+    })
+    .findAll("div")
+    .should.eventually.be.an.instanceof(@W.List)

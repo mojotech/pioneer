@@ -1,8 +1,13 @@
+chai            = require('chai')
 sinon           = require("sinon")
+sinonChai       = require("sinon-chai")
 assert          = require("assert")
 configBuilder   = require('../../lib/config_builder')
-pioneer         = require('../../lib/pioneer.js')
+Pioneer         = require('../../lib/pioneer.js')
 _               = require('lodash')
+path            = require('path')
+fs              = require('fs')
+rmdir           = require('rimraf').sync
 CONFIG_NAMES    = [
   "tags",
   "feature",
@@ -15,6 +20,9 @@ CONFIG_NAMES    = [
   "scaffold"
 ]
 
+chai.should()
+chai.use(sinonChai)
+
 describe "Pioneer configuration", ->
   describe "parseAndValidateJSON()", ->
     beforeEach ->
@@ -24,13 +32,13 @@ describe "Pioneer configuration", ->
 
     it "should handle an invalid json object", ->
       assert.throws(( ->
-        pioneer._parseAndValidateJSON(this.invalidJSON, this.path)),
+        Pioneer::parseAndValidateJSON(this.invalidJSON, this.path)),
         Error,
         this.path + " does not include a valid JSON object"
       )
 
     it "should handle a valid json object", ->
-      pioneer._parseAndValidateJSON(this.validJSON, this.path)
+      Pioneer::parseAndValidateJSON(this.validJSON, this.path)
       .should.eql({
         someobject: "that works"
       })
@@ -44,7 +52,7 @@ describe "Pioneer configuration", ->
         { feature: 'test/integration/features' },
         { require: [ 'test/integration/steps', 'test/integration/widgets' ] },
         { format: 'pretty' },
-        { error_formatter: 'error_formatter.js' },
+        { error_formatter: 'errorformat.js' },
         { coffee: false },
         { driver: 'phantomjs' },
         { 'preventReload': true }
@@ -70,7 +78,7 @@ describe "Pioneer configuration", ->
         "--require"
         "test/integration/widgets"
         "--format=pretty"
-        "--error_formatter=error_formatter.js"
+        "--error_formatter=errorformat.js"
         "--require"
         "wow/support"
       ])
@@ -99,6 +107,7 @@ describe "Pioneer configuration", ->
         }, {}, this.libPath)
 
         configBuilder.convertToExecOptions
+        .should.have.been
         .calledWith([
           {feature: 'test/integration/features'},
           {driver: "pretty"}
@@ -113,6 +122,7 @@ describe "Pioneer configuration", ->
           }, this.libPath)
 
         configBuilder.convertToExecOptions
+        .should.have.been
         .calledWith([
           {tags: ['@wow','@doge']},
           {require: ["that.js", "this.json", "totally.css"]},
@@ -130,6 +140,7 @@ describe "Pioneer configuration", ->
         }, this.libPath)
 
         configBuilder.convertToExecOptions
+        .should.have.been
         .calledWith([
           {tags: ['@wow','@doge']},
           {require: ["that.js", "this.json", "totally.css"]},
@@ -152,6 +163,7 @@ describe "Pioneer configuration", ->
         }, this.libPath)
 
         configBuilder.convertToExecOptions
+        .should.have.been
         .calledWith([
           {tags: ['@wow','@doge']},
           {require: ["that.js", "this.json", "totally.css"]},
@@ -168,9 +180,40 @@ describe "Pioneer configuration", ->
         }, this.libPath)
 
         configBuilder.convertToExecOptions
+        .should.have.been
         .calledWith([
           {require: ["wow.doge", "doge.script", "that.js", "this.json", "totally.css"]},
         ])
+
+  describe "when no feature is specified", ->
+
+    beforeEach ->
+      this.libPath = "wow"
+      execOptionsStub = sinon.stub(configBuilder, "convertToExecOptions", -> )
+      this.featureDir = path.join(process.cwd(), '/features')
+
+    afterEach ->
+      configBuilder.convertToExecOptions.restore()
+
+    it "should not pass anything for features if the /features directory exists", ->
+      fs.mkdirSync(this.featureDir)
+
+      configBuilder.generateOptions({}, {}, this.libPath)
+
+      configBuilder.convertToExecOptions
+      .should.have.been
+      .calledWith([])
+
+      rmdir(this.featureDir)
+
+    it "should pass an unrecognized flag as the feature flag if theer is no /features directory", ->
+      configBuilder.generateOptions({_:"such.doge"}, {}, this.libPath)
+
+      configBuilder.convertToExecOptions
+      .should.have.been
+      .calledWith([
+        {feature: "such.doge"}
+      ])
 
   describe "preventReload flag", ->
 
@@ -255,3 +298,87 @@ describe "Pioneer configuration", ->
     it "should allow commandline to take precedence over config file", ->
       configBuilder.generateOptions({"driver":"phantomjs"}, {"driver":"firefox"}, this.libPath)
       process.argv.should.eql(["--driver=phantomjs"])
+
+  describe "coffee flag", ->
+
+    beforeEach ->
+      this.libPath  = "wow"
+      this.support  = this.libPath + "/support"
+
+    it "should pass --coffee when coffee is specified as true", ->
+      configBuilder.convertToExecOptions([{"coffee": true}], this.libPath)
+      .should.eql([
+        null,
+        null,
+        "--coffee",
+        "--require",
+        this.support
+      ])
+
+    it "should not pass --coffee when coffee is set to false in the config file", ->
+      configBuilder.convertToExecOptions([{"coffee": false}], this.libPath)
+      .should.eql([
+        null,
+        null,
+        "--require",
+        this.support
+      ])
+
+    it "should not pass --coffee when coffee is not specified anywhere", ->
+      configBuilder.convertToExecOptions([{}], this.libPath)
+      .should.eql([
+        null,
+        null,
+        "--require",
+        this.support
+      ])
+
+  describe "format flag", ->
+
+    describe "isCucumberFormatter()", ->
+
+      it "should recognize that pretty is a cucumber formatter", ->
+        configBuilder.isCucumberFormatter("pretty").should.eql(true)
+
+      it "should recognize that json is a cucumber formatter", ->
+        configBuilder.isCucumberFormatter("json").should.eql(true)
+
+      it "should recognize that progress is a cucumber formatter", ->
+        configBuilder.isCucumberFormatter("progress").should.eql(true)
+
+      it "should recognize that summary is a cucumber formatter", ->
+        configBuilder.isCucumberFormatter("summary").should.eql(true)
+
+      it "should recognize that pioneer is not a cucumber formatter", ->
+        configBuilder.isCucumberFormatter("pioneer").should.eql(false)
+
+  describe "custom formatter look ups", ->
+
+    beforeEach ->
+      this.libPath = "wow"
+      this.formatterPath    = path.join(process.cwd(), "testformatter.js")
+      this.formatterContent = "wow such format"
+      fs.writeFileSync(this.formatterPath, this.formatterContent)
+
+    afterEach ->
+      fs.unlinkSync(this.formatterPath)
+
+    it "should recognize when I specify a file in my current working directory", ->
+      configBuilder.convertToExecOptions([{ format: 'testformatter.js' }], this.libPath)
+      .should.eql([
+        null,
+        null,
+        "--format=" + this.formatterPath,
+        "--require",
+        this.libPath + "/support"
+      ])
+
+    it "should look in the lib directory if it doesn't exist in the current working directory", ->
+      configBuilder.convertToExecOptions([{ format: 'superformatter.js' }], this.libPath)
+      .should.eql([
+        null,
+        null,
+        "--format=" + path.join(this.libPath, 'superformatter.js'),
+        "--require",
+        this.libPath + "/support"
+      ])

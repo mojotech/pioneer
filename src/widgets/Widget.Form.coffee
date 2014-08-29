@@ -4,14 +4,8 @@ _       = require('lodash')
 class @Widget.Form extends @Widget
   root: 'form'
 
-  submitSelector: (node) ->
-    if node?
-      if _.isString(node)
-        @find(node)
-      else
-        Promise.resolve(node)
-    else
-      @find('[type="submit"]')
+  submitSelector: ->
+    @find('[type="submit"]')
 
   submitForm: =>
     @submitSelector().then (el) -> el.click()
@@ -21,14 +15,17 @@ class @Widget.Form extends @Widget
     .then(@submitForm)
 
   select: (opts) ->
-    if opts.text? and opts.value?
+    if !(_.isObject(opts)) and !opts
+      throw new Error('You must provide something to select by.')
+
+    opts = if _.isObject(opts) then opts else {text: opts}
+
+    if (opts.text? and opts.value?)
       throw new Error('You may only have one select by attribute.')
-    else if opts.text? or _.isString(opts)
+    else if opts.text?
       @_selectByText(opts.text)
     else if opts.value?
       @_selectByValue(opts.value)
-    else
-      throw new Error('You must provide something to select by.')
 
   _selectByText: (text) ->
     @find({text: text}).then (el) ->
@@ -46,16 +43,13 @@ class @Widget.Form extends @Widget
 
   readAll: ->
     _readAll = (f) =>
-      @read(@_name(f)).then (v) -> [f, v]
+      @getValue(@_name(f)).then (v) -> [f, v]
 
     @_map(@fields, _readAll).then (read) ->
       _.object(read)
 
   _name: (name) ->
     "[name='#{name}']"
-
-  _type: (type) ->
-    "[type='#{type}']"
 
   _map: (collection, callback) ->
     results = []
