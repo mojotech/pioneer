@@ -1,3 +1,15 @@
+### v0.10.0[view commit logs](https://github.com/mojotech/pioneer/compare/v0.9.0...v0.10.0)
+
+#### Breaking Changes
+
+* `findAll` allows you to find a list of matching elements on a page. It returns a promise that resolves with a new [Widget List](docs/list.md) with the same root as the widget that invoked `findAll`. The `itemSelector` of the new `Widget.List` will be the selector argument passed.
+
+* `submitSelector` no longer takes a node input. If you would like to use a submit selector other than `[type="submit"]` then you can override the `submitSelector` method
+
+#### Widget.Form
+
+* `readAll` now calls `getValue` on each field as opposed to `read`
+
 ### v0.9.0[view commit logs](https://github.com/mojotech/pioneer/compare/v0.8.2...v0.9.0)
 
 #### Breaking Changes
