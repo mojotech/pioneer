@@ -14,8 +14,6 @@ If no configuration path is passed in using [--configPath=](docs/command_line.md
 
 ## Driver Configuration
 
-[Driver Configuration Options](docs/command_line.md#driver-configuration)
-
 ```json
 {
   "driver": "firefox"
