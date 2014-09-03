@@ -1,3 +1,9 @@
+### v0.10.1[view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.0...v0.10.1)
+
+#### Fixes
+
+* Fix broken `findAll` list el instantiation.
+
 ### v0.10.0[view commit logs](https://github.com/mojotech/pioneer/compare/v0.9.0...v0.10.0)
 
 #### Breaking Changes
