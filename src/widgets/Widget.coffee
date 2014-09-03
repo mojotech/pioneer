@@ -172,9 +172,9 @@ $       = Driver.promise
       )
 
   findAll: (selector) ->
-    @find().then =>
+    @find().then (el) =>
       new World.Widget.List({
-        el: @el
+        el: el
         itemSelector: selector
       })
 

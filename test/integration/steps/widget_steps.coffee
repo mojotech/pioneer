@@ -179,3 +179,12 @@ module.exports = ->
     })
     .findAll("div")
     .should.eventually.be.an.instanceof(@W.List)
+
+  @When /^I find all dd on the page i should be able to read them all$/, ->
+    new @Widget({
+      root: "body"
+    })
+    .findAll("dd")
+    .then (list) ->
+      list.invoke("read")
+    .should.eventually.eql(["one", "two"])

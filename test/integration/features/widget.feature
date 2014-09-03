@@ -69,3 +69,6 @@ Feature: Manipulating Widgets
 
   Scenario: Finding all elements
     When I find all div elements in the body tag then I should get a list of them
+
+  Scenario: Reading all elements
+    When I find all dd on the page i should be able to read them all
