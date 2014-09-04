@@ -27,6 +27,8 @@ Pioneer provides an abstraction layer between your integration tests and your DO
 
 ### [Read the guide](docs/getting_started.md)
 
+### [Watch the video](https://www.youtube.com/watch?v=ZRYcTzgtQRI)
+
 # Docs
 
 * [Global Variables](docs/globals.md)
