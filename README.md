@@ -21,13 +21,14 @@ Pioneer provides an abstraction layer between your integration tests and your DO
 
 # Installing
 
-#### With npm
-
     npm install pioneer --save-dev
+
+# Get Started
+
+### [Read the guide](docs/getting_started.md)
 
 # Docs
 
-* [Getting Started](docs/getting_started.md)
 * [Global Variables](docs/globals.md)
 * [Widget](docs/widget.md)
 * [Widget.List](docs/list.md)
