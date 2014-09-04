@@ -34,13 +34,13 @@ To only run selected features include `--tags=@myTag` and insert @myTag directly
 ## Prevent Browser Reload
 To speed up testing, an optional `--preventReload` flag can be passed to prevent the web driver from restarting after each feature:
   ```bash
-  ./node_modules/.bin/pioneer --preventReload=true --require steps/ --require widgets/
+  ./node_modules/.bin/pioneer --preventReload=true
   ```
 
 ## CoffeeScript Step Scaffold
 To have cucumber generate the step scaffold automatically in CoffeeScript, use the optional `--coffee` line flag.
 ```bash
-./node_modules/.bin/pioneer --require steps/ --require widgets/ --coffee
+./node_modules/.bin/pioneer --coffee
 ```
 
 ## Configuration File Path
