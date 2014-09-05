@@ -20,81 +20,63 @@
 Pioneer provides an abstraction layer between your integration tests and your DOM markup, DRYing up your step definitions and consolidating how people interact with the DOM in tests.
 
 # Installing
-  ```bash
-  $ npm install pioneer --save-dev
-  ```
+``` bash
+$ npm install pioneer --save-dev
+```
 
 # Get Started
 
-  Write your features in Cucumber/Gherkin
-  ```gherkin
-  Scenario: Completing a Todo
-    When I enter "Learn Pioneer"
-    And complete the first todo
-    Then I should see that the first todo is completed
-  ```
+### Make your first test
+``` bash
+$ ./node_modules/.bin/pioneer --scaffold
+```
 
-  Write your step definitions in javascript with promises
-  ```js
-  this.When(/^complete the first todo$/, function(){
-    return new this.Widgets.TodoList().complete(0)
-  });
+This will give you
 
-  this.Then(/^I should see that the first todo is completed$/, function() {
-    return new this.Widgets.TodoList()
-    .isCompleted(0).should.eventually.eql(true)
-  });
-  ```
+* A Gherkin feature file
 
-  Abstract your application's components and interactions into reusable widgets
-  ```js
-  module.exports = function() {
-    this.Widgets = this.Widgets || {};
+``` gherkin
+Feature: Simple Feature
 
-    Widgets.TodoList = new this.Widget.extend({
-      root: "#todo-list",
+  Background:
+    Given I visit TODOMVC
 
-      complete: function (index) {
-        return this.clickAt({
-          selector: "input",
-          index: index
-        })
-      },
+  Scenario: Entering Information
+    When I enter "dogecoins"
+    Then I should see "dogecoins"
+```
 
-      isCompleted: function(index) {
-        this.at(index).then(function(el){
-          el.getAttribute("class").then(function(className){
-            return className.indexOf("completed") > -1
-          })
-        })
-      }
+* Step definitions with promises and widgets
 
-    })
-  }
-  ```
+``` js
+this.Given(/^I visit TODOMVC$/,function(){
+  this.driver.get('http://todomvc.com/architecture-examples/backbone/')
+});
 
-  Load your dependencies and config into `pioneer.js`
-  ```json
-  {
-    "feature": "features/",
-    "require": [
-      "step_definitions",
-      "widgets/"
-    ],
-    "format": "pioneerformat.js",
-    "driver": "chrome",
-    "error_formatter": "errorformat.js",
-    "preventReload": false,
-    "coffee": false
-  }
-  ```
+this.When(/^I enter \"([^\"]*)\"$/, function(value){
+  new this.Widget({
+    root: "#new-todo"
+  }).sendKeys(value,'\uE007');
+});
 
-  And run your tests
-  ```bash
-  $ ./node_modules/.bin/pioneer
-  ```
+this.Then(/^I should see \"([^\"]*)\"$/, function(expected){
+  var List = this.Widget.List.extend({
+    root: "#todo-list",
+    childSelector: "li"
+  })
 
-### [(Read the full getting started guide)](docs/getting_started.md)
+  return new List().readAt(0).should.eventually.eql(expected);
+})
+```
+
+* Plus some basic directory structure and configuration
+
+### Run it!
+``` bash
+$ ./node_modules/.bin/pioneer
+```
+
+### [Now, write your second test!](docs/getting_started.md)
 
 # Docs
 
