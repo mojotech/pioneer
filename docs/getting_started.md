@@ -32,7 +32,7 @@
   ```bash
   $ ./node_modules/.bin/pioneer
   ```
-  right now, you would notice that you did not defined step definitions for the second and third step of the "Completing a Todo" scenario.
+  right now, you would notice that you did not define step definitions for the second and third step of the "Completing a Todo" scenario.
 
   Pioneer will catch these undefined steps, and automatically generate a suggestion for that step.
 
