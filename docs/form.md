@@ -25,11 +25,11 @@ var F = new this.Widget.Form.extend({
 
 ## submitForm
 
-`submitForm` will find the submit selector and then call [click](docs/widget.md#click)
+`submitForm` will find the submit selector and then call [click](widget.md#click)
 
 ## submitWith
 
-`submitWith` will call [fillAll](#docs/field.md#fillall) on each of keys value pairs passed into method, and then call the `click` method on the return of the `submitSelector` method.
+`submitWith` will call [fillAll](#fillall) on each of keys value pairs passed into method, and then call the `click` method on the return of the `submitSelector` method.
 
 ```js
 var waiver = new this.Widget.Form.extend({
@@ -66,7 +66,7 @@ return new this.Widget.Form({
 
 ## fillAll
 
-`fillAll` will call the [fill](docs/widget.md#fill) method on each of the the keys value pairs passed into the method.
+`fillAll` will call the [fill](widget.md#fill) method on each of the the keys value pairs passed into the method.
 
 ```js
 Widget.find({
@@ -80,7 +80,7 @@ Widget.find({
 
 ## readAll
 
-`readAll` will map all fields and then [getValue](docs/widget.md#getvalue) its value. It returns an object with each field name as a key and the value of that field.
+`readAll` will map all fields and then [getValue](widget.md#getvalue) its value. It returns an object with each field name as a key and the value of that field.
 
 ```html
 <form>

@@ -8,7 +8,7 @@ Command Line Options
 * [Prevent Browser Reload](#prevent-browser-reload)
 * [CoffeeScript Step Scaffold](#coffeescript-step-scaffold)
 * [Configuration File Path](#configuration-file-path)
-* [Scaffold Creation](#scaffold)
+* [Scaffold Creation](#scaffold-creation)
 * [Version](#version)
 
 ## Driver Configuration
@@ -44,7 +44,7 @@ To have cucumber generate the step scaffold automatically in CoffeeScript, use t
 ```
 
 ## Configuration File Path
-Pioneer configuration options can be declared in the form of a JSON file. To declare the path to this file use the optional `--configPath=` flag. Addtional information on the format of this file can be found [here](docs/config_file.md)
+Pioneer configuration options can be declared in the form of a JSON file. To declare the path to this file use the optional `--configPath=` flag. Addtional information on the format of this file can be found [here](config_file.md)
 ```bash
 ./node_modules/.bin/pioneer --configPath=myConfig.json
 ```
