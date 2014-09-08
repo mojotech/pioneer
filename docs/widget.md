@@ -60,8 +60,8 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [getAttribute](#getattribute)
     * [getValue](#getvalue)
     * [getText](#gettext)
-    * [getInnerHTML](#getInnerhtml)
-    * [getOuterHTML](#getOuterhtml)
+    * [getInnerHTML](#getInnerHTML)
+    * [getOuterHTML](#getOuterHTML)
     * [hasClass](#hasclass)
 
 
