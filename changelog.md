@@ -1,3 +1,13 @@
+### v0.10.2[view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.1...v0.10.2)
+
+#### Widget.list
+
+* The list widget now has a has a `length` method to enable simple assertions about the number of child items.
+
+#### Cleanups
+
+* Fix broken links and typos across repo.
+
 ### v0.10.1[view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.0...v0.10.1)
 
 #### Fixes
