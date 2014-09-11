@@ -27,6 +27,9 @@ Feature: Manipulating Lists
   Scenario: Calling AT with a string
     When I call at with a string I should get an error
 
+  Scenario: Getting length of a list
+    When I call length I should receive 5
+
   Scenario: Nested list lookup
     When I find the "span" within ".nested" I should see 3 items
 

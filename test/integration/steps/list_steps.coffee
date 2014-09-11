@@ -33,6 +33,10 @@ module.exports = ->
     .then (item) -> item.getHtml()
     .should.eventually.eql(content)
 
+  @When /^I call length I should receive (\d+)$/, (expectedLength) ->
+    new @Widgets.List().length()
+    .should.eventually.eql(+expectedLength)
+
   @When /^I call at with a string I should get an error$/, ->
     expect( =>
       new @Widgets.List().at("0")

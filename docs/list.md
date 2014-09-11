@@ -31,6 +31,7 @@ This list of words can abstracted and interacted with via a `List` with ease. He
     * [ItemSelector](#itemselector)
     * [ItemClass](#itemclass)
     * [Items](#items)
+    * [Length](#length)
     * [Filter](#filter)
     * [Map](#map)
     * [Each](#each)
@@ -54,6 +55,16 @@ The `Widget` to be instantiated and used when interacting with each item in the 
 `function items()...`
 
 Returns a `Promise` that resolves to a list of `Widgets` present in the `DOM` at call time.
+
+## Length
+
+`function length()...`
+
+Returns a `Promise` that resolves to the length of the list.
+
+```js
+new ListItems().length().should.eventually.eql(5)
+```
 
 ## Filter
 

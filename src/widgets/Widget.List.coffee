@@ -30,6 +30,9 @@ class @Widget.List extends @Widget
   each: (iter) ->
     @map.apply(this, arguments).then -> @items
 
+  length: ->
+    @items().then (items) -> items.length
+
   invoke: (opts) ->
     if(_.isString(opts) or _.isFunction(opts))
       opts = {method: opts}
