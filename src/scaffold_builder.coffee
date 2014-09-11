@@ -1,17 +1,23 @@
 fs           = require 'fs'
 path         = require 'path'
-readlineSync = require 'readline-sync'
+prompt       = require 'prompt'
 color        = require 'colors'
 _            = require 'lodash'
 
 module.exports =
   featureNotSpecified: ->
-    ans = readlineSync.question("You did not specify a feature path. Would you like Pioneer to generate one for you? y/n\n")
-    if(['y', 'yes'].indexOf(ans.toLowerCase()) > -1)
-      @createScaffold()
-    else
-      console.log('Looks like you have no feature files or have not passed the path to them. http://www.github.com/mojotech/pioneer/docs')
-    process.exit()
+    prompt.start()
+
+    prompt.get({
+      message: "You did not specify a feature path. Would you like Pioneer to generate one for you? y/n"
+      required: true
+    }, (err, r) =>
+      if(['y', 'yes'].indexOf(r.question.toLowerCase()) > -1)
+        @createScaffold()
+      else
+        console.log('Looks like you have no feature files or have not passed the path to them. http://www.github.com/mojotech/pioneer/docs')
+        process.exit()
+    )
 
   createScaffold: (options) ->
     p = path.join(process.cwd(), '/tests')
@@ -41,11 +47,16 @@ module.exports =
     process.exit()
 
   askToOverWrite: (file, data) ->
-    ans = readlineSync.question("It looks like you already have a" + file + "file, are you sure that you would like to overwrite this? y/n\n")
-    if(['y', 'yes'].indexOf(ans.toLowerCase()) > -1)
-      fs.writeFileSync(file, data)
-    else
-      console.log("You chose not to overwrite" + file + ", to run the scaffold files include tests/features in the feature option of your config files.")
+    prompt.start()
 
+    prompt.get({
+      message: "It looks like you already have a #{file} , are you sure that you would like to overwrite this? y/n"
+      required: true
+    }, (err, r) =>
+      if(['y', 'yes'].indexOf(r.question.toLowerCase()) > -1)
+        fs.writeFileSync(file, data)
+      else
+        console.log("You chose not to overwrite #{file} to run the scaffold files include tests/features in the feature option of your config files.")
+    )
   _logCompleted: ->
     console.log('Scaffold created. You may now run your first test'.inverse.green)

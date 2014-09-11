@@ -46,7 +46,9 @@ class Pioneer
       this.applySpecifications(obj, libPath, args)
 
   applySpecifications: (obj, libPath, args) ->
-    this.start(configBuilder.generateOptions(args, obj, libPath))
+    opts = configBuilder.generateOptions(args, obj, libPath)
+
+    this.start(opts) if opts
 
   start: (opts) ->
     timeStart = new Date().getTime()

@@ -116,6 +116,7 @@ module.exports =
           @convertToExecOptions(options, libPath)
         else
           scaffold.featureNotSpecified()
+          return null
     else
       @convertToExecOptions(options, libPath)
 
