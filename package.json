@@ -18,14 +18,14 @@
   },
   "main": "./lib/pioneer",
   "bin": {
-    "pioneer": "./bin/pioneer"
+    "pioneer": "bin/pioneer"
   },
   "scripts": {
     "build": "npm run-script clean && gulp",
     "clean": "rm -rf lib",
     "pub": "npm run-script build && npm publish && npm run-script clean",
-    "test": "./node_modules/.bin/istanbul cover --dir coverage/unit -x **/lib/**/*format.js ./node_modules/.bin/_mocha -- test/unit/**.coffee",
-    "integration": "./node_modules/.bin/istanbul cover -x **/lib/**/*format.js ./bin/pioneer --dir coverage/integration",
+    "test": "istanbul cover --dir coverage/unit -x **/lib/**/*format.js node_modules/mocha/bin/_mocha -- test/unit/**.coffee",
+    "integration": "istanbul cover -x **/lib/**/*format.js ./bin/pioneer --dir coverage/integration",
     "coverage": "./coverage.sh"
   },
   "repository": {
