@@ -3,21 +3,21 @@ Widget.Form
 
 ## Table of contents
   * [Api](#api)
-    * [submitSelector](#submitselector)
+    * [findSubmit](#submitselector)
     * [submitForm](#submitform)
     * [submitWith](#submitwith)
     * [select](#select)
     * [fillAll](#fillall)
     * [readAll](#readall)
 
-## submitSelector
+## findSubmit
 
-`submitSelector` finds and returns an element of type `submit`. It can be overridden to find select another element for the target of [submitForm](#submitform)
+`findSubmit` finds and returns an element of type `submit`. It can be overridden to find select another element for the target of [submitForm](#submitform)
 
 ```js
 var F = new this.Widget.Form.extend({
   root: "#my-form",
-  submitSelector: function(){
+  findSubmit: function(){
     return this.find("button.mySubmit")
   }
 })
@@ -29,7 +29,7 @@ var F = new this.Widget.Form.extend({
 
 ## submitWith
 
-`submitWith` will call [fillAll](#fillall) on each of keys value pairs passed into method, and then call the `click` method on the return of the `submitSelector` method.
+`submitWith` will call [fillAll](#fillall) on each of keys value pairs passed into method, and then call the `click` method on the return of the `findSubmit` method.
 
 ```js
 var waiver = new this.Widget.Form.extend({
