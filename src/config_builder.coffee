@@ -82,8 +82,8 @@ module.exports =
             else
               ""
 
-    _(execOptions)
-    .concat(["--require", "#{libPath}/support"])
+    _(["--require", path.join(libPath, "support")])
+    .concat(execOptions)
     .flatten()
     .compact()
     .tap( (arr) -> arr.splice(0, 0, null, null))

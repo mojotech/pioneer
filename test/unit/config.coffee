@@ -72,6 +72,8 @@ describe "Pioneer configuration", ->
       .should.eql([
         null
         null
+        "--require"
+        "wow/support"
         "test/integration/features"
         "--require"
         "test/integration/steps"
@@ -79,14 +81,12 @@ describe "Pioneer configuration", ->
         "test/integration/widgets"
         "--format=pretty"
         "--error_formatter=errorformat.js"
-        "--require"
-        "wow/support"
       ])
       process.argv.should.eql(["--driver=phantomjs", "--prevent-browser-reload"])
 
     it "should convertToExecOptions with multiple tags", ->
       configBuilder.convertToExecOptions(this.multiTagConfig, this.libPath)
-      .should.eql([null, null, "--tags=@wow, @doge", "--require", "wow/support"])
+      .should.eql([null, null, "--require", "wow/support", "--tags=@wow, @doge"])
       process.argv.should.eql([])
 
     it "should push command line arguments for driver and reload", ->
@@ -310,9 +310,9 @@ describe "Pioneer configuration", ->
       .should.eql([
         null,
         null,
-        "--coffee",
         "--require",
-        this.support
+        this.support,
+        "--coffee"
       ])
 
     it "should not pass --coffee when coffee is set to false in the config file", ->
@@ -368,9 +368,9 @@ describe "Pioneer configuration", ->
       .should.eql([
         null,
         null,
-        "--format=" + this.formatterPath,
         "--require",
-        this.libPath + "/support"
+        this.libPath + "/support",
+        "--format=" + this.formatterPath,
       ])
 
     it "should look in the lib directory if it doesn't exist in the current working directory", ->
@@ -378,7 +378,7 @@ describe "Pioneer configuration", ->
       .should.eql([
         null,
         null,
-        "--format=" + path.join(this.libPath, 'superformatter.js'),
         "--require",
-        this.libPath + "/support"
+        this.libPath + "/support",
+        "--format=" + path.join(this.libPath, 'superformatter.js'),
       ])
