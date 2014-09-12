@@ -33,17 +33,21 @@ module.exports = ->
       @_ranAfterAll = true
       @After code
 
-  flowStep = (code, args, successCallback, errCallback) =>
+  flowStep = (code, args, pending, successCallback, errCallback) =>
+    @Pending = (reason) -> successCallback = _.partial pending, reason
+
     $
     .createFlow (flow) =>
       flow.execute =>
         code.apply(@, args)
-    .then _.partial(successCallback, null), errCallback
+    .then (result) -> 
+      successCallback null, result
+    , errCallback
 
   @Given = @When = (pattern, code) =>
     @defineStep pattern, (args..., callback) =>
       @lastStepType = 'Given'
-      flowStep code, args, callback, callback
+      flowStep code, args, callback.pending, callback, callback
 
   @Then = (pattern, code) =>
     @defineStep pattern, (args..., callback) =>
@@ -51,7 +55,7 @@ module.exports = ->
       start = new Date
 
       callforth = =>
-        flowStep code, args, callback, (error) =>
+        flowStep code, args, callback.pending, callback, (error) =>
           if new Date - start > timeout
             callback(error)
           else
