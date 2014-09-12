@@ -38,9 +38,9 @@
 
   In this case, pioneer would generate something that looks like this:
 
-  ```bash
   You can implement step definitions for undefined steps with these snippets:
 
+  ```js
   this.When(/^complete the first todo$/, function(callback) {
     // express the regexp above with the code you wish you had
     callback.pending();
@@ -92,7 +92,7 @@
   module.exports = function(){
     this.Widgets = this.Widgets || {};
 
-    Widgets.TodoList = new this.Widget.extend({
+    Widgets.TodoList = this.Widget.extend({
       root: "#todo-list",
 
       complete: function (index) {
