@@ -103,6 +103,7 @@ describe "Pioneer configuration", ->
       it "should generate options with just commandline options", ->
         configBuilder.generateOptions({
           driver:"pretty",
+          require: ["that.js", "this.json", "totally.css"]
           feature:"test/integration/features"
         }, {}, this.libPath)
 
@@ -110,6 +111,7 @@ describe "Pioneer configuration", ->
         .should.have.been
         .calledWith([
           {feature: 'test/integration/features'},
+          {require: ["that.js", "this.json", "totally.css"]},
           {driver: "pretty"}
         ])
 

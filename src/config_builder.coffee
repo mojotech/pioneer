@@ -97,7 +97,7 @@ module.exports =
 
       if (minimist[name]?)
         obj[name] = minimist[name]
-        if name is 'require'
+        if name is 'require' and config[name]?
           obj[name] = Array::concat(obj[name]).concat(config[name])
       else if config[name]?
         obj[name] = config[name]
