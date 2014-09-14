@@ -41,14 +41,12 @@
   You can implement step definitions for undefined steps with these snippets:
 
   ```js
-  this.When(/^complete the first todo$/, function(callback) {
+  this.When(/^complete the first todo$/, function() {
     // express the regexp above with the code you wish you had
-    callback.pending();
   });
 
-  this.Then(/^I should see that the first todo is completed$/, function(callback) {
+  this.Then(/^I should see that the first todo is completed$/, function() {
     // express the regexp above with the code you wish you had
-    callback.pending();
   });
   ```
 
