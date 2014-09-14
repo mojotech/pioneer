@@ -1,3 +1,13 @@
+### v0.10.3 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.2...v0.10.3)
+
+#### Features
+
+* You are now able to mark steps as `pending` using the `this.Pending()` syntax.
+
+#### Windows Support
+
+* Pioneer, now works under windows.
+
 ### v0.10.2[view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.1...v0.10.2)
 
 #### Widget.list
