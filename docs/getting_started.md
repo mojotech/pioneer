@@ -1,37 +1,44 @@
 # Getting Started
 
 - Require Pioneer as a dependency (and install)
-  ```bash
-  $ npm install pioneer --save
-  ```
+
+```bash
+$ npm install pioneer --save
+```
 
 - Setup your testing directory
-  ```bash
-  $ ./node_modules/.bin/pioneer --scaffold
-  ```
+
+```bash
+$ ./node_modules/.bin/pioneer --scaffold
+```
 
 - Run your first Pioneer test!
-  ```bash
-  $ ./node_modules/.bin/pioneer
-  ```
+
+```bash
+$ ./node_modules/.bin/pioneer
+```
 
 - Expanding on your tests
 
 
   Now that you've run your first test, you are ready to add another one.
   To add another feature to your test, add the following to the end of the `test/features/simple.feature`
-  ```gherkin
-  Scenario: Completing a Todo
-    When I enter "Learn Pioneer"
-    And complete the first todo
-    Then I should see that the first todo is completed
-  ```
+
+```gherkin
+Scenario: Completing a Todo
+  When I enter "Learn Pioneer"
+  And complete the first todo
+  Then I should see that the first todo is completed
+```
+
   This will create another test that enters a new todo, clicks complete and then tests to ensure that the first todo is completed.
 
   If you ran
-  ```bash
-  $ ./node_modules/.bin/pioneer
-  ```
+
+```bash
+$ ./node_modules/.bin/pioneer
+```
+
   right now, you would notice that you did not define step definitions for the second and third step of the "Completing a Todo" scenario.
 
   Pioneer will catch these undefined steps, and automatically generate a suggestion for that step.
@@ -40,40 +47,38 @@
 
   You can implement step definitions for undefined steps with these snippets:
 
-  ```js
-  this.When(/^complete the first todo$/, function() {
-    // express the regexp above with the code you wish you had
-  });
+```js
+this.When(/^complete the first todo$/, function() {
+  // express the regexp above with the code you wish you had
+});
 
-  this.Then(/^I should see that the first todo is completed$/, function() {
-    // express the regexp above with the code you wish you had
-  });
-  ```
+this.Then(/^I should see that the first todo is completed$/, function() {
+  // express the regexp above with the code you wish you had
+});
+```
 
   Instead of adding that suggestion, you should append `tests/steps/simple.js` with the following
 
-  ```js
-  this.When(/^complete the first todo$/, function(){
-    return new this.Widget.List({
-      root: "#todo-list"
-    })
-    .clickAt({
-      index: 0,
-      selector: "input"
-    })
-  });
+```js
+this.When(/^complete the first todo$/, function(){
+  return new this.Widget.List({
+    root: "#todo-list"
+  })
+  .clickAt({
+    index: 0,
+    selector: "input"
+  })
+});
 
-  this.Then(/^I should see that the first todo is completed$/, function() {
-    return new this.Widget.List({
-      root: "#todo-list"
-    })
-    .at(0).then(function(el){
-      el.getAttribute("class").then(function(className){
-        className.indexOf("completed").should.not.eql(-1)
-      })
-    });
+this.Then(/^I should see that the first todo is completed$/, function() {
+  return new this.Widget.List({
+    root: "#todo-list"
+  })
+  .at(0).then(function(el){
+    return el.hasClass("completed");
   });
-  ```
+});
+```
 
   To explain what these steps are doing:
    - First we create a new widget around the element `#todo-list` and click on the input in the first `<li>`. This is how one completes a todo.
@@ -84,43 +89,41 @@
 
   And there you have it, you wrote your first test using Pioneer! Easy right? But believe it or not, creating your step definitions is even easier if you take advantage of abstracting your own custom Widgets.
 
-  Now create the file `test/integration/widgets/my_widget.js` and append the following:
+  Now create the file `tests/widgets/my_widget.js` and append the following:
 
-  ```js
-  module.exports = function(){
-    this.Widgets = this.Widgets || {};
+```js
+module.exports = function(){
+  this.Widgets = this.Widgets || {};
 
-    Widgets.TodoList = this.Widget.extend({
-      root: "#todo-list",
+  this.Widgets.TodoList = this.Widget.List.extend({
+    root: "#todo-list",
 
-      complete: function (index) {
-        return this.clickAt({
-          selector: "input",
-          index: index
-        })
-      },
+    complete: function (index) {
+      return this.clickAt({
+        selector: "input",
+        index: index
+      })
+    },
 
-      isCompleted: function(index) {
-        this.at(index).then(function(el){
-          el.getAttribute("class").then(function(className){
-            return className.indexOf("completed") > -1
-          })
-        })
-      }
 
-    })
-  }
-  ```
+    isCompleted: function(index) {
+      return this.at(index).then(function(el){
+        return el.hasClass("completed");
+      });
+    }
+  })
+}
+```
 
   You have now extracted the complicated logic of checking list items out into a seperate file which can easily be reused. Now your step definitions can look list this
 
-  ```js
-  this.When(/^complete the first todo$/, function(){
-    return new this.Widgets.TodoList().complete(0)
-  });
+```js
+this.When(/^complete the first todo$/, function(){
+  return new this.Widgets.TodoList().complete(0)
+});
 
-  this.Then(/^I should see that the first todo is completed$/, function() {
-    return new this.Widgets.TodoList()
-    .isCompleted(0).should.eventually.eql(true)
-  });
-  ```
+this.Then(/^I should see that the first todo is completed$/, function() {
+  return new this.Widgets.TodoList()
+  .isCompleted(0).should.eventually.eql(true)
+});
+```
