@@ -1,3 +1,11 @@
+### v0.10.4 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.3...v0.10.4)
+
+#### Features
+
+Allow pioneer to be run with command line args alone.
+
+`pioneer features --require=steps --require=widgets` now will work.
+
 ### v0.10.3 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.2...v0.10.3)
 
 #### Features
