@@ -2,16 +2,16 @@
 
 var path        = require('path');
 var fs          = require('fs');
-var lib         = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
-var Pioneer     = require(lib + '/pioneer')
+var lib         = path.join(path.dirname(fs.realpathSync(__filename)), path.join('../', 'lib'));
+var Pioneer     = require(lib + path.join('/', 'pioneer'));
 
 var updateNotifier = require('update-notifier');
-var notifier = updateNotifier({packagePath: '../package.json'});
+var notifier = updateNotifier({packagePath: path.join('../', 'package.json')});
 
 if (notifier.update) {
     notifier.notify();
 }
 
-global.ARGV = Array.prototype.slice.call(process.argv)
+global.ARGV = Array.prototype.slice.call(process.argv);
 
-new Pioneer(lib)
+new Pioneer(lib);
