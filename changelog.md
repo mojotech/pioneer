@@ -2,7 +2,7 @@
 
 #### Fixes
 
-* Pioneer bin file is now hardened for windows enviornments.
+* Pioneer bin file is now hardened for windows environments.
 
 ### v0.10.4 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.3...v0.10.4)
 
