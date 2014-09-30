@@ -75,7 +75,7 @@ this.Then(/^I should see that the first todo is completed$/, function() {
     root: "#todo-list"
   })
   .at(0).then(function(el){
-    return el.hasClass("completed");
+    return el.hasClass("completed").should.become(true);
   });
 });
 ```
