@@ -1,3 +1,9 @@
+### v0.10.5 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.4...v0.10.5)
+
+#### Fixes
+
+* Pioneer bin file is now hardened for windows enviornments.
+
 ### v0.10.4 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.3...v0.10.4)
 
 #### Features
