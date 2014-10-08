@@ -1,3 +1,9 @@
+### v0.10.6-pre [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.5...v0.10.6-pre)
+
+#### Fixes
+  
+* Adds internal wait to text based finds.
+
 ### v0.10.5 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.4...v0.10.5)
 
 #### Fixes
