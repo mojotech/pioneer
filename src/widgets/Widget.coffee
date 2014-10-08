@@ -182,14 +182,19 @@ $       = Driver.promise
     @root + (if selector then " #{selector}" else '')
 
   _findByText: (opts) ->
-    @find().then (el) ->
-      el.findElement(
-        # WebDriver lets you go out of the child scope
-        # if you pass an absolute xpath selector
-        # this is a bug in WebDriver and is terrible
-        # by passing a `.` this is no longer an issue.
-        Driver.By.xpath('.//*[normalize-space(text())=normalize-space("' + opts.text + '")]')
-      )
+    # WebDriver lets you go out of the child scope
+    # if you pass an absolute xpath selector
+    # this is a bug in WebDriver and is terrible
+    # by passing a `.` this is no longer an issue.
+    _selector = Driver.By.xpath('.//*[normalize-space(text())=normalize-space("' + opts.text + '")]')
+
+    @find().then (el) =>
+      @driver.wait(
+        _.bind(el.findElement, el, _selector),
+        global.timeout,
+        "Unable to find node containing text #{opts.text}"
+      ).then =>
+        el.findElement(_selector)
 
   _ensureElement: (selector) ->
     @driver.wait(
