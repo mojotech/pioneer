@@ -7,7 +7,7 @@
     "testing"
   ],
   "author": "MojoTech",
-  "version": "0.10.6-pre",
+  "version": "0.10.6-pre-2",
   "license": "MIT",
   "engines": {
     "node": ">=0.8.0"
