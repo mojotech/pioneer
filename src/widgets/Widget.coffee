@@ -190,10 +190,14 @@ $       = Driver.promise
 
     @find().then (el) =>
       @driver.wait(
-        _.bind(el.findElement, el, _selector),
+        (=>
+          el.isElementPresent(_selector)
+          .then (v) -> v
+          .thenCatch (e) -> false
+        ),
         global.timeout,
         "Unable to find node containing text #{opts.text}"
-      ).then =>
+      ).then ->
         el.findElement(_selector)
 
   _ensureElement: (selector) ->
