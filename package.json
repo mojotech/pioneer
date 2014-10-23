@@ -47,7 +47,7 @@
   },
   "dependencies": {
     "bluebird": "^1.2.4",
-    "chai": "~1.8.1",
+    "chai": "~1.9.2",
     "chai-as-promised": "~4.1.0",
     "colors": "^0.6.2",
     "cucumber": "joshtombs/cucumber-js#0.3.3ErrorFormatting",
