@@ -1,3 +1,13 @@
+#### v0.10.6-pre-4 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.6-pre-3...v0.10.6-pre-4)
+
+#### Updates
+
+* Update `selenium-webdriver` lib to `0.2.44`, to fix some firefox specific issues.
+
+#### Fixes
+
+* Updates chai version to meet peer dependencies.
+
 #### v0.10.6-pre-3 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.6-pre-2...v0.10.6-pre-3)
 
 #### Fixes
