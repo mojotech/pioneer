@@ -30,6 +30,7 @@ This list of words can abstracted and interacted with via a `List` with ease. He
   * [Api](#api)
     * [itemSelector](#itemselector)
     * [itemClass](#itemclass)
+    * [getItemClass](#getItemClass)
     * [items](#items)
     * [length](#length)
     * [filter](#filter)
@@ -49,6 +50,18 @@ The `CSS` selector that is used when finding a single `Widget` contained within 
 ## itemClass
 
 The `Widget` to be instantiated and used when interacting with each item in the list. `itemClass` defaults to a generic `World.Widget` class.
+
+## getItemClass
+
+The value returned by this method is the ItemClass that will be instantiated and used when interacting with each item in the list. This method gives you the ability to return a Customized ItemClass for each el. By default `itemClass` is returned.
+
+```js
+var MyListWidget = Widget.List.extend({
+  getItemClass: function () {
+    return this.Driver.promise.fulfilled(this.itemClass);
+  }
+});
+```
 
 ## items
 

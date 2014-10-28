@@ -1,9 +1,14 @@
 _ = require("lodash")
+Driver  = require('selenium-webdriver')
+$       = Driver.promise
 
 class @Widget.List extends @Widget
   itemSelector: 'li'
 
   itemClass: World.Widget
+
+  getItemClass: (el) ->
+    $.fulfilled(@itemClass)
 
   at: (opts) ->
     if _.isNumber(opts)
@@ -49,10 +54,11 @@ class @Widget.List extends @Widget
     @find().then (el) =>
       el.findElements(Driver.By.css(@itemSelector))
     .then (elms) =>
-      _.map elms, (el) =>
-        new @itemClass({
-          el: el
-        })
+      @_map elms, (el) => 
+        @getItemClass(el).then (itemClass) ->
+          new itemClass({
+            el: el
+          })
 
   findWhere: (iter) ->
     @filter(iter).then (items) -> items[0] if items

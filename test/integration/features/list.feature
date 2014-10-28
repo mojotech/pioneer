@@ -4,7 +4,10 @@ Feature: Manipulating Lists
     Given I view "list.html"
 
   Scenario: Getting items in a list
-    Then I should see "5" items in a list
+    Then I should see "6" items in a list
+
+  Scenario: Getting itemClass dynamically
+    Then I should get the alias "Iron Man" for the item with a super-hero class
 
   Scenario: Getting an item in a list
     Then I should see "geordi laforge" in position "4" of the list
@@ -17,6 +20,7 @@ Feature: Manipulating Lists
       | deanna troi     |
       | geordi laforge  |
       | John Crichton   |
+      | Tony Stark      |
 
   Scenario: Filtering items in a list
     When I filter by "John" I should see "1" element
@@ -28,7 +32,7 @@ Feature: Manipulating Lists
     When I call at with a string I should get an error
 
   Scenario: Getting length of a list
-    When I call length I should receive 5
+    When I call length I should receive 6
 
   Scenario: Nested list lookup
     When I find the "span" within ".nested" I should see 3 items

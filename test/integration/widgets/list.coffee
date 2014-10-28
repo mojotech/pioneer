@@ -5,6 +5,10 @@ module.exports = ->
     root: "ul"
     childSelector: "li"
 
+    getItemClass: (el)->
+      el.getAttribute('class').then (className) =>
+        if className is 'super-hero' then @world.Widgets.ListItem else @itemClass
+
     clickEach: ->
       @each (item) -> item.click()
 
