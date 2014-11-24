@@ -42,26 +42,26 @@ All `Widgets` extend from seleniums [WebElement](http://selenium.googlecode.com/
     * [sendKeys](#static-sendkeys)
     * [clear](#clear)
   * [Interacting with the DOM](#interacting-with-the-dom)
-    * [Click](#click)
-    * [Fill](#fill)
-    * [Hover](#hover)
-    * [DoubleClick](#doubleclick)
+    * [click](#click)
+    * [fill](#fill)
+    * [hover](#hover)
+    * [doubleClick](#doubleclick)
     * [sendKeys](#sendkeys)
     * [addClass](#addclass)
     * [removeClass](#removeclass)
     * [toggleClass](#toggleclass)
     * [clear](#clear)
   * [Querying the DOM](#querying-the-dom)
-    * [Read](#read)
-    * [Find](#find)
-    * [FindAll](#findall)
+    * [read](#read)
+    * [find](#find)
+    * [findAll](#findall)
     * [isPresent](#ispresent)
     * [isVisible](#isvisible)
     * [getAttribute](#getattribute)
     * [getValue](#getvalue)
     * [getText](#gettext)
-    * [getInnerHTML](#getInnerHTML)
-    * [getOuterHTML](#getOuterHTML)
+    * [getInnerHTML](#getinnerhtml)
+    * [getOuterHTML](#getouterhtml)
     * [hasClass](#hasclass)
 
 
@@ -75,7 +75,7 @@ There are several ways to create a new `Widget` depending on your needs.
 
 In most cases the find based factory is going to suit your needs.
 
-`Find` returns a promise-based interface that eventually resolves to a widget with the `el` property already set to a [WebElement](http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_WebElement.html) instance. It takes a hash of attributes that will be extended onto your object.
+`find` returns a promise-based interface that eventually resolves to a widget with the `el` property already set to a [WebElement](http://selenium.googlecode.com/git/docs/api/javascript/class_webdriver_WebElement.html) instance. It takes a hash of attributes that will be extended onto your object.
 
 ```js
 Widget.find({
@@ -91,7 +91,7 @@ Widget.find({
 
 Extending is simple way to create a new `Class` based on the base `Widget` class via the `.extend` syntax. Extend will override any method or value set on the base `Widget` object.
 
-Using the extend functionality is a handy way to abstraact widget configuration across multiple files and methods into reusable widgets
+Using the extend functionality is a handy way to abstract widget configuration across multiple files and methods into reusable widgets
 
 ```js
 MyWidget = Widget.extend({
@@ -318,7 +318,7 @@ this.W.clear({
 
 ## Interacting with the DOM
 
-### Click
+### click
 
 `function click({selector:<cssSelector>})...`
 
@@ -334,7 +334,7 @@ var PuppySearch = Widget.extend({
 });
 ```
 
-### Fill
+### fill
 
 `function fill({selector:<cssSelector>, value: valueToFillWith})...`
 
@@ -364,11 +364,11 @@ var PuppyNamer = Widget.extend({
 });
 ```
 
-### Hover
+### hover
 
 `function hover({find options})...`
 
-the `Hover` method on a widget takes the same params as [find](#find) to locate the DOM node to be hovered. It returns a promise that is resolved with the widget after the mouse has been moved over the target element. If you do not pass anything to hover it will hover over the widgets root node.
+the `hover` method on a widget takes the same params as [find](#find) to locate the DOM node to be hovered. It returns a promise that is resolved with the widget after the mouse has been moved over the target element. If you do not pass anything to hover it will hover over the widgets root node.
 
 ```js
 new this.Widget({
@@ -460,7 +460,7 @@ new this.Widget({
 
 ## Querying the DOM
 
-## Read
+## read
 
 `function read({selector: <selector>, transformer: <function>})`
 
@@ -487,7 +487,7 @@ var HorseDetails = Widget.extend({
 });
 ```
 
-## Find
+## find
 
 `function find({selector: <selector>, text: <text>})...`
 
@@ -510,7 +510,7 @@ var ReptileDetails = Widget.extend({
 });
 ```
 
-## FindAll
+## findAll
 
 `function findAll(cssSelector)...`
 
