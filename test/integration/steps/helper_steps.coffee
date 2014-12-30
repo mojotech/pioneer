@@ -1,3 +1,4 @@
+Driver = require('selenium-webdriver')
 expect = require('chai').expect
 
 module.exports = ->
@@ -10,3 +11,6 @@ module.exports = ->
 
   @Then /^the following step should not execute$/, ->
     throw new Error "this step should not execute"
+
+  @Then /^the environment should expose Driver$/, ->
+    expect(@Driver).to.equal(Driver)
