@@ -38,5 +38,5 @@ gulp.task("default", function() {
 });
 
 gulp.task("watch", function() {
-  gulp.watch('src/**/*.coffee', ['default'])
+  gulp.watch('src/**/*', ['default'])
 });
