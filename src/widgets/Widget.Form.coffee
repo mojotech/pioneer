@@ -50,12 +50,3 @@ class @Widget.Form extends @Widget
 
   _name: (name) ->
     "[name='#{name}']"
-
-  _map: (collection, callback) ->
-    results = []
-    _reduce = (p, f, i) ->
-      p.then ->
-        callback(f, i).then (v) -> results.push(v)
-    _.reduce(collection, _reduce, Driver.promise.fulfilled())
-      .then -> results
-

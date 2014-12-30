@@ -6,6 +6,12 @@ module.exports = ->
     new @Widgets.List().items()
     .should.eventually.have.length(count)
 
+  @Given /^I should get the identity "([^"]*)" for the item with a super-hero class$/, (identity)->
+    new @Widgets.List().items().then (items)->
+      for item in items
+        item.getIdentity?()
+        .should.eventually.equal(identity)
+
   @Given /^I should see "([^"]*)" in position "([^"]*)" of the list$/, (content, position) ->
     new @Widgets.List().at(+position-1)
     .then (item) -> item.find()
