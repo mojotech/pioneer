@@ -25,10 +25,12 @@ class Pioneer
         configPath = p
       else
         configPath = null
-    if(configPath)
-      console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
-    else
-      console.log ('No configuration path specified.\n').yellow.inverse
+
+    if args.verbose
+      if configPath
+        console.log ('Configuration loaded from ' + configPath).yellow.inverse
+      else
+        console.log ('No configuration path specified').yellow.inverse
 
     this.getSpecifications(configPath, libPath, args)
 
@@ -47,17 +49,12 @@ class Pioneer
 
   applySpecifications: (obj, libPath, args) ->
     opts = configBuilder.generateOptions(args, obj, libPath)
-
     this.start(opts) if opts
 
   start: (opts) ->
-    timeStart = new Date().getTime()
-
     require('./environment')()
 
     cucumber.Cli(opts).run (success) ->
-      testTime = moment.duration(new Date().getTime() - timeStart)._data
-      console.log "Duration " + "(" + testTime.minutes + "m:" + testTime.seconds + "s:" + testTime.milliseconds + "ms)"
       process.exit(if success then 0 else 1)
 
   parseAndValidateJSON: (config, path) ->
