@@ -67,7 +67,7 @@ Pioneer can generate a scaffold for your first tests automatically using the opt
 ```
 
 ## Verbosity
-You can show some extra information about the test run by setting the `--verbose` flag.
+You can show some extra information about the test run by setting the `--verbose` flag. This can be used to override the value in the config file. You will need to use `--verbose=false` to turn off verbosity that has been set in the config file.
 
 ## Version
 
