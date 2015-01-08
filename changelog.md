@@ -1,3 +1,23 @@
+### v0.11.0 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.5...v0.11.0)
+
+#### Features
+
+* `Driver` is now exposed on the world.
+
+* `getItemClass` is now available to lookup a `itemClass` at instantiation time of a List.
+
+*  Finding by text now respects the internal global.timeout instead of failing right away.
+
+* Test runs now have a clean output options (omitting message about the configPath)
+
+* Enable the ability to toggle the visibility of the extra test run output, such as duration.
+
+#### Fixes
+
+* Update chai version to fix peer dependency issue
+* Update todo mvc test link
+* Doc consistency fixes
+
 ### v0.10.5 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.4...v0.10.5)
 
 #### Fixes
