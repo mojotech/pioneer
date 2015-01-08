@@ -25,39 +25,37 @@ class Pioneer
         configPath = p
       else
         configPath = null
-    if(configPath)
-      console.log ('Configuration loaded from ' + configPath + '\n').yellow.inverse
-    else
-      console.log ('No configuration path specified.\n').yellow.inverse
 
     this.getSpecifications(configPath, libPath, args)
 
   getSpecifications: (path, libPath, args) ->
-    obj = {}
+    configObject = {}
     if(path)
       fs.readFile(path,
         'utf8',
         (err, data) =>
           throw err if(err)
-          object = this.parseAndValidateJSON(data, path)
-          this.applySpecifications(object, libPath, args)
+          configObject = this.parseAndValidateJSON(data, path)
+
+          if @isVerbose(args, configObject)
+            console.log ('Configuration loaded from ' + path).yellow.inverse
+
+          this.applySpecifications(configObject, libPath, args)
       )
     else
-      this.applySpecifications(obj, libPath, args)
+      if @isVerbose(args, configObject)
+        console.log ('No configuration path specified').yellow.inverse
+
+      this.applySpecifications(configObject, libPath, args)
 
   applySpecifications: (obj, libPath, args) ->
     opts = configBuilder.generateOptions(args, obj, libPath)
-
     this.start(opts) if opts
 
   start: (opts) ->
-    timeStart = new Date().getTime()
-
     require('./environment')()
 
     cucumber.Cli(opts).run (success) ->
-      testTime = moment.duration(new Date().getTime() - timeStart)._data
-      console.log "Duration " + "(" + testTime.minutes + "m:" + testTime.seconds + "s:" + testTime.milliseconds + "ms)"
       process.exit(if success then 0 else 1)
 
   parseAndValidateJSON: (config, path) ->
@@ -68,5 +66,11 @@ class Pioneer
 
   isVersionRequested: (args) ->
     args.version || args.v
+
+  isVerbose: (args, config = {}) ->
+    if args.verbose?
+      return args.verbose and args.verbose isnt "false"
+    else
+      return !!config.verbose
 
 module.exports = Pioneer
