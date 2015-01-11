@@ -8,5 +8,6 @@
   "driver": "chrome",
   "error_formatter": "errorformat.js",
   "preventReload": false,
-  "coffee": false
+  "coffee": false,
+  "verbose": true
 }

@@ -28,35 +28,48 @@ This list of words can abstracted and interacted with via a `List` with ease. He
 
 ## Table of contents
   * [Api](#api)
-    * [ItemSelector](#itemselector)
-    * [ItemClass](#itemclass)
-    * [Items](#items)
-    * [Length](#length)
-    * [Filter](#filter)
-    * [Map](#map)
-    * [Each](#each)
-    * [Invoke](#invoke)
-    * [At](#at)
+    * [itemSelector](#itemselector)
+    * [itemClass](#itemclass)
+    * [getItemClass](#getItemClass)
+    * [items](#items)
+    * [length](#length)
+    * [filter](#filter)
+    * [map](#map)
+    * [each](#each)
+    * [invoke](#invoke)
+    * [at](#at)
     * [clickAt](#clickat)
     * [readAt](#readat)
 
 # API
 
-## ItemSelector
+## itemSelector
 
 The `CSS` selector that is used when finding a single `Widget` contained within the list. It defaults to `li` but can be overridden to any valid `CSS` selector.
 
-## ItemClass
+## itemClass
 
-The `Widget` to be instantiated and used when interacting with each item in the list. `ItemClass` defaults to a generic `World.Widget` class.
+The `Widget` to be instantiated and used when interacting with each item in the list. `itemClass` defaults to a generic `World.Widget` class.
 
-## Items
+## getItemClass
+
+The value returned by this method is the ItemClass that will be instantiated and used when interacting with each item in the list. This method gives you the ability to return a Customized ItemClass for each el. By default `itemClass` is returned.
+
+```js
+var MyListWidget = Widget.List.extend({
+  getItemClass: function () {
+    return this.Driver.promise.fulfilled(this.itemClass);
+  }
+});
+```
+
+## items
 
 `function items()...`
 
 Returns a `Promise` that resolves to a list of `Widgets` present in the `DOM` at call time.
 
-## Length
+## length
 
 `function length()...`
 
@@ -66,7 +79,7 @@ Returns a `Promise` that resolves to the length of the list.
 new ListItems().length().should.eventually.eql(5)
 ```
 
-## Filter
+## filter
 
 `function filter(<predicateMethod>(itemInstance))...`
 
@@ -87,7 +100,7 @@ new ListItems().filter(function(item) {
 });
 ```
 
-## Map
+## map
 
 ```js
 function map(function iterator(widgetInstance, index) {
@@ -116,7 +129,7 @@ new ListItems().map(function(item, index) {
 })
 ```
 
-## Each
+## each
 
 ```js
 function each(function iterator(widgetInstance, index) {
@@ -132,7 +145,7 @@ new ListItems().each(function(item, index) {
 });
 ```
 
-## Invoke
+## invoke
 
 `function invoke({method: (methodName or method), arguments:<[arguments]>})...`
 
@@ -162,7 +175,7 @@ new ListItems().invoke({
 })
 ```
 
-## At
+## at
 
 `function at(0-based-index)...`
 
@@ -172,7 +185,7 @@ Returns a promise that resolves with a child `Widget` instance at a given index.
 new ListItems().at(2).then(function(item) {});
 ```
 
-## FindWhere
+## findWhere
 
 `function findWhere(<predicateMethod>(itemInstance))...`
 

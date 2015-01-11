@@ -63,3 +63,9 @@ If `coffee` is not declared, then it will default to false.
   "coffee": true
 }
 ```
+
+## Verbosity
+
+If `verbose` is set to true, it will show some extra information about the test run. If it is not declared, then it will default to false.
+
+Note: this value can be overridden by the `--verbose` flag on the command line.

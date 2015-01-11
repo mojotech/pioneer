@@ -6,6 +6,8 @@ color           = require('colors')
 global.timeout  = 5000
 
 module.exports = ->
+  @Driver = Driver
+  
   _Before = @Before
   _After  = @After
 

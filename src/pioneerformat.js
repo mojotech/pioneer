@@ -1,4 +1,6 @@
-var path = require('path')
+var path = require('path');
+var moment = require('moment');
+
 module.exports = function(options, Cucumber) {
   var color            = Cucumber.Util.ConsoleColor;
   var self             = Cucumber.Listener.Formatter(options);
@@ -10,6 +12,11 @@ module.exports = function(options, Cucumber) {
     summaryFormatter.hear(event, function () {
       parentHear(event, callback);
     });
+  };
+
+  self.handleBeforeFeaturesEvent = function (event, callback) {
+    self.timeStart = new Date().getTime();
+    callback();
   };
 
   self.handleBeforeFeatureEvent = function handleBeforeFeatureEvent(event, callback) {
@@ -106,7 +113,10 @@ module.exports = function(options, Cucumber) {
 
   self.handleAfterFeaturesEvent = function handleAfterFeaturesEvent(event, callback) {
     var summaryLogs = summaryFormatter.getLogs();
-    self.log("\n");
+
+    testTime = moment.duration(new Date().getTime() - self.timeStart)._data;
+    self.log("\nDuration " + "(" + testTime.minutes + "m:" + testTime.seconds + "s:" + testTime.milliseconds + "ms)\n");
+
     callback();
   };
 

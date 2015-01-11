@@ -1,6 +1,6 @@
 module.exports = function(){
   this.Given(/^I visit TODOMVC$/,function(){
-    this.driver.get('http://todomvc.com/architecture-examples/backbone/')
+    this.driver.get('http://todomvc.com/examples/backbone/')
   });
 
   this.When(/^I enter \"([^\"]*)\"$/, function(value){
