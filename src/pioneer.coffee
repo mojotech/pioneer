@@ -7,6 +7,8 @@ scaffoldBuilder = require('./scaffold_builder')
 color           = require('colors')
 cucumber        = require('cucumber')
 
+cheapClone = (thing) -> JSON.parse(JSON.stringify(thing))
+
 class Pioneer
   constructor: (libPath) ->
     args = minimist(process.argv.slice(2))
@@ -36,6 +38,7 @@ class Pioneer
         (err, data) =>
           throw err if(err)
           configObject = this.parseAndValidateJSON(data, path)
+          global.__pioneerConfig = cheapClone configObject
 
           if @isVerbose(args, configObject)
             console.log ('Configuration loaded from ' + path).yellow.inverse

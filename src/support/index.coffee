@@ -84,17 +84,31 @@ module.exports = ->
     ), Infinity).then -> process.stdin.pause()
 
   @Before ->
+
+    pioneerConfig = global.__pioneerConfig
+
     @lastStepType = 'Given'
     if !@driver || !shouldPreventBrowserReload()
-      @driver = new Driver.Builder()
-      .usingServer("http://ondemand.saucelabs.com:80/wd/hub")
-      .withCapabilities(
-        browserName: "Chrome"
-        platform: "Windows 2012"
-        name: "Sample test"
-        username: process.env.SAUCE_USERNAME
-        accessKey: process.env.SAUCE_ACCESS_KEY
-      ).build()
+      if pioneerConfig.server
+
+        capabilities = _.extend({
+          browserName: "Chrome"
+          platform: "Windows 2012"
+          name: "Pioneer test"
+          username: process.env.SAUCE_USERNAME
+          accessKey: process.env.SAUCE_ACCESS_KEY
+        }, pioneerConfig.capabilities)
+
+        @driver = new Driver.Builder()
+          .usingServer(pioneerConfig.server)
+          .withCapabilities(capabilities)
+          .build()
+      else
+
+        @driver = new Driver.Builder()
+          .withCapabilities(Driver.Capabilities[argv.driver || 'chrome']())
+          .build()
+
       @driver.visit = @driver.get
 
   @After ->
