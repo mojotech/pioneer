@@ -7,7 +7,7 @@ global.timeout  = 5000
 
 module.exports = ->
   @Driver = Driver
-  
+
   _Before = @Before
   _After  = @After
 
@@ -42,7 +42,7 @@ module.exports = ->
     .createFlow (flow) =>
       flow.execute =>
         code.apply(@, args)
-    .then (result) -> 
+    .then (result) ->
       successCallback null, result
     , errCallback
 
@@ -86,7 +86,15 @@ module.exports = ->
   @Before ->
     @lastStepType = 'Given'
     if !@driver || !shouldPreventBrowserReload()
-      @driver = new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
+      @driver = new Driver.Builder()
+      .usingServer("http://ondemand.saucelabs.com:80/wd/hub")
+      .withCapabilities(
+        browserName: "Chrome"
+        platform: "Windows 2012"
+        name: "Sample test"
+        username: process.env.SAUCE_USERNAME
+        accessKey: process.env.SAUCE_ACCESS_KEY
+      ).build()
       @driver.visit = @driver.get
 
   @After ->
