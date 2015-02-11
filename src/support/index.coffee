@@ -11,6 +11,9 @@ module.exports = ->
   _Before = @Before
   _After  = @After
 
+  currentFeatureName = ''
+  currentScenarioName = ''
+
   @_inFlow = (code, callback) ->
     $.createFlow (flow) =>
       flow.execute => code.call(@)
@@ -83,6 +86,14 @@ module.exports = ->
         return keyPress
     ), Infinity).then -> process.stdin.pause()
 
+  @BeforeFeature (code, callback) ->
+    currentFeatureName = code.getPayloadItem('feature').getName()
+    callback()
+
+  @BeforeScenario (code, callback) ->
+    currentScenarioName = code.getPayloadItem('scenario').getName()
+    callback()
+
   @Before ->
 
     pioneerConfig = global.__pioneerConfig
@@ -94,7 +105,7 @@ module.exports = ->
         capabilities = _.extend({
           browserName: "Chrome"
           platform: "Windows 2012"
-          name: "Pioneer test"
+          name: "#{currentFeatureName} | #{currentScenarioName}"
           username: process.env.SAUCE_USERNAME
           accessKey: process.env.SAUCE_ACCESS_KEY
         }, pioneerConfig.capabilities)
