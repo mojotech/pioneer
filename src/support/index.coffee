@@ -3,6 +3,11 @@ $               = Driver.promise
 argv            = require('minimist')(process.argv)
 _               = require('lodash')
 color           = require('colors')
+SauceLabs       = require('saucelabs')
+sauceLabs = new SauceLabs
+  username: process.env.SAUCE_USERNAME
+  password: process.env.SAUCE_ACCESS_KEY
+
 global.timeout  = 5000
 
 module.exports = ->
@@ -94,7 +99,7 @@ module.exports = ->
     currentScenarioName = code.getPayloadItem('scenario').getName()
     callback()
 
-  @Before ->
+  @Before =>
 
     pioneerConfig = global.__pioneerConfig
 
@@ -107,6 +112,7 @@ module.exports = ->
           platform: "Windows 2012"
           name: "#{currentFeatureName} | #{currentScenarioName}"
           "selenium-version": "2.43.0"
+          build: process.env["bamboo.buildNumber"] || null
           username: process.env.SAUCE_USERNAME
           accessKey: process.env.SAUCE_ACCESS_KEY
         }, pioneerConfig.capabilities)
@@ -123,8 +129,48 @@ module.exports = ->
 
       @driver.visit = @driver.get
 
-  @After ->
-    terminateDriver() unless shouldPreventBrowserReload()
+
+  @_scenarioStatus = null
+  @StepResult (code, callback) =>
+    #tell saucelabs if it passed or failed via rest api
+    succeeded = code.getPayloadItem('stepResult').isSuccessful()
+    failed = code.getPayloadItem('stepResult').isFailed()
+    pending = code.getPayloadItem('stepResult').isPending()
+    skipped = code.getPayloadItem('stepResult').isSkipped()
+    notDefined = code.getPayloadItem('stepResult').isUndefined()
+    if failed then @_scenarioStatus = false
+    if succeeded then @_scenarioStatus = true
+    if pending or skipped or notDefined then @_scenarioStatus = null
+    callback()
+
+  @AfterScenario (code, callback) =>
+
+    nextTest = =>
+      @_scenarioStatus = null
+      if not shouldPreventBrowserReload()
+        terminateDriver().then -> callback()
+      else
+        callback()
+
+    if @_scenarioStatus is null
+      nextTest()
+    else
+      # send scenario response to saucelabs
+      @driver.session_.then (driverData) =>
+        sessionId = driverData.id_
+        data =
+          passed: @_scenarioStatus
+        sauceLabs.updateJob sessionId, data, (err, res) ->
+          # This code will always run
+          # If you are connecting through saucelabs the result of the test will
+          # be updated via their api to include the pass/fail status.
+          # If you are not connected through saucelabs the sessionId will not
+          # be found, so you will get an error, but we can safely ignore it.
+          # Note that in the case of an error when running through saucelabs
+          # it will be ignored and the test wont be marked as pass or fail,
+          # but at least the tests will continue to run and will exit correctly
+
+          nextTest()
 
   @registerHandler "AfterFeatures", (event, callback) =>
     if shouldPreventBrowserReload()
