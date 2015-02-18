@@ -30,9 +30,7 @@ gulp.task("default", function() {
     .pipe(gulp.dest("lib/"))
 
     gulp.src([
-      'src/scaffold/simple.txt',
-      'src/scaffold/simple.js',
-      'src/scaffold/example.json'
+      'src/scaffold/*.{txt,json,js,coffee}'
     ])
     .pipe(gulp.dest("lib/scaffold"))
 });

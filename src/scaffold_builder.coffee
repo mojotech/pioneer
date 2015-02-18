@@ -1,4 +1,5 @@
 fs           = require 'fs'
+minimist     = require 'minimist'
 path         = require 'path'
 prompt       = require 'prompt'
 color        = require 'colors'
@@ -6,6 +7,7 @@ _            = require 'lodash'
 
 module.exports =
   featureNotSpecified: ->
+    args = minimist(global.ARGV.slice(2))
     prompt.start()
 
     prompt.get({
@@ -13,13 +15,14 @@ module.exports =
       required: true
     }, (err, r) =>
       if(['y', 'yes'].indexOf(r.question.toLowerCase()) > -1)
-        @createScaffold()
+        @createScaffold(args)
       else
         console.log('Looks like you have no feature files or have not passed the path to them. http://www.github.com/mojotech/pioneer/docs')
         process.exit()
     )
 
-  createScaffold: (options) ->
+  createScaffold: (options={}) ->
+    ext = if options.coffee then "coffee" else "js"
     p = path.join(process.cwd(), '/tests')
     if(!fs.existsSync(p))
       fs.mkdirSync(p)
@@ -36,12 +39,12 @@ module.exports =
     if(!fs.existsSync(steps))
       fs.mkdirSync(steps)
     fs.writeFileSync(path.join(features, 'simple.feature'), fs.readFileSync(path.join(__dirname, "scaffold/simple.txt"), 'utf8'))
-    fs.writeFileSync(path.join(steps, 'simple.js'), fs.readFileSync(path.join(__dirname, "scaffold/simple.js"), 'utf8'))
+    fs.writeFileSync(path.join(steps, "simple.#{ext}"), fs.readFileSync(path.join(__dirname, "scaffold/simple.#{ext}"), 'utf8'))
     hiddenPioneer = path.join(process.cwd(), '/pioneer.json')
     if(!fs.existsSync(hiddenPioneer))
-      fs.writeFileSync(hiddenPioneer, fs.readFileSync(path.join(__dirname, "scaffold/example.json"), 'utf8'))
+      fs.writeFileSync(hiddenPioneer, fs.readFileSync(path.join(__dirname, "scaffold/example_#{ext}.json"), 'utf8'))
     else
-      @askToOverWrite(hiddenPioneer, fs.readFileSync(path.join(__dirname, "scaffold/example.json"), 'utf8'))
+      @askToOverWrite(hiddenPioneer, fs.readFileSync(path.join(__dirname, "scaffold/example_#{ext}.json"), 'utf8'))
     @_logCompleted()
 
     process.exit()

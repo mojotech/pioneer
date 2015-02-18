@@ -18,7 +18,7 @@ class Pioneer
     if(args.configPath && fs.existsSync(args.configPath))
       configPath = args.configPath
     else if args.scaffold
-      scaffoldBuilder.createScaffold()
+      scaffoldBuilder.createScaffold(args)
     else
       p = path.join(process.cwd(), '/pioneer.json')
       if(fs.existsSync(p))

@@ -94,3 +94,32 @@ describe "Scaffold Builder", ->
 
     it "should create a pioneer.json file if one doesn't exist", ->
       fs.existsSync(this.pioneerJSON).should.be.true
+
+  describe "createScaffold({coffee: true})", ->
+    beforeEach ->
+      this.pioneerJSON = path.join(process.cwd(), '/pioneer.json')
+      if(fs.existsSync(this.pioneerJSON))
+        this.format = fs.readFileSync(this.pioneerJSON)
+      else
+        this.format = null
+      logs = this.sandbox.stub(scaffoldBuilder, "_logCompleted", -> )
+      if(fs.existsSync(this.pioneerJSON))
+        fs.unlinkSync(this.pioneerJSON)
+      scaffoldBuilder.createScaffold(coffee: true)
+
+    afterEach ->
+      scaffoldBuilder.askToOverWrite.restore()
+      if(this.format)
+        fs.writeFileSync(this.pioneerJSON, this.format)
+      else
+        fs.unlinkSync(path.join(process.cwd(), '/pioneer.json'))
+
+    it "should create simple steps with coffeescript", ->
+      fs.existsSync(path.join(process.cwd(), '/tests/steps/simple.coffee')).should.be.true
+
+    it "should not create simple.js steps with coffeescript enabled", ->
+      fs.existsSync(path.join(process.cwd(), '/tests/steps/simple.js')).should.be.false
+
+    it "should have a pioneer.json file with coffee enabled", ->
+      json = JSON.parse(fs.readFileSync(path.join(process.cwd(), '/pioneer.json'), 'utf8'))
+      json.coffee.should.be.true
