@@ -15,7 +15,7 @@ Widget.Form
 `submitSelector` finds and returns an element of type `submit`. It can be overridden to find select another element for the target of [submitForm](#submitform)
 
 ```js
-var F = new this.Widget.Form.extend({
+var F = this.Widget.Form.extend({
   root: "#my-form",
   submitSelector: function(){
     return this.find("button.mySubmit")
@@ -32,9 +32,11 @@ var F = new this.Widget.Form.extend({
 `submitWith` will call [fillAll](#fillall) on each of keys value pairs passed into method, and then call the `click` method on the return of the `submitSelector` method.
 
 ```js
-var waiver = new this.Widget.Form.extend({
+var F = this.Widget.Form.extend({
   root: "#waiver",
 })
+
+var waiver = new F;
 waiver.submitWith({name: "Joe Doe", address: "55 Main St", reason: "N/A"});
 ```
 
