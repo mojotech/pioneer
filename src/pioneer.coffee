@@ -1,17 +1,13 @@
 moment          = require('moment')
 fs              = require('fs')
 path            = require('path')
-minimist        = require('minimist')
 configBuilder   = require('./config_builder')
 scaffoldBuilder = require('./scaffold_builder')
 color           = require('colors')
 cucumber        = require('cucumber')
 
 class Pioneer
-  constructor: (libPath) ->
-    args = minimist(process.argv.slice(2))
-    process.argv = []
-
+  constructor: (libPath, args) ->
     if this.isVersionRequested(args)
       console.log require('../package').version
       return

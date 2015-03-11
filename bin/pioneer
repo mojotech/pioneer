@@ -2,6 +2,7 @@
 
 var path        = require('path');
 var fs          = require('fs');
+var minimist    = require('minimist');
 var lib         = path.join(path.dirname(fs.realpathSync(__filename)), path.join('../', 'lib'));
 var Pioneer     = require(lib + path.join('/', 'pioneer'));
 
@@ -13,5 +14,6 @@ if (notifier.update) {
 }
 
 global.ARGV = Array.prototype.slice.call(process.argv);
+var options = minimist(process.argv.slice(2));
 
-new Pioneer(lib);
+new Pioneer(lib, options);
