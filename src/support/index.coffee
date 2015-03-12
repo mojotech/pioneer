@@ -107,6 +107,7 @@ module.exports = ->
           platform: "Windows 2012"
           name: "#{currentFeatureName} | #{currentScenarioName}"
           "selenium-version": "2.43.0"
+          build: process.env["bamboo_buildNumber"] || null
           username: process.env.SAUCE_USERNAME
           accessKey: process.env.SAUCE_ACCESS_KEY
         }, pioneerConfig.capabilities)
