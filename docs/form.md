@@ -40,9 +40,9 @@ waiver.submitWith({name: "Joe Doe", address: "55 Main St", reason: "N/A"});
 
 ## select
 
-`function select({text: <text>, value: <value>, selector: <selector>})`
+`function select({text: <text>, value: <value>})`
 
-`select` takes a hash with an optional `<selector>` in which you can specifiy either `<text>` or `<value>` to select by. Specifiying both text and a value will result in an error. It returns a promise that will resolve with null.
+`select` takes a hash in which you can specifiy either `<text>` or `<value>` to select by. Specifiying both text and a value will result in an error. Alternately, you can also just pass a single string value and it will be the same as passing in the `<text>` hash option.  `select` returns a promise that will resolve with null.
 
 ```html
 <div class="form2">
@@ -62,6 +62,18 @@ return new this.Widget.Form({
   value: "three"
 })
 //Resulting in the selection of the option with a value of "three".
+
+// Two-forms of selecting by text
+return new this.Widget.Form({
+  root: "form2"
+})
+.select("Option Number 3")
+// The above is the shortform of the following
+return new this.Widget.Form({
+  root: "form2"
+})
+.select({text: "Option Number 3"})
+
 ```
 
 ## fillAll
