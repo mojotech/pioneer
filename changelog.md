@@ -1,3 +1,9 @@
+### v0.11.1 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.1...v0.11.1)
+
+#### Updates
+
+* Update selenium-webdriver version to use the latest and greatest version.
+
 ### v0.11.0 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.10.5...v0.11.0)
 
 #### Features

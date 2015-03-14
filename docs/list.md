@@ -233,7 +233,8 @@ new this.Widget.List()
 If only a number is passed and not an options hash it will default to using that as the at index lookup
 
 
-``js
+```js
 new this.Widget.List().readAt(1, 'p', function(val){
   return $.trim(val);
 })
+```
