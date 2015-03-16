@@ -101,3 +101,11 @@ module.exports = ->
         field1: "wow",
         field2: "such"
       })
+
+  @When /^I click a checkbox$/, ->
+    @W.click('input[type="checkbox"]')
+
+  @Then /^the checkbox should be selected$/, ->
+    @W.find({root: 'input[type="checkbox"]'})
+    .then (widget) -> widget.el.isSelected()
+    .should.eventually.eql(true)
