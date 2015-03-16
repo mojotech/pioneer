@@ -54,10 +54,11 @@
     "lodash": "2.2.1",
     "minimist": "0.2.0",
     "moment": "2.6.0",
+    "prompt": "0.2.13",
     "rimraf": "2.2.8",
+    "saucelabs": "^0.1.1",
     "selenium-webdriver": "2.44.0",
-    "update-notifier": "0.1.10",
-    "prompt": "0.2.13"
+    "update-notifier": "0.1.10"
   },
   "bugs": {
     "url": "https://github.com/mojotech/pioneer/issues"
