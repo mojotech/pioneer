@@ -68,6 +68,9 @@ module.exports = ->
   @And = (pattern, code) =>
     @[@lastStepType](pattern, code)
 
+  @SetDriver = ->
+    @driver = @ConfigureDriver?(Driver, argv) || new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
+
   @Freeze = ->
     keyPress = false
     stdin = process.stdin
@@ -86,7 +89,7 @@ module.exports = ->
   @Before ->
     @lastStepType = 'Given'
     if !@driver || !shouldPreventBrowserReload()
-      @driver = new Driver.Builder().withCapabilities(Driver.Capabilities[argv.driver || 'chrome']()).build()
+      @SetDriver()
       @driver.visit = @driver.get
 
   @After ->
