@@ -1,3 +1,11 @@
+### v0.11.2 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.1...v0.11.2)
+
+#### Updates
+
+* Users can now opt out of notifications.
+* Allow for users to override the driver build phase. This allows users to use tools like sauce labs and other hosted selenium services.
+* Minor Doc uodates
+
 ### v0.11.1 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.1...v0.11.1)
 
 #### Updates
