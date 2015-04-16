@@ -1,3 +1,9 @@
+### v0.11.3 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.2...v0.11.3)
+
+#### Fixes
+
+* Fixed a bug where it was impossible to pass multiple feature arguments via the command line.
+
 ### v0.11.2 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.1...v0.11.2)
 
 #### Updates
