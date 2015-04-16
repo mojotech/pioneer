@@ -69,7 +69,7 @@ module.exports =
                 ""
 
           when k is 'feature'
-            "#{val[k]}"
+            val[k] = Array::concat(val[k])
 
           when k is 'require'
             val[k].reduce((p, v) ->
