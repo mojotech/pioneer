@@ -7,7 +7,7 @@ global.timeout  = 5000
 
 module.exports = ->
   @Driver = Driver
-  
+
   _Before = @Before
   _After  = @After
 
@@ -42,7 +42,7 @@ module.exports = ->
     .createFlow (flow) =>
       flow.execute =>
         code.apply(@, args)
-    .then (result) -> 
+    .then (result) ->
       successCallback null, result
     , errCallback
 
@@ -93,11 +93,12 @@ module.exports = ->
       @driver.visit = @driver.get
 
   @After ->
-    terminateDriver() unless shouldPreventBrowserReload()
+    if @driver?
+      terminateDriver() unless shouldPreventBrowserReload()
 
   @registerHandler "AfterFeatures", (event, callback) =>
-    if shouldPreventBrowserReload()
-      terminateDriver().then -> callback()
+    if shouldPreventBrowserReload() and @driver?
+      terminateDriver().then callback
     else
       callback()
 
