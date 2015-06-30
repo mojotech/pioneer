@@ -401,6 +401,8 @@ new this.Widget({
 `sendKeys` simulates a user typing. Derived from the [Webdriver sendKey method](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/actionsequence.js.src.html). It accepts a hash with an optional selector to scope the `find` operation. It requires a `keys` value in the hash which should be an array of the keys to be sent to the element. These keys may include special keys such as Driver.Key.ENTER. A list of those special keys can be found at [Selenium WebDriver docs](http://selenium.googlecode.com/git/docs/api/javascript/source/lib/webdriver/key.js.src.html).
 
 ```js
+var Driver = require('selenium-webdriver');
+
 new this.Widget({
   root: ".some-div"
 }).sendKeys({
