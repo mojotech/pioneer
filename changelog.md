@@ -1,3 +1,9 @@
+### v0.11.5 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.4...v0.11.5)
+
+#### Updates
+
+* Update selenium-webdriver to 2.46.1
+
 ### v0.11.4 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.3...v0.11.4)
 
 #### Updates
