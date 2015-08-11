@@ -1,3 +1,7 @@
+### v0.11.6 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.5...v0.11.6)
+
+* Fix release issue
+
 ### v0.11.5 [view commit logs](https://github.com/mojotech/pioneer/compare/v0.11.4...v0.11.5)
 
 #### Updates
