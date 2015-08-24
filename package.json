@@ -7,7 +7,7 @@
     "testing"
   ],
   "author": "MojoTech",
-  "version": "0.11.4",
+  "version": "0.11.6",
   "license": "MIT",
   "engines": {
     "node": ">=0.8.0"
@@ -56,7 +56,7 @@
     "moment": "2.6.0",
     "prompt": "0.2.13",
     "rimraf": "2.2.8",
-    "selenium-webdriver": "^2.45.1",
+    "selenium-webdriver": "^2.46.1",
     "update-notifier": "0.1.10"
   },
   "bugs": {
