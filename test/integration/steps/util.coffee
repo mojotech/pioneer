@@ -11,4 +11,4 @@ module.exports = ->
 
   @Then /^the driver should get that URL$/, ->
     @driver.getCurrentUrl()
-    .should.eventually.eql("http://www.google.com/")
+    .should.eventually.contain("www.google.com")

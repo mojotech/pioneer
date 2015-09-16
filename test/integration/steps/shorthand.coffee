@@ -14,7 +14,7 @@ module.exports = ->
       w.read({selector: "h4"}).should.eventually.eql("ok ok only on hover")
 
   @When /^I shorthand click an element$/, ->
-    @W.click()
+    @W.click({selector: 'body'})
 
   @When /^I shorthand fill an element$/, ->
     @W.fill({

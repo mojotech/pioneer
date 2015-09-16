@@ -7,7 +7,7 @@
     "testing"
   ],
   "author": "MojoTech",
-  "version": "0.11.3",
+  "version": "0.11.6",
   "license": "MIT",
   "engines": {
     "node": ">=0.8.0"
@@ -54,10 +54,10 @@
     "lodash": "2.2.1",
     "minimist": "0.2.0",
     "moment": "2.6.0",
+    "prompt": "0.2.13",
     "rimraf": "2.2.8",
-    "selenium-webdriver": "2.42.1",
-    "update-notifier": "0.1.10",
-    "prompt": "0.2.13"
+    "selenium-webdriver": "^2.46.1",
+    "update-notifier": "0.1.10"
   },
   "bugs": {
     "url": "https://github.com/mojotech/pioneer/issues"
