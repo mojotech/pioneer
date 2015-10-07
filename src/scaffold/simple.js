@@ -5,13 +5,13 @@ module.exports = function(){
 
   this.When(/^I enter \"([^\"]*)\"$/, function(value){
     new this.Widget({
-      root: "#new-todo"
+      root: ".new-todo"
     }).sendKeys(value,'\uE007');
   });
 
   this.Then(/^I should see \"([^\"]*)\"$/, function(expected){
     var List = this.Widget.List.extend({
-      root: "#todo-list",
+      root: ".todo-list",
       childSelector: "li"
     })
 
