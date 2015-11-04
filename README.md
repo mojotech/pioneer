@@ -1,3 +1,5 @@
+**This project is no longer actively maintained. If you'd like to help out, get in touch!**
+
 <h1 align="center">Pioneer</h1>
 
 <p align="center">
