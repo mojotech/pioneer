@@ -321,9 +321,9 @@
               "resolved": "https://registry.npmjs.org/deep-equal/-/deep-equal-0.2.1.tgz"
             },
             "i": {
-              "version": "0.3.2",
-              "from": "https://registry.npmjs.org/i/-/i-0.3.2.tgz",
-              "resolved": "https://registry.npmjs.org/i/-/i-0.3.2.tgz"
+              "version": "0.3.3",
+              "from": "https://registry.npmjs.org/i/-/i-0.3.3.tgz",
+              "resolved": "https://registry.npmjs.org/i/-/i-0.3.3.tgz"
             },
             "mkdirp": {
               "version": "0.5.0",
