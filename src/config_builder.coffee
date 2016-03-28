@@ -30,11 +30,15 @@ module.exports =
 
         switch
           when k is 'tags'
-            "--#{k}=".concat(
-              (_(Array::concat(val[k]))
-              .flatten()
-              .value())
-              .join(", "))
+            if typeof val[k] is 'string'
+              "--#{k}=".concat(
+                (_(Array::concat(val[k]))
+                .flatten()
+                .value())
+                .join(", "))
+            else
+              val[k].map (item, index) ->
+                "--#{k}=#{item}"
 
           when k is 'driver'
             process.argv.push "--driver=#{val[k]}"

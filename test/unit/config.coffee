@@ -58,8 +58,12 @@ describe "Pioneer configuration", ->
         { 'preventReload': true }
       ]
 
-      this.multiTagConfig = [
+      this.multiTagConfigAndMode = [
         { tags: ["@wow", "@doge"]}
+      ]
+
+      this.multiTagConfigOrMode = [
+        { tags: ["@wow, @doge"]}
       ]
       scaffoldStub = sinon.stub(configBuilder, "hasFeature", -> true)
 
@@ -84,8 +88,13 @@ describe "Pioneer configuration", ->
       ])
       process.argv.should.eql(["--driver=phantomjs", "--prevent-browser-reload"])
 
+    it "should convertToExecOptions with multiple tags in AND mode", ->
+      configBuilder.convertToExecOptions(this.multiTagConfigAndMode, this.libPath)
+      .should.eql([null, null, "--require", "wow/support", "--tags=@wow", "--tags=@doge"])
+      process.argv.should.eql([])
+
     it "should convertToExecOptions with multiple tags", ->
-      configBuilder.convertToExecOptions(this.multiTagConfig, this.libPath)
+      configBuilder.convertToExecOptions(this.multiTagConfigOrMode, this.libPath)
       .should.eql([null, null, "--require", "wow/support", "--tags=@wow, @doge"])
       process.argv.should.eql([])
 
