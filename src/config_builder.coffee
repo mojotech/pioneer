@@ -2,6 +2,7 @@ fs           = require 'fs'
 path         = require 'path'
 scaffold     = require './scaffold_builder.js'
 _            = require 'lodash'
+glob         = require 'glob'
 
 CONFIG_NAMES = [
   "tags",
@@ -30,11 +31,10 @@ module.exports =
 
         switch
           when k is 'tags'
-            "--#{k}=".concat(
-              (_(Array::concat(val[k]))
+            _(Array::concat(val[k]))
+              .map((tagPart) -> ['--tags', tagPart])
               .flatten()
-              .value())
-              .join(", "))
+              .value()
 
           when k is 'driver'
             process.argv.push "--driver=#{val[k]}"
@@ -54,7 +54,6 @@ module.exports =
             else
               "--format=#{path.join(libPath, v)}"
 
-
           when k is 'preventReload'
             v = val[k]
             switch
@@ -72,8 +71,12 @@ module.exports =
             val[k] = Array::concat(val[k])
 
           when k is 'require'
-            val[k].reduce((p, v) ->
-              p.concat("--require", v)
+            val[k].reduce((paths, v) ->
+              glob.sync(v).forEach((fileName) ->
+                paths.push("--require")
+                paths.push(fileName)
+              )
+              paths
             , [])
 
           else

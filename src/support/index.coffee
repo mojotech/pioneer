@@ -93,11 +93,12 @@ module.exports = ->
       @driver.visit = @driver.get
 
   @After ->
-    terminateDriver() unless shouldPreventBrowserReload()
+    if @driver?
+      terminateDriver() unless shouldPreventBrowserReload()
 
   @registerHandler "AfterFeatures", (event, callback) =>
-    if shouldPreventBrowserReload()
-      terminateDriver().then -> callback()
+    if shouldPreventBrowserReload() and @driver?
+      terminateDriver().then callback
     else
       callback()
 
