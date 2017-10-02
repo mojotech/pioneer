@@ -1,6 +1,6 @@
 {
   "name": "pioneer",
-  "version": "0.11.6",
+  "version": "1.0.0",
   "dependencies": {
     "bluebird": {
       "version": "1.2.4",
