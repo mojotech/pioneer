@@ -1,11 +1,7 @@
 {
-  "name": "pioneer",
+  "name": "@mft/pioneer",
   "description": "Delicious Cucumber tests",
-  "keywords": [
-    "cucumber",
-    "selenium-webdriver",
-    "testing"
-  ],
+  "keywords": ["cucumber", "selenium-webdriver", "testing"],
   "author": "MojoTech",
   "version": "0.11.6",
   "license": "MIT",
@@ -22,10 +18,13 @@
   },
   "scripts": {
     "build": "npm run-script clean && gulp",
+    "prepublish": "npm run build",
     "clean": "rm -rf lib",
     "pub": "npm run-script build && npm publish && npm run-script clean",
-    "test": "istanbul cover --dir coverage/unit -x **/lib/**/*format.js node_modules/mocha/bin/_mocha -- test/unit/**.coffee",
-    "integration": "istanbul cover -x **/lib/**/*format.js ./bin/pioneer --dir coverage/integration",
+    "test":
+      "istanbul cover --dir coverage/unit -x **/lib/**/*format.js node_modules/mocha/bin/_mocha -- test/unit/**.coffee",
+    "integration":
+      "istanbul cover -x **/lib/**/*format.js ./bin/pioneer --dir coverage/integration",
     "coverage": "./coverage.sh"
   },
   "repository": {
