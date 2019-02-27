@@ -38,7 +38,7 @@
     "exec": "0.1.1",
     "gulp": "~4.0.0",
     "gulp-coffee": "^3.0.3",
-    "gulp-include": "samccone/gulp-include",
+    "gulp-include": "^2.3.1",
     "istanbul": "^0.4.5",
     "mocha": "^6.0.2",
     "should": "3.3.1",
