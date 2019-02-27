@@ -54,7 +54,7 @@
     "lodash": "^2.4.2",
     "minimist": "0.2.0",
     "moment": "2.24.0",
-    "prompt": "0.2.13",
+    "prompt": "^1.0.0",
     "rimraf": "2.2.8",
     "selenium-webdriver": "^2.53.3",
     "update-notifier": "2.5.0"
