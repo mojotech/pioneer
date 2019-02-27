@@ -46,17 +46,13 @@ describe "widgets", ->
 
   describe "find based constructor", ->
 
-    it "should return a thenable interface", (done) ->
+    it "should return a thenable interface", ->
       assert.notEqual(ROOT.Widget.find(root: "body").then, undefined)
-      done()
 
-    it "should set the el property", (done) ->
+    it "should set the el property", ->
       ROOT.Widget.find(root: "body").then (widget) ->
         assert.notEqual(widget.el, undefined)
-        done()
 
-    it "should set attributes based on find args", (done) ->
+    it "should set attributes based on find args", ->
       ROOT.Widget.find(root: "body").then (widget) ->
         widget.root.should.eql("body")
-        done()
-

@@ -5,12 +5,13 @@ var fs          = require('fs');
 var minimist    = require('minimist');
 var lib         = path.join(path.dirname(fs.realpathSync(__filename)), path.join('../', 'lib'));
 var Pioneer     = require(lib + path.join('/', 'pioneer'));
+var pkg         = require('../package.json');
 
 var checkForUpdates = process.argv.indexOf("--noUpdates") === -1
 
 if (checkForUpdates) {
   var updateNotifier = require('update-notifier');
-  var notifier = updateNotifier({packagePath: path.join('../', 'package.json')});
+  var notifier = updateNotifier({pkg: pkg});
 
   if (notifier.update) {
       notifier.notify();
