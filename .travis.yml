@@ -5,8 +5,7 @@ before_script:
   - sudo apt-get install -y lcov
 
 node_js:
-  - "0.11"
-  - "0.10"
+  - "10.15"
 
 script:
   - npm test
