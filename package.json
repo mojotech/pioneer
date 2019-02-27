@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "coffeescript": "^2.3.2",
-    "coveralls": "2.11.1",
+    "coveralls": "^3.0.3",
     "exec": "0.1.1",
     "gulp": "~4.0.0",
     "gulp-coffee": "^3.0.3",
