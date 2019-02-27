@@ -2,7 +2,7 @@ var gulp    = require("gulp"),
     include = require('gulp-include'),
     coffee  = require('gulp-coffee');
 
-gulp.task("default", function() {
+gulp.task("default", function(done) {
     gulp.src([
       'src/widgets/build/widgets.coffee',
       'src/support/index.coffee'
@@ -18,7 +18,7 @@ gulp.task("default", function() {
       'src/custom_formatter.coffee',
       'src/config_builder.coffee',
       'src/scaffold_builder.coffee'
-    ])
+    ], { allowEmpty: true })
     .pipe(coffee())
     .pipe(gulp.dest("lib/"))
 
@@ -26,7 +26,7 @@ gulp.task("default", function() {
       'src/config.json',
       'src/pioneerformat.js',
       'src/pioneersummaryformat.js'
-    ])
+    ], { allowEmpty: true })
     .pipe(gulp.dest("lib/"))
 
     gulp.src([
@@ -35,6 +35,8 @@ gulp.task("default", function() {
       'src/scaffold/example.json'
     ])
     .pipe(gulp.dest("lib/scaffold"))
+
+    done();
 });
 
 gulp.task("watch", function() {
