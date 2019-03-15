@@ -33,7 +33,7 @@
     "url": "git://github.com/mojotech/pioneer.git"
   },
   "devDependencies": {
-    "coffeescript": "^2.3.2",
+    "coffeescript": "^1.12.7",
     "coveralls": "^3.0.3",
     "exec": "0.1.1",
     "gulp": "~4.0.0",
