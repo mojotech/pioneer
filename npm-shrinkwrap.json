@@ -5515,7 +5515,6 @@
       "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-2.53.3.tgz",
       "integrity": "sha1-0p/1qVff8aG0ncRXdW5OS/vc4IU=",
       "requires": {
-        "adm-zip": "0.4.4",
         "rimraf": "^2.2.8",
         "tmp": "0.0.24",
         "ws": "^1.0.1",
@@ -5523,9 +5522,9 @@
       },
       "dependencies": {
         "adm-zip": {
-          "version": "0.4.4",
-          "resolved": "https://registry.npmjs.org/adm-zip/-/adm-zip-0.4.4.tgz",
-          "integrity": "sha1-ph7VrmkFw66lizplfSUDMJEFJzY="
+          "version": "0.4.13",
+          "resolved": "https://registry.npmjs.org/adm-zip/-/adm-zip-0.4.13.tgz",
+          "integrity": "sha512-fERNJX8sOXfel6qCBCMPvZLzENBEhZTzKqg6vrOW5pvoEaQuJhRU4ndTAh6lHOxn1I6jnz2NHra56ZODM751uw=="
         }
       }
     },
