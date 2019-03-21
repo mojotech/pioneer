@@ -33,11 +33,11 @@
     "url": "git://github.com/mojotech/pioneer.git"
   },
   "devDependencies": {
-    "coffeescript": "^2.3.2",
+    "coffeescript": "^1.12.7",
     "coveralls": "^3.0.3",
     "exec": "0.1.1",
     "gulp": "~4.0.0",
-    "gulp-coffee": "^3.0.3",
+    "gulp-coffee": "^2.3.5",
     "gulp-include": "^2.3.1",
     "istanbul": "^0.4.5",
     "mocha": "^6.0.2",
@@ -51,7 +51,7 @@
     "chai-as-promised": "4.1.0",
     "colors": "0.6.2",
     "cucumber": "joshtombs/cucumber-js#0.3.3ErrorFormatting",
-    "lodash": "^2.4.2",
+    "lodash": "^4.17.11",
     "minimist": "0.2.0",
     "moment": "2.24.0",
     "prompt": "^1.0.0",

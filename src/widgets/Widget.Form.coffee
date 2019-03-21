@@ -46,7 +46,7 @@ class @Widget.Form extends @Widget
       @getValue(@_name(f)).then (v) -> [f, v]
 
     @_map(@fields, _readAll).then (read) ->
-      _.object(read)
+      _.fromPairs(read)
 
   _name: (name) ->
     "[name='#{name}']"

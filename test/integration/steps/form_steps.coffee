@@ -31,10 +31,10 @@ module.exports = ->
   @Given /^I fill a form with:$/, (table) ->
     F = world.Widget.Form.extend({
      root: 'form'
-     fields: _.pluck(table.hashes(), "name")
+     fields: _.map(table.hashes(), "name")
     })
 
-    new F().submitWith(_.object(table.raw().slice(1)))
+    new F().submitWith(_.fromPairs(table.raw().slice(1)))
 
   @Then /^the widget should use the default form selector to find the first available form element$/, ->
     new @Widget.Form().getAttribute("class").should.eventually.eql("formula_1")
