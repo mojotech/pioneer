@@ -95,6 +95,9 @@ module.exports = ->
   @After ->
     terminateDriver() unless shouldPreventBrowserReload()
 
+  @registerHandler "AfterScenario", (event, callback) =>
+    @driver?.controlFlow().reset()
+
   @registerHandler "AfterFeatures", (event, callback) =>
     if shouldPreventBrowserReload()
       terminateDriver().then -> callback()
