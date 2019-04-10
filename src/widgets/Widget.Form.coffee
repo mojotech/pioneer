@@ -4,11 +4,11 @@ _       = require('lodash')
 class @Widget.Form extends @Widget
   root: 'form'
 
-  submitSelector: ->
+  findSubmit: ->
     @find('[type="submit"]')
 
   submitForm: =>
-    @submitSelector().then (el) -> el.click()
+    @findSubmit().then (el) -> el.click()
 
   submitWith: (values) =>
     @fillAll(values)
